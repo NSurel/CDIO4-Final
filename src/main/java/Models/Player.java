@@ -35,4 +35,7 @@ public class Player {
     public int getBalance(){
         return balance;
     }
+    public void updateBalance(int amount){
+        balance += amount;
+    }
 }
