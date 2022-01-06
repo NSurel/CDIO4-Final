@@ -7,7 +7,7 @@ public class Player {
     private int pos;
     private int balance;
 
-    public Player(String name, int playerID, int pos, int balance){
+    public Player(String name, int playerID){
         this.name = name;
         this.playerID = playerID;
         this.pos = 0;

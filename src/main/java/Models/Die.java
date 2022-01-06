@@ -12,7 +12,7 @@ public class Die {
         this.sides = sides;
     }
 
-    public void rollDie(){
+    public void roll(){
         roll = new Random();
         faceValue = roll.nextInt(sides)+1;
     }
