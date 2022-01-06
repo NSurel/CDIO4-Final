@@ -6,14 +6,18 @@ public class Player {
     private int playerID;
     private int pos;
     private int balance;
+    private int netWorth;
     private boolean isJailed;
+    private boolean isBroke;
 
     public Player(String name, int playerID){
         this.name = name;
         this.playerID = playerID;
         this.pos = 0;
         this.balance = 30000;
+        this.netWorth = balance;
         this.isJailed = false;
+        this.isBroke = false;
     }
 
     public void setName(String name) {
@@ -48,5 +52,14 @@ public class Player {
     }
     public void UpdateIsJailed(){
         isJailed =! isJailed;
+    }
+    public int getNetWorth(){
+        return netWorth;
+    }
+    public void setNetWorth(int netWorth) {
+        this.netWorth = netWorth;
+    }
+    public void updateNetWorth(int amount){
+        netWorth += amount;
     }
 }
