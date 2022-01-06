@@ -5,9 +5,9 @@ public class Die {
     private int faceValue;
     private int sides;
 
-    public Die(){
+    public Die(int sides){
         faceValue = 1;
-        sides = 6;
+        this.sides = sides;
     }
 
     public void rollDie(){
