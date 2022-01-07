@@ -69,4 +69,8 @@ public class FieldController {
 
             }
         }
+
+    public Field[] getFields() {
+        return fields;
+    }
 }
