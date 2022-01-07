@@ -49,6 +49,7 @@ public class PlayerController {
         return currentPlayer;
     }
     public void updatePlayerNetWorth(Player player, DeedController deedController){
+        //Need to be tested, not sure if it works
         player.updateNetWorth(deedController.getNetValues(this));
     }
     public void setPlayerNetWorth(int value, Player player){
