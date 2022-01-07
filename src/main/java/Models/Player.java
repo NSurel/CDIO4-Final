@@ -72,6 +72,6 @@ public class Player {
         return isBroke;
     }
     public void isBroke(){
-        isBroke = true;
+        isBroke =! isBroke;
     }
 }
