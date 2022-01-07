@@ -7,10 +7,11 @@ public class GuiController {
 
     public GuiController(){
         gui = new GUI();
-        System.out.println(gui.getFields()[1].getSubText());
     }
 
     public void changePrice(int pos, int value){
         gui.getFields()[pos].setSubText("pris: "+value);
+    }
+    public void fixAllPrices(FieldController fc){
     }
 }
