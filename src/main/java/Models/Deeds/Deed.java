@@ -1,7 +1,6 @@
 package Models.Deeds;
 
-import Controllers.PlayerController;
-import Models.Player;
+
 
 public abstract class Deed {
     private int rent;
@@ -13,7 +12,7 @@ public abstract class Deed {
 
     public Deed(int rent,int value, int type ){
         this.rent = rent;
-        this.value= value;
+        this.value = value;
         this.type = type;
         this.owner = 0;
         this.buildlevel=0;
@@ -21,12 +20,8 @@ public abstract class Deed {
     }
 
 
-    abstract public void payRent(PlayerController playerController);
 
-    public void buyProperty(PlayerController playercontroller){
 
-    }
-    abstract public void updateBuildLevel();
 
 
 
