@@ -1,9 +1,11 @@
 package Controllers;
+import Models.ChanceCards.*;
 
 import java.util.Arrays;
 import java.util.Random;
 
 public class ChanceDeck {
+
     private ChanceCard[] cards;
     private int numberOfCardsDrawn;
 
