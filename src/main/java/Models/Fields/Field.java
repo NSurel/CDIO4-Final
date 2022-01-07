@@ -6,7 +6,7 @@ public abstract class Field {
     String fieldName;
     int Rent;
     Player owner;
-    boolean isOwend;
+    boolean isOwned;
 
     public Field(String fieldName)
     {
@@ -25,8 +25,8 @@ public abstract class Field {
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
     }
-    public void setOwend(boolean owend) {
-        isOwend = owend;
+    public void setOwned(boolean owned) {
+        isOwned = owned;
     }
     public void setOwner(Player owner) {
         this.owner = owner;
