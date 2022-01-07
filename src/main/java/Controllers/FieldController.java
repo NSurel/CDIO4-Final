@@ -60,13 +60,7 @@ public class FieldController {
                     case " refugee":
                         fields[pos] = new FreeParking(fieldName);
                         break;
-
                 }
-
-            }
-            for (Field field : fields) {
-                System.out.println(field.getFieldName());
-
             }
         }
 
