@@ -37,6 +37,7 @@ public class PlayerController {
     }
     public void moveTo(int value, Player player){
         //Need codes to check for move over start field
+        //And add 4000kr to the player balance
         player.setPos(value);
     }
     public void updateCurrentPlayer(){
@@ -47,5 +48,22 @@ public class PlayerController {
     public Player getCurrentPlayer(){
         return currentPlayer;
     }
+    public void updatePlayerNetWorth(int value, Player player){
+        player.updateNetWorth(value);
+    }
+    public void setPlayerNetWorth(int value, Player player){
+        player.setNetWorth(value);
+    }
+    public int getPlayerNetWorth(Player player){
+        return player.getNetWorth();
+    }
+    public boolean isBroke(int value, Player player){
+        if (value>player.getNetWorth()){
+            player.isBroke();
+        }
+        return player.getIsBroke();
+    }
+
+
 
 }

@@ -68,4 +68,10 @@ public class Player {
     public void updateNetWorth(int amount){
         netWorth += amount;
     }
+    public boolean getIsBroke(){
+        return isBroke;
+    }
+    public void isBroke(){
+        isBroke = true;
+    }
 }
