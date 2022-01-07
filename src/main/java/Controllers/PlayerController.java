@@ -5,6 +5,7 @@ import Models.Player;
 public class PlayerController {
     private Player[] players;
     private Player currentPlayer;
+    private int turn = 0;
 
     public PlayerController(){
 
@@ -15,7 +16,7 @@ public class PlayerController {
         for (int i = 0; i < size; i++) {
             players[i] = new Player("Player"+ (i + 1),i);
         }
-        currentPlayer = players[0];
+        currentPlayer = players[turn];
     }
 
     public Player[] getPlayers() {
@@ -38,8 +39,13 @@ public class PlayerController {
         //Need codes to check for move over start field
         player.setPos(value);
     }
-    public void UpdateCurrentPlayer(){
-
+    public void updateCurrentPlayer(){
+        int temp = turn+1;
+        turn = temp% players.length;
+        currentPlayer = players[turn];
+    }
+    public Player getCurrentPlayer(){
+        return currentPlayer;
     }
 
 }
