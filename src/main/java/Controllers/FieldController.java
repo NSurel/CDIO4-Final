@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.Fields.Field;
+import Models.Fields.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,40 +14,59 @@ public class FieldController {
     private Field[] fields;
     BufferedReader r;
     int numOfLines;
-        public void FieldController() throws IOException {
-            String pathName = "Fields.txt";
+
+        public FieldController() throws IOException {
+            String pathName = "fields.csv";
             Path path = Paths.get(pathName);
             numOfLines = (int)Files.lines(path).count();
+            String line;
 
-            fields = new Field[numOfLines];
+            fields = new Field[numOfLines-1];
             r = new BufferedReader(new FileReader(pathName));
-
-            while (r.) {
-                String line = r.readLine();
+            r.readLine();
+            while ((line = r.readLine()) != null){
                 String fieldName = line.split(",")[0];
+                int pos = Integer.parseInt(line.split(",")[1]);
                 String fieldType = line.split(",")[2];
-
                 switch (fieldType) {
-                    case "Start":
+                    case " start":
+                        fields[pos] = new Start(fieldName);
                         break;
-                    case "street":
+                    case " street":
+                        fields[pos] = new DeedField(fieldName);
                         break;
-                    case "chance":
+                    case " chance":
+                        fields[pos] = new ChanceField(fieldName);
                         break;
-                    case "tax":
+                    case " tax":
+                        fields[pos] = new TaxField(fieldName);
                         break;
-                    case "ferry":
+                    case " ferry":
+                        fields[pos] = new FerryField(fieldName);
                         break;
-                    case "Jail":
+                    case " jail":
+                        if (pos == 10)
+                            fields[pos] = new Jail(fieldName);
+                        else if (pos == 30)
+                            fields[pos] = new GoToJail(fieldName);
+                        else {
+                            IOException e = new IOException("Jail wrong pos in csv file");
+                            throw e;
+                        }
                         break;
-                    case "brewery":
+                    case " brewery":
+                        fields[pos] = new BreweryField(fieldName);
                         break;
-                    case "refugee":
+                    case " refugee":
+                        fields[pos] = new FreeParking(fieldName);
                         break;
 
                 }
 
             }
+            for (Field field : fields) {
+                System.out.println(field.getFieldName());
 
+            }
         }
 }
