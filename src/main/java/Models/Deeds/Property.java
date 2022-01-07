@@ -8,6 +8,10 @@ public class Property extends Deed{
         super( rent,value,type);
     }
     @Override
+    public void updateBuildLevel(){
+
+    }
+    @Override
     public void payRent(PlayerController playercontroller) {
         System.out.println("hello");
 

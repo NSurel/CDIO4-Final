@@ -26,7 +26,7 @@ public abstract class Deed {
     public void buyProperty(PlayerController playercontroller){
 
     }
-
+    abstract public void updateBuildLevel();
 
 
 
