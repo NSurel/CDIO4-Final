@@ -1,13 +1,39 @@
 package Models.Deeds;
 
+import Models.Player;
+
 public abstract class Deed {
     private int rent;
     private int value;
     private int owner;
     private int type;
+    private int buildlevel;
+    private boolean ismortageged;
+
+    public Deed(int rent,int value, int type ){
+        this.rent = rent;
+        this.value= value;
+        this.type = type;
+        this.owner = 0;
+        this.buildlevel=0;
+        this.ismortageged=false;
+    }
+
+
+    abstract public void payRent(Player player);
+
+    public void buyProperty(Player player){
+
+    }
 
 
 
+
+
+
+    public void updateIsMortgaged(){
+        ismortageged = !getIsMortgaged();
+    }
     public int getRent() {
         return rent;
     }
@@ -19,6 +45,13 @@ public abstract class Deed {
     }
     public int getValue() {
         return value;
+    }
+    public int getBuildlevel() {
+        return buildlevel;
+    }
+    public boolean getIsMortgaged(){ return ismortageged;}
+    public void setBuildlevel(int buildlevel) {
+        this.buildlevel = buildlevel;
     }
     public void setRent(int rent) {
         this.rent = rent;
@@ -32,4 +65,5 @@ public abstract class Deed {
     public void setValue(int value) {
         this.value = value;
     }
+
 }
