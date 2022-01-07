@@ -66,7 +66,7 @@ public class Player {
         this.netWorth = netWorth;
     }
     public void updateNetWorth(int amount){
-        netWorth += amount;
+        netWorth = balance + amount;
     }
     public boolean getIsBroke(){
         return isBroke;
