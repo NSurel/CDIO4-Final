@@ -35,6 +35,12 @@ public class Player {
     public int getPos(){
         return pos;
     }
+    public void setPos(int value){
+        pos = value;
+    }
+    public void updatePos(int value){
+        pos += value;
+    }
     public void setBalance(int balance) {
         this.balance = balance;
     }
@@ -61,5 +67,11 @@ public class Player {
     }
     public void updateNetWorth(int amount){
         netWorth += amount;
+    }
+    public boolean getIsBroke(){
+        return isBroke;
+    }
+    public void isBroke(){
+        isBroke =! isBroke;
     }
 }
