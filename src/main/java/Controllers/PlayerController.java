@@ -48,8 +48,8 @@ public class PlayerController {
     public Player getCurrentPlayer(){
         return currentPlayer;
     }
-    public void updatePlayerNetWorth(int value, Player player){
-        player.updateNetWorth(value);
+    public void updatePlayerNetWorth(Player player, DeedController deedController){
+        player.updateNetWorth(deedController.getNetValues(this));
     }
     public void setPlayerNetWorth(int value, Player player){
         player.setNetWorth(value);
