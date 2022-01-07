@@ -1,5 +1,6 @@
 package Models.Deeds;
 
+import Controllers.PlayerController;
 import Models.Player;
 
 public class Brewery extends Deed{
@@ -8,7 +9,7 @@ public class Brewery extends Deed{
     }
 
     @Override
-    public void payRent(Player player) {
+    public void payRent(PlayerController playerController) {
 
     }
 }

@@ -1,6 +1,6 @@
 package Models.Deeds;
+import Controllers.PlayerController;
 
-import Models.Player;
 
 public class Property extends Deed{
 
@@ -8,7 +8,8 @@ public class Property extends Deed{
         super( rent,value,type);
     }
     @Override
-    public void payRent(Player player) {
+    public void payRent(PlayerController playercontroller) {
+        System.out.println("hello");
 
     }
 }

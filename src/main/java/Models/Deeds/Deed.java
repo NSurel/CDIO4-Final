@@ -1,5 +1,6 @@
 package Models.Deeds;
 
+import Controllers.PlayerController;
 import Models.Player;
 
 public abstract class Deed {
@@ -20,9 +21,9 @@ public abstract class Deed {
     }
 
 
-    abstract public void payRent(Player player);
+    abstract public void payRent(PlayerController playerController);
 
-    public void buyProperty(Player player){
+    public void buyProperty(PlayerController playercontroller){
 
     }
 
