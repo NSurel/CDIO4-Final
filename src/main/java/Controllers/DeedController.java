@@ -12,9 +12,6 @@ public class DeedController {
     private Brewery[] breweries;
     private Deed deed;
 
-    public DeedController(Deed deed){
-        this.deed = deed;
-    }
 
     public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Deed deed) {
         this.properties = properties;
