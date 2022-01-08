@@ -67,7 +67,7 @@ public class DeedController {
     }
 
     public void buyProperty(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() == 0 && !deed.getIsMortgaged()){
+        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() < 0 && !deed.getIsMortgaged()){
             playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
             deed.setOwner(playerController.getCurrentPlayer().getPlayerID());
 
@@ -78,10 +78,13 @@ public class DeedController {
 
 
         }
+       else if(deed.getOwner() > 0){
+            System.out.println("This property is owned by someone.");
+       }
        else {
             System.out.println("You don't have enough money in your balance.");
         }
-
+        //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
     }
     public void mortgageProperty(PlayerController playerController, Deed deed){
         playerController.getCurrentPlayer().setBalance(deed.getValue()/2);
