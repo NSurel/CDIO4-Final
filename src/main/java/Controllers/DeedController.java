@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Deeds.Brewery;
 
+import Models.Deeds.Deed;
 import Models.Deeds.Property;
 import Models.Deeds.Shipping;
 
@@ -9,11 +10,13 @@ public class DeedController {
     private Property[] properties;
     private Shipping[] shippings;
     private Brewery[] breweries;
+    private Deed deed;
 
-    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings) {
+    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Deed deed) {
         this.properties = properties;
         this.breweries = breweries;
         this.shippings = shippings;
+        this.deed = deed;
     }
 
     public int getNetValues(PlayerController playerController) {
@@ -60,5 +63,20 @@ public class DeedController {
 
     public Shipping[] getShippings() {
         return shippings;
+    }
+
+    public void BuyProperty(PlayerController playerController, int value){
+        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() == 0){
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            deed.setOwner(playerController.getCurrentPlayer().getPlayerID());
+
+        }
+        else
+        {
+            System.out.println("You don't have enough money in your balance.");
+
+
+        }
+
     }
 }
