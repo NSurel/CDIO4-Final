@@ -12,6 +12,10 @@ public class DeedController {
     private Brewery[] breweries;
     private Deed deed;
 
+    public DeedController(Deed deed){
+        this.deed = deed;
+    }
+
     public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Deed deed) {
         this.properties = properties;
         this.breweries = breweries;
@@ -65,18 +69,27 @@ public class DeedController {
         return shippings;
     }
 
-    public void BuyProperty(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() == 0){
+    public void buyProperty(PlayerController playerController, int value){
+        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() == 0 && !deed.getIsMortgaged()){
             playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
             deed.setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
-        else
+       else if(deed.getIsMortgaged())
         {
-            System.out.println("You don't have enough money in your balance.");
+            System.out.println("This property is mortgaged.");
 
 
         }
+       else {
+            System.out.println("You don't have enough money in your balance.");
+        }
+
+    }
+    public void mortgageProperty(PlayerController playerController, Deed deed){
+        playerController.getCurrentPlayer().setBalance(deed.getValue()/2);
+        deed.updateIsMortgaged();
+        //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
 
     }
 }
