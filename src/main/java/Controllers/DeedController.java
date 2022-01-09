@@ -84,7 +84,9 @@ public class DeedController {
     public Shipping[] getShippings() {
         return shippings;
     }
-
+    public Property getProperty() {
+        return property;
+    }
     public void buyProperty(PlayerController playerController, int value){
         if (value < playerController.getCurrentPlayer().getBalance() && property.getOwner() < 0 && !property.getIsMortgaged()){
             playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
@@ -97,7 +99,7 @@ public class DeedController {
 
 
         }
-       else if(property.getOwner() > 0){
+       else if(property.getOwner() >= 0){
             System.out.println("This property is owned by someone.");
        }
        else {
