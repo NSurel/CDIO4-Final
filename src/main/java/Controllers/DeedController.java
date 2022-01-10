@@ -17,76 +17,6 @@ public class DeedController {
 
 
     public DeedController() {
-
-    }
-    public void createDeeds() {
-        this.properties = new Property[22];
-        this.shippings = new Shipping[4];
-        this.breweries = new Brewery[2];
-        int i = 0;
-        while (i < properties.length) {
-            switch (i) {
-                case 0:
-                case 1:
-                    properties[i] = new Property(50, 1, 0);
-                    shippings[i] = new Shipping(500, 4000);
-                    break;
-                case 2:
-                case 3:
-                    properties[i] = new Property(50, 1, 1);
-                    shippings[i] = new Shipping(500, 4000);
-                    break;
-                case 4:
-                    properties[i] = new Property(150, 1, 1);
-                    break;
-                case 5:
-                case 6:
-                    properties[i] = new Property(300, 1, 2);
-                    break;
-
-                case 7:
-                    properties[i] = new Property(350, 1, 2);
-                    break;
-                case 8:
-                case 9:
-                    properties[i] = new Property(1, 1, 3);
-                    break;
-                case 10:
-                    properties[i] = new Property(2, 1, 3);
-                    break;
-                case 11:
-                case 12:
-                    properties[i] = new Property(1, 1, 4);
-                    break;
-                case 13:
-                    properties[i] = new Property(2, 1, 4);
-                    break;
-                case 14:
-                case 15:
-                    properties[i] = new Property(1, 1, 5);
-                    break;
-                case 16:
-                    properties[i] = new Property(2, 1, 5);
-                    break;
-                case 17:
-                case 18:
-                    properties[i] = new Property(1, 1, 6);
-                    break;
-                case 19:
-                    properties[i] = new Property(2, 1, 6);
-                    break;
-                case 20:
-                    properties[i] = new Property(1, 1, 7);
-                    break;
-                case 21:
-                    properties[i] = new Property(2, 1, 7);
-                    break;
-
-
-            }
-            i++;
-        }
-
     }
 
     public int getNetValues(PlayerController playerController) {
@@ -218,7 +148,7 @@ public class DeedController {
     }
     public void mortgageProperty(PlayerController playerController, FieldController fieldController){
         int i = 0;
-        playerController.getCurrentPlayer().setBalance(properties[i].getValue()/2);
+        playerController.getCurrentPlayer().updateBalance(properties[i].getValue()/2);
         properties[i].updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
 
