@@ -1,0 +1,185 @@
+description::De har kørt frem for “fuldt stop”, Betal 1000 kroner i bøde.;;
+type::1;;
+action::-1000;;
+amount::1;;
+||
+description::Betal for vognvask og smøring kr 300.;;
+type::1;;
+action::-300;;
+amount::1;;
+||
+description::Betal kr 200 for levering af 2 kasser øl.;;
+type::1;;
+action::-200;;
+amount::1;;
+||
+description::Betal 3000 for reparation af deres vogn.;;
+type::1;;
+action::-3000;;
+amount::2;;
+||
+description::De har købt 4 nye dæk til Deres vogn, betal kr 1000.;;
+type::1;;
+action::-1000;;
+amount::1;;
+||
+description::De har fået en parkeringsbøde, betal kr 200 i bøde.;;
+type::1;;
+action::-200;;
+amount::1;;
+||
+description::Betal deres bilforsikring, kr 1000.;;
+type::1;;
+action::-1000;;
+amount::1;;
+||
+description::De har været udenlands og købt for mange smøger, betal kr 200 i told.;;
+type::1;;
+action::-200;;
+amount::1;;
+||
+description::Tandlægeregning, betal kr 2000.;;
+type::1;;
+action::-2000;;
+amount::1;;
+||
+description::De har vundet i klasselotteriet. Modtag 500 kr..;;
+type::2;;
+action::500;;
+amount::2;;
+||
+description::De modtager Deres aktieudbytte. Modtag kr 1000 af banken.;;
+type::2;;
+action::1000;;
+amount::3;;
+||
+description::Kommunen har eftergivet et kvartals skat. Hæv i banken 3000 kr.;;
+type::2;;
+action::3000;;
+amount::1;;
+||
+description::De have en række med elleve rigtige i tipning, modtag kl 1000.;;
+type::2;;
+action::1000;;
+amount::1;;
+||
+description::Grundet dyrtiden har De fået gageforhøjelse, modtag kr 1000.;;
+type::2;;
+action::1000;;
+amount::1;;
+||
+description::Deres præmieobligation er udtrykket. De modtager 1000 kr af banken.;;
+type::2;;
+action::1000;;
+amount::2;;
+||
+description::De har solg nogle gamle møbler på auktion. Modtag 1000 kr af banken.;;
+type::2;;
+action::1000;;
+amount::1;;
+||
+description::Værdien af egen avl fra nyttehaven udgør 200 som de modtager af banken.;;
+type::2;;
+action::200;;
+amount::1;;
+||
+description::Det er deres fødselsdag. Modtag af hver medspiller 200 kr..;;
+type::3;;
+action::200;;
+amount::1;;
+||
+description::De har lagt penge ud til et sammenskudsgilde. Mærkværdigvis betaler alle straks. 
+Modtag fra hver medspiller 500 kr..;;
+type::3;;
+action::500;;
+amount::1;;
+||
+description::De skal holde familiefest og får et tilskud fra hver medspiller på 500 kr..;;
+type::3;;
+action::500;;
+amount::1;;
+||
+description::Ryk frem til START.;;
+type::4;;
+action::1;;
+amount::2;;
+||
+description::Tag til Rådhuspladsen.;;
+type::4;;
+action::40;;
+amount::1;;
+||
+description::Gå i fængsel, De indkasserer ikke 4000 kr for at passere start.;;
+type::4;;
+action::11;;
+amount::2;;
+||
+description::Ryk frem til Strandvejen. Hvis De passere START, indkasser da 4000 kr..;;
+type::5;;
+action::20;;
+amount::1;;
+||
+description::Ryk frem til Vimmelskaftet, hvis de passerer start indkasser da kr 4000.;;
+type::5;;
+action::33;;
+amount::1;;
+||
+description::Ryk frem til Grønningen, hvis De passerer start indkasser da kr 4000.;;
+type::5;;
+action::25;;
+amount::1;;
+||
+description::Ryk frem til Frederiksberg Allé. Hvis De passere START, indkasser da 4000 kr.;;
+type::5;;
+action::12;;
+amount::1;;
+||
+description::Tag med Mols-Linien, flyt brikken frem og hvis De passerer START indkassér da kr 4000.;;
+type::5;;
+action::16;;
+amount::1;;
+||
+description::Ryk tre felter tilbage.;;
+type::6;;
+action::3;;
+amount::2;;
+||
+description::Ryk tre felter frem.;;
+type::6;;
+action::3;;
+amount::1;;
+||
+description::Oliepriserne er steget, og De skal betale kr 500 pr hus og kr 2000 pr hotel.;;
+type::7;;
+action::500&2000;;
+amount::1;;
+||
+description::Ejendomsskatten er steget. Ekstraudgifterne er: 800 kr pr hus, 2300 kr pr hotel.;;
+type::7;;
+action::800&2300;;
+amount::1;;
+||
+description::Tag med den nærmeste færge, hvis de passerer start indkasser da kr 4000.;;
+type::8;;
+action::ship;;
+amount::1;;
+||
+description::Ryk frem til det nærmeste rederi og betal ejeren to gange den leje han ellers er berettiget
+til, hvis selskabet ikke ejes af nogen kan De købe det af banken.;;
+type::8;;
+action::ship;;
+amount::2;;
+||
+description::De modtager “Matador-legatet” på kr 40.000, men kun hvis værdier ikke overstiger 15.000 kr.;;
+type::9;;
+action::40000;;
+amount::1;;
+||
+description::I anledning af kongens fødselsdag benådes De herved for fængsel. Dette kort kan opbevares indtil De får brug for det, eller De kan sælge det.;;
+type::10;;
+action::leave;;
+amount::2;;
+
+
+
+
