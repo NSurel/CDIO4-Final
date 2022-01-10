@@ -142,134 +142,109 @@ public class DeedController {
     }
 
     public void multipleShipping(PlayerController playerController) {
-        int i = 0;
-
-            if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && playerController.getCurrentPlayer().getPlayerID() == shippings[i + 1].getOwner()) {
-                shippings[i].setRent(1);
-                shippings[i + 1].setRent(1);
-            } else if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 2].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
-                shippings[i].setRent(2);
-
-                shippings[i + 2].setRent(2);
-            } else if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 3].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
-                shippings[i].setRent(3);
-                shippings[i + 3].setRent(3);
+        int amountowned = 0;
+        for (int i = 0; i < shippings.length; i++) {
+            if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
+                amountowned++;
             }
-            if (shippings[i + 1].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 2].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
-                shippings[i + 2].setRent(4);
-                shippings[i + 1].setRent(4);
-            } else if (shippings[i + 1].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 3].getOwner()== playerController.getCurrentPlayer().getPlayerID()) {
-                shippings[i + 3].setRent(5);
-                shippings[i + 1].setRent(5);
-            } else if (shippings[i + 3].getOwner() == shippings[i + 2].getOwner()) {
+        }
+        switch (amountowned) {
+            case 2:
+                for (int i = 0; i < shippings.length; i++) {
+                    if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
+                        shippings[i].setRent(123456789);
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < shippings.length; i++) {
+                    if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
+                        shippings[i].setRent(1234789);
 
-                shippings[i + 3].setRent(6);
-                shippings[i + 2].setRent(6);
-            }
-            if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && (shippings[i + 1].getOwner() == playerController.getCurrentPlayer().getPlayerID()) && ( shippings[i + 2].getOwner()) == playerController.getCurrentPlayer().getPlayerID()){
-                shippings[i].setRent(7);
-                shippings[i + 1].setRent(7);
-                shippings[i + 2].setRent(7);
-            } else if (shippings[i].getOwner() == shippings[i + 1].getOwner() && shippings[i].getOwner() == shippings[i + 3].getOwner()) {
-                shippings[i].setRent(8);
-                shippings[i].setRent(8);
-                shippings[i + 3].setRent(8);
-            } else if (shippings[i].getOwner() == shippings[i + 2].getOwner() && shippings[i].getOwner() == shippings[i + 3].getOwner()) {
-                shippings[i].setRent(9);
-                shippings[i].setRent(9);
-                shippings[i + 3].setRent(9);
-            } else if (shippings[i + 1].getOwner() == shippings[i + 2].getOwner() && shippings[i + 1].getOwner() == shippings[i + 3].getOwner()) {
-                shippings[i + 1].setRent(10);
-                shippings[i + 2].setRent(10);
-                shippings[i + 3].setRent(10);
-            }
-            if (shippings[i].getOwner() == shippings[i + 1].getOwner() && shippings[i].getOwner() == shippings[i + 2].getOwner() && shippings[i].getOwner() == shippings[i + 3].getOwner()) {
-                shippings[i].setRent(11);
-                shippings[i + 1].setRent(11);
-                shippings[i + 2].setRent(11);
-                shippings[i + 3].setRent(11);
-            }
+                    }
+                }
+                break;
+            case 4:
+                for (int i = 0; i < shippings.length; i++) {
+
+                        shippings[i].setRent(9999);
+
+                    }
+                }
+        }
 
 
+    public Brewery[] getBreweries() {
+        return breweries;
     }
 
-public Brewery[]getBreweries(){
-        return breweries;
-        }
-
-public Property[]getProperties(){
+    public Property[] getProperties() {
         return properties;
-        }
+    }
 
-public Shipping[]getShippings(){
+    public Shipping[] getShippings() {
         return shippings;
-        }
+    }
 
-public Property getProperty(){
+    public Property getProperty() {
         return property;
-        }
+    }
 
-public void buyProperty(PlayerController playerController,int value){
-        if(value<playerController.getCurrentPlayer().getBalance()&&property.getOwner()< 0&&!property.getIsMortgaged()){
-        playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance()-value);
-        property.setOwner(playerController.getCurrentPlayer().getPlayerID());
+    public void buyProperty(PlayerController playerController, int value) {
+        if (value < playerController.getCurrentPlayer().getBalance() && property.getOwner() < 0 && !property.getIsMortgaged()) {
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            property.setOwner(playerController.getCurrentPlayer().getPlayerID());
 
-        }else if(property.getIsMortgaged()){
-        System.out.println("This property is mortgaged.");
+        } else if (property.getIsMortgaged()) {
+            System.out.println("This property is mortgaged.");
 
 
-        }else if(property.getOwner()>=0){
-        System.out.println("This property is owned by someone.");
-        }else{
-        System.out.println("You don't have enough money in your balance.");
+        } else if (property.getOwner() >= 0) {
+            System.out.println("This property is owned by someone.");
+        } else {
+            System.out.println("You don't have enough money in your balance.");
         }
         //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
-        }
-public void buyBrewery(PlayerController playerController,int value){
-        if(value<playerController.getCurrentPlayer().getBalance()&&brewery.getOwner()< 0&&!brewery.getIsMortgaged()){
-        playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance()-value);
-        brewery.setOwner(playerController.getCurrentPlayer().getPlayerID());
+    }
 
-        }
-        else if(brewery.getIsMortgaged())
-        {
-        System.out.println("This brewery is mortgaged.");
+    public void buyBrewery(PlayerController playerController, int value) {
+        if (value < playerController.getCurrentPlayer().getBalance() && brewery.getOwner() < 0 && !brewery.getIsMortgaged()) {
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            brewery.setOwner(playerController.getCurrentPlayer().getPlayerID());
 
-
-        }
-        else if(brewery.getOwner()>=0){
-        System.out.println("This brewery is already owned by someone.");
-        }
-        else{
-        System.out.println("You don't have enough money in your balance.");
-        }
-        }
-public void buyShipping(PlayerController playerController,int value){
-        if(value<playerController.getCurrentPlayer().getBalance()&&shipping.getOwner()< 0&&!shipping.getIsMortgaged()){
-        playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance()-value);
-        shipping.setOwner(playerController.getCurrentPlayer().getPlayerID());
-
-        }
-        else if(shipping.getIsMortgaged())
-        {
-        System.out.println("This shipping is mortgaged.");
+        } else if (brewery.getIsMortgaged()) {
+            System.out.println("This brewery is mortgaged.");
 
 
+        } else if (brewery.getOwner() >= 0) {
+            System.out.println("This brewery is already owned by someone.");
+        } else {
+            System.out.println("You don't have enough money in your balance.");
         }
-        else if(shipping.getOwner()>=0){
-        System.out.println("This shipping is already owned by someone.");
-        }
-        else{
-        System.out.println("You don't have enough money in your balance.");
-        }
-        }
+    }
 
-public void mortgageProperty(PlayerController playerController,Property property){
-        playerController.getCurrentPlayer().setBalance(property.getValue()/2);
+    public void buyShipping(PlayerController playerController, int value) {
+        if (value < playerController.getCurrentPlayer().getBalance() && shipping.getOwner() < 0 && !shipping.getIsMortgaged()) {
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            shipping.setOwner(playerController.getCurrentPlayer().getPlayerID());
+
+        } else if (shipping.getIsMortgaged()) {
+            System.out.println("This shipping is mortgaged.");
+
+
+        } else if (shipping.getOwner() >= 0) {
+            System.out.println("This shipping is already owned by someone.");
+        } else {
+            System.out.println("You don't have enough money in your balance.");
+        }
+    }
+
+    public void mortgageProperty(PlayerController playerController, Property property) {
+        playerController.getCurrentPlayer().setBalance(property.getValue() / 2);
         property.updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
         //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
-        }
+    }
 
-        }
+}
