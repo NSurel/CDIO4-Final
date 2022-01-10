@@ -1,10 +1,7 @@
 package Controllers;
 
-import Models.Deeds.Brewery;
+import Models.Deeds.*;
 
-
-import Models.Deeds.Property;
-import Models.Deeds.Shipping;
 
 public class DeedController {
     private Property[] properties;
