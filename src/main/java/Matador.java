@@ -1,9 +1,7 @@
-import Controllers.*;
-
-import java.io.IOException;
+import Controllers.DeedController;
+import Models.Deeds.Deed;
 
 public class Matador {
-    public static void main(String[] args) throws IOException {
-        FieldController fieldController = new FieldController();
+    public static void main(String[] args) {
     }
 }
