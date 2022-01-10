@@ -107,6 +107,7 @@ public class DeedController {
         }
         //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
     }
+
     public void mortgageProperty(PlayerController playerController, Property property){
         playerController.getCurrentPlayer().setBalance(property.getValue()/2);
         property.updateIsMortgaged();
