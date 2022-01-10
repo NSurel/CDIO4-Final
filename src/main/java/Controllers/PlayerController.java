@@ -43,6 +43,9 @@ public class PlayerController {
     public void updateCurrentPlayer(){
         int temp = turn+1;
         turn = temp% players.length;
+        if (turn > players.length-1){
+            currentPlayer.changeFirstTurn();
+        }
         currentPlayer = players[turn];
     }
     public Player getCurrentPlayer(){
@@ -62,6 +65,9 @@ public class PlayerController {
             player.isBroke();
         }
         return player.getIsBroke();
+    }
+    public void firstTurnOver(Player player){
+        player.changeFirstTurn();
     }
 
 

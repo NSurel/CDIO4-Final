@@ -70,8 +70,13 @@ public class GuiController {
     public boolean yesOrNo(String msg){
         return gui.getUserLeftButtonPressed(msg, "yes", "no");
     }
-    public void buyField(PlayerController pc, FieldController fc){
+    public void setOwner(PlayerController pc, FieldController fc){
         ownables = (GUI_Ownable) gui.getFields()[pc.getCurrentPlayer().getPos()];
         ownables.setBorder(players[pc.getCurrentPlayer().getPlayerID()].getCar().getPrimaryColor());
+        ownables.setOwnerName(players[pc.getCurrentPlayer().getPlayerID()].getName());
     }
+    public void setlevel(DeedController dc){
+        //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
+    }
+
 }
