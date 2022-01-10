@@ -56,7 +56,7 @@ public class DeedController {
 
     public void allOwnedOfSameType() {
         int i = 0;
-        while (i < getProperties().length) {
+        while (i < this.getProperties().length) {
             if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())
                 if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
                     getProperties()[i].setBuildlevel(getProperties()[i].getBuildlevel() + 1);
@@ -71,6 +71,18 @@ public class DeedController {
                     }
                 }
         }
+    }
+    public void multipleShipping(){
+        int i = 0;
+        if(getShippings()[i].getOwner() == getShippings()[i+1].getOwner() && getShippings()[i].getOwner() != getShippings()[i+2].getOwner() && getShippings()[i+3].getOwner()!=getShippings()[i].getOwner()){
+            getShippings()[i].setRent(1000);
+            getShippings()[i+1].setRent(1000);
+            //må lige rette på talle er ikke sikre om de er rigtige
+        }
+       /* else if(getShippings()[i].getOwner()==1){
+
+        }*/
+
     }
 
     public Brewery[] getBreweries() {
@@ -109,6 +121,8 @@ public class DeedController {
         playerController.getCurrentPlayer().setBalance(deed.getValue()/2);
         deed.updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
+        //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
     }
+
 }
