@@ -16,13 +16,10 @@ public class DeedController {
 
 
 
-    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Property property, Brewery brewery, Shipping shipping) {
+    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings) {
         this.properties = properties;
         this.breweries = breweries;
         this.shippings = shippings;
-        this.property = property;
-        this.brewery = brewery;
-        this.shipping = shipping;
     }
 
     public int getNetValues(PlayerController playerController) {
