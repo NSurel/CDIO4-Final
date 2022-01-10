@@ -1,15 +1,11 @@
 package Controllers;
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Ownable;
-import gui_fields.GUI_Player;
+import gui_fields.*;
 import gui_main.*;
-
 import java.awt.*;
-import java.util.Random;
 
 public class GuiController {
     private GUI_Ownable ownables;
+    private GUI_Street level;
     private final GUI gui;
     private GUI_Car[] cars;
     private GUI_Player[] players;
@@ -18,12 +14,6 @@ public class GuiController {
 
     public GuiController(){
         gui = new GUI();
-        ownables = (GUI_Ownable)gui.getFields()[1];
-        ownables.setBorder(Color.RED);
-        ownables = (GUI_Ownable) gui.getFields()[5];
-        ownables.setBorder(Color.blue);
-        ownables = (GUI_Ownable) gui.getFields()[1];
-        ownables.setBorder(Color.blue);
     }
 
     public void changePrice(int pos, int value){
@@ -76,5 +66,12 @@ public class GuiController {
     }
     public void rollMsg(String msg){
         gui.getUserButtonPressed(msg,"Roll");
+    }
+    public boolean yesOrNo(String msg){
+        return gui.getUserLeftButtonPressed(msg, "yes", "no");
+    }
+    public void buyField(PlayerController pc, FieldController fc){
+        ownables = (GUI_Ownable) gui.getFields()[pc.getCurrentPlayer().getPos()];
+        ownables.setBorder(players[pc.getCurrentPlayer().getPlayerID()].getCar().getPrimaryColor());
     }
 }
