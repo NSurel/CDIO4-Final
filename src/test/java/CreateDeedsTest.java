@@ -1,6 +1,6 @@
-import junit.*;
+
 import Controllers.DeedController;
-import org.junit.runners.JUnit4;
+
 
 /*Test to see if the deeds actually are created by valued */
 public class CreateDeedsTest {
