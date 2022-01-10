@@ -9,6 +9,7 @@ public class Player {
     private int netWorth;
     private boolean isJailed;
     private boolean isBroke;
+    private boolean firstTurn;
 
     public Player(String name, int playerID){
         this.name = name;
@@ -18,6 +19,7 @@ public class Player {
         this.netWorth = balance;
         this.isJailed = false;
         this.isBroke = false;
+        this.firstTurn = true;
     }
 
     public void setName(String name) {
@@ -39,7 +41,17 @@ public class Player {
         pos = value;
     }
     public void updatePos(int value){
+        if (pos == 0 && pos + value > 0 && !firstTurn){
+            updateBalance(4000);
+        }
         pos += value;
+        if (pos >= 40){
+            pos = pos % 40;
+            if (pos > 0){
+                updateBalance(4000);
+            }
+        }
+
     }
     public void setBalance(int balance) {
         this.balance = balance;
@@ -73,5 +85,8 @@ public class Player {
     }
     public void isBroke(){
         isBroke =! isBroke;
+    }
+    public void changeFirstTurn(){
+        firstTurn = false;
     }
 }
