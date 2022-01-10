@@ -9,8 +9,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class GuiController {
-    private GUI_Ownable[] ownables = new GUI_Ownable[40];
-    private Random random;
+    private GUI_Ownable ownables;
     private final GUI gui;
     private GUI_Car[] cars;
     private GUI_Player[] players;
@@ -19,7 +18,12 @@ public class GuiController {
 
     public GuiController(){
         gui = new GUI();
-
+        ownables = (GUI_Ownable)gui.getFields()[1];
+        ownables.setBorder(Color.RED);
+        ownables = (GUI_Ownable) gui.getFields()[5];
+        ownables.setBorder(Color.blue);
+        ownables = (GUI_Ownable) gui.getFields()[1];
+        ownables.setBorder(Color.blue);
     }
 
     public void changePrice(int pos, int value){
