@@ -6,6 +6,8 @@ import Models.Deeds.Brewery;
 import Models.Deeds.Deed;
 import Models.Deeds.Property;
 import Models.Deeds.Shipping;
+import Models.Fields.Field;
+import Models.Player;
 
 public class DeedController {
     private Property[] properties;
@@ -171,13 +173,53 @@ public class DeedController {
        else {
             System.out.println("You don't have enough money in your balance.");
         }
-        //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
     }
 
+    public void buyBrewery(PlayerController playerController, FieldController fieldController){
+        int i = 0;
+        if (breweries[i].getValue() < playerController.getCurrentPlayer().getBalance() && breweries[i].getOwner() < 0 && ! breweries[i].getIsMortgaged()){
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - breweries[i].getValue());
+            breweries[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
-    public void mortgageProperty(PlayerController playerController, Property property){
-        playerController.getCurrentPlayer().setBalance(property.getValue()/2);
-        property.updateIsMortgaged();
+        }
+        else if( breweries[i].getIsMortgaged())
+        {
+            System.out.println("This property is mortgaged.");
+
+
+        }
+        else if( breweries[i].getOwner() >= 0){
+            System.out.println("This property is owned by someone.");
+        }
+        else {
+            System.out.println("You don't have enough money in your balance.");
+        }
+    }
+    public void buyShipping(PlayerController playerController, FieldController fieldController){
+        int i = 0;
+        if (shippings[i].getValue() < playerController.getCurrentPlayer().getBalance() && shippings[i].getOwner() < 0 && ! shippings[i].getIsMortgaged()){
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - shippings[i].getValue());
+            shippings[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
+
+        }
+        else if( shippings[i].getIsMortgaged())
+        {
+            System.out.println("This property is mortgaged.");
+
+
+        }
+        else if( shippings[i].getOwner() >= 0){
+            System.out.println("This property is owned by someone.");
+        }
+        else {
+            System.out.println("You don't have enough money in your balance.");
+        }
+
+    }
+    public void mortgageProperty(PlayerController playerController, FieldController fieldController){
+        int i = 0;
+        playerController.getCurrentPlayer().setBalance(properties[i].getValue()/2);
+        properties[i].updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
 
     }
