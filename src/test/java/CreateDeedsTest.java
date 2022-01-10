@@ -1,5 +1,8 @@
+import junit.*;
 import Controllers.DeedController;
-/*Test to see if the deeds actually are created value should be */
+import org.junit.runners.JUnit4;
+
+/*Test to see if the deeds actually are created by valued */
 public class CreateDeedsTest {
     public static void main(String[] args) {
         DeedController deedController = new DeedController();
@@ -10,6 +13,7 @@ public class CreateDeedsTest {
 
         }
         System.out.println(val);
+
 
     }
 }
