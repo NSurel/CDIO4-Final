@@ -10,9 +10,7 @@ public class DeedController {
     private Property[] properties;
     private Shipping[] shippings;
     private Brewery[] breweries;
-    private Property property;
-    private Shipping shipping;
-    private Brewery brewery;
+
 
 
 
@@ -86,28 +84,21 @@ public class DeedController {
     public Shipping[] getShippings() {
         return shippings;
     }
-    public Property getProperty() {
-        return property;
-    }
-    public Brewery getBrewery(){
-        return brewery;
-    }
-    public Shipping getShipping(){
-        return shipping;
-    }
+
     public void buyProperty(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && property.getOwner() < 0 && !property.getIsMortgaged()){
+        int i = 0;
+        if (value < playerController.getCurrentPlayer().getBalance() && properties[i].getOwner() < 0 && ! properties[i].getIsMortgaged()){
             playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
-            property.setOwner(playerController.getCurrentPlayer().getPlayerID());
+            properties[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
-       else if(property.getIsMortgaged())
+       else if( properties[i].getIsMortgaged())
         {
             System.out.println("This property is mortgaged.");
 
 
         }
-       else if(property.getOwner() >= 0){
+       else if( properties[i].getOwner() >= 0){
             System.out.println("This property is owned by someone.");
        }
        else {
@@ -115,44 +106,7 @@ public class DeedController {
         }
         //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
     }
-    public void buyBrewery(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && brewery.getOwner() < 0 && !brewery.getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
-            brewery.setOwner(playerController.getCurrentPlayer().getPlayerID());
 
-        }
-        else if(brewery.getIsMortgaged())
-        {
-            System.out.println("This brewery is mortgaged.");
-
-
-        }
-        else if(brewery.getOwner() >= 0){
-            System.out.println("This brewery is already owned by someone.");
-        }
-        else {
-            System.out.println("You don't have enough money in your balance.");
-        }
-    }
-    public void buyShipping(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && shipping.getOwner() < 0 && !shipping.getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
-            shipping.setOwner(playerController.getCurrentPlayer().getPlayerID());
-
-        }
-        else if(shipping.getIsMortgaged())
-        {
-            System.out.println("This shipping is mortgaged.");
-
-
-        }
-        else if(shipping.getOwner() >= 0){
-            System.out.println("This shipping is already owned by someone.");
-        }
-        else {
-            System.out.println("You don't have enough money in your balance.");
-        }
-    }
 
     public void mortgageProperty(PlayerController playerController, Property property){
         playerController.getCurrentPlayer().setBalance(property.getValue()/2);
