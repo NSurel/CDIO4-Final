@@ -14,9 +14,9 @@ public abstract class Deed {
         this.rent = rent;
         this.value = value;
         this.type = type;
-        this.owner = 0;
         this.buildlevel=0;
         this.ismortageged=false;
+        this.owner = -1;
     }
 
 

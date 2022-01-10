@@ -2,7 +2,7 @@ package Controllers;
 
 import Models.Deeds.Brewery;
 
-import Models.Deeds.Deed;
+
 import Models.Deeds.Property;
 import Models.Deeds.Shipping;
 
@@ -10,14 +10,14 @@ public class DeedController {
     private Property[] properties;
     private Shipping[] shippings;
     private Brewery[] breweries;
-    private Deed deed;
+    private Property property;
 
 
-    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Deed deed) {
+    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Property property) {
         this.properties = properties;
         this.breweries = breweries;
         this.shippings = shippings;
-        this.deed = deed;
+        this.property = property;
     }
 
     public int getNetValues(PlayerController playerController) {
@@ -96,20 +96,22 @@ public class DeedController {
     public Shipping[] getShippings() {
         return shippings;
     }
-
+    public Property getProperty() {
+        return property;
+    }
     public void buyProperty(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() < 0 && !deed.getIsMortgaged()){
+        if (value < playerController.getCurrentPlayer().getBalance() && property.getOwner() < 0 && !property.getIsMortgaged()){
             playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
-            deed.setOwner(playerController.getCurrentPlayer().getPlayerID());
+            property.setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
-       else if(deed.getIsMortgaged())
+       else if(property.getIsMortgaged())
         {
             System.out.println("This property is mortgaged.");
 
 
         }
-       else if(deed.getOwner() > 0){
+       else if(property.getOwner() >= 0){
             System.out.println("This property is owned by someone.");
        }
        else {
@@ -117,9 +119,9 @@ public class DeedController {
         }
         //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
     }
-    public void mortgageProperty(PlayerController playerController, Deed deed){
-        playerController.getCurrentPlayer().setBalance(deed.getValue()/2);
-        deed.updateIsMortgaged();
+    public void mortgageProperty(PlayerController playerController, Property property){
+        playerController.getCurrentPlayer().setBalance(property.getValue()/2);
+        property.updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
         //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
