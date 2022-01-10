@@ -55,4 +55,7 @@ public class GuiController {
     public void showDice(Cup cup){
         gui.setDice(cup.getDie1Value(),1,5, cup.getDie2Value(),2,5);
     }
+    public void showChanceCard(String msg){
+        gui.displayChanceCard(msg);
+    }
 }
