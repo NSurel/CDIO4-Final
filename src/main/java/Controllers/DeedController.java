@@ -152,9 +152,10 @@ public class DeedController {
         return shippings;
     }
 
-    public void buyProperty(PlayerController playerController, int value, int i){
-        if (value < playerController.getCurrentPlayer().getBalance() && properties[i].getOwner() < 0 && ! properties[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+    public void buyProperty(PlayerController playerController, FieldController fieldController){
+        int i = 0;
+        if (properties[i].getValue() < playerController.getCurrentPlayer().getBalance() && properties[i].getOwner() < 0 && ! properties[i].getIsMortgaged()){
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - properties[i].getValue());
             properties[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
