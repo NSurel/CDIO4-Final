@@ -74,5 +74,35 @@ public class FieldController {
     {
         Field currentField = fields[playerController.getCurrentPlayer().getPos()];
 
+        if (currentField.getClass().equals(DeedField.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(BreweryField.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(ChanceField.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(FerryField.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(GoToJail.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(Jail.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(TaxField.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(Start.class.getClass())){
+
+        }
+        else if (currentField.getClass().equals(FreeParking.class.getClass())){
+
+        }
+        else {}
+
+
     }
 }
