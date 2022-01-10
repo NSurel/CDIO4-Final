@@ -4,7 +4,6 @@ public class ChanceCard {
     private String description;
     private String type;
     private String action;
-    private int amount;
 
     /* The ChanceCard constructor:
        Description: The description of the unique chance card.
@@ -47,15 +46,5 @@ public class ChanceCard {
     // Sets the action of the ChanceCard.
     public void setAction(String action) {
         this.action = action;
-    }
-
-    // Returns the amount of the ChanceCard.
-    public int getAmount() {
-        return amount;
-    }
-
-    // Sets the amount of the ChanceCard.
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 }

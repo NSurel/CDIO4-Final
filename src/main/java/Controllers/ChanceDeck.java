@@ -10,15 +10,17 @@ import java.util.Random;
 
 public class ChanceDeck {
 
-    private ChanceCard[] deck;
-    private int numberOfCards = 0;
+    public ChanceCard[] deck;
+    public int numberOfCards = 0;
     int currentCardIndex = 0;
     private File file = new File("ChanceCards.txt");
     private BufferedReader r;
     private String line;
 
-    //Populates the deck with every chance card with the right information from the readTxtInfo method.
-    private void populate() throws IOException{
+
+
+    //Creates the chance card for the chance deck.
+    public void populateDeck() throws IOException{
         String pathName = "ChanceCards.txt";
         Path path = Paths.get(pathName);
         numberOfCards = (int)Files.lines(path).count();
@@ -27,71 +29,21 @@ public class ChanceDeck {
         r = new BufferedReader(new FileReader(pathName));
         r.readLine();
 
-        deck = new ChanceCard[numberOfCards];
-
-
+        deck = new ChanceCard[numberOfCards-1];
         while((line = r.readLine()) !=null){
-            String[] info = card.split(";;");
+            //Checks if a line begins with #. If it does that line is null.
+            // Have not added functionality that decreases the deck size.
+            if(line.indexOf("#")==0)
+                continue;
+            String[] info = line.split(";;");
+            String desc = info[0];
+            String type = info[1];
+            String act = info[2];
 
-            String desc = info[0].split("::")[1];
-            String type = info[1].split("::")[1];
-            String act = info[2].split("::")[2];
-            String amou = info[3].split("::")[3];
+            deck[currentCardIndex] = new ChanceCard(desc, type, act);
+            currentCardIndex++;
         }
     }
-
-    public void populateDeck(){
-        String str = readTxtInfo();
-        String[] cards = str.split("££");
-
-        for (String card : cards){
-            String[] info = card.split(";;");
-            String amou = info[3].split("::")[1];
-            for (int i = 1; (i <= Integer.parseInt(amou)); i++) {
-                numberOfCards++;
-            }
-        }
-        deck = new ChanceCard[numberOfCards];
-        
-        for (String card : cards) {
-            String[] info = card.split(";;");
-    
-            String desc = info[0].split("::")[1];
-            String type = info[1].split("::")[1];
-            String act = info[2].split("::")[2];
-            String amou = info[3].split("::")[3];
-    
-            for (int i = 1; (i <= Integer.parseInt(amou)); i++) {
-                deck[currentCardIndex] = new ChanceCard(desc, type, act);
-                currentCardIndex++;
-            }
-        }
-    }
-
-
-    //Method used to populate the deck with the right information from the ChanceCard.txt file
-    private String readTxtInfo() {
-        String info = "";
-
-        try {
-            BufferedReader r = new BufferedReader(new FileReader(file));
-
-            line = null;
-            while ((line = r.readLine()) != null) {
-                if(line.trim().indexOf("#") == 0)
-                    continue;
-                info += line.trim();
-            }
-
-            r.close();
-        }
-        catch (IOException a) {
-            a.printStackTrace();
-        }
-        return info;
-    }
-
-
 
     //Method for shuffling the deck randomly.
     private void shuffle(){
