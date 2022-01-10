@@ -1,5 +1,4 @@
-import Controllers.DeedController;
-import Models.Deeds.Deed;
+import Controllers.*;
 
 public class Matador {
     public static void main(String[] args) {
