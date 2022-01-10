@@ -55,37 +55,37 @@ public class DeedController {
                     break;
                 case 8:
                 case 9:
-                    properties[i] = new Property();
+                    properties[i] = new Property(1,1,3);
                     break;
                 case 10:
-                    properties[i] = new Property();
+                    properties[i] = new Property(2,1,3);
                     break;
                 case 11:
                 case 12:
-                    properties[i] = new Property();
+                    properties[i] = new Property(1,1,4);
                     break;
                 case 13:
-                    properties[i] = new Property();
+                    properties[i] = new Property(2,1,4);
                     break;
                 case 14:
                 case 15:
-                    properties[i] = new Property();
+                    properties[i] = new Property(1,1,5);
                     break;
                 case 16:
-                    properties[i] = new Property();
+                    properties[i] = new Property(2,1,5);
                     break;
                 case 17:
                 case 18:
-                    properties[i] = new Property();
+                    properties[i] = new Property(1,1,6);
                     break;
                 case 19:
-                    properties[i] = new Property();
+                    properties[i] = new Property(2,1,6);
                     break;
                 case 20:
-                    properties[i] = new Property();
+                    properties[i] = new Property(1,1,7);
                     break;
                 case 21:
-                    properties[i] = new Property();
+                    properties[i] = new Property(1,2,7);
                     break;
 
 
