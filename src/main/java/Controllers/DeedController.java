@@ -14,10 +14,77 @@ public class DeedController {
 
 
 
-    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings) {
-        this.properties = properties;
-        this.breweries = breweries;
-        this.shippings = shippings;
+    public DeedController() {
+
+    }
+    public void createDeeds() {
+        this.properties = new Property[22];
+        this.shippings = new Shipping[4];
+        this.breweries = new Brewery[2];
+        int i = 0;
+        while (i < properties.length) {
+            switch (i) {
+                case 0:
+                case 1:
+                    properties[i] = new Property(50, 1, 0);
+                    shippings[i] = new Shipping(500, 4000);
+                    break;
+                case 2:
+                case 3:
+                    properties[i] = new Property(50, 1, 1);
+                    shippings[i] = new Shipping(500, 4000);
+                    break;
+                case 4:
+                    properties[i] = new Property(150, 1, 1);
+                    break;
+                case 5:
+                case 6:
+                    properties[i] = new Property(300, 1, 2);
+                    break;
+
+                case 7:
+                    properties[i] = new Property(350, 1, 2);
+                    break;
+                case 8:
+                case 9:
+                    properties[i] = new Property(1, 1, 3);
+                    break;
+                case 10:
+                    properties[i] = new Property(2, 1, 3);
+                    break;
+                case 11:
+                case 12:
+                    properties[i] = new Property(1, 1, 4);
+                    break;
+                case 13:
+                    properties[i] = new Property(2, 1, 4);
+                    break;
+                case 14:
+                case 15:
+                    properties[i] = new Property(1, 1, 5);
+                    break;
+                case 16:
+                    properties[i] = new Property(2, 1, 5);
+                    break;
+                case 17:
+                case 18:
+                    properties[i] = new Property(1, 1, 6);
+                    break;
+                case 19:
+                    properties[i] = new Property(2, 1, 6);
+                    break;
+                case 20:
+                    properties[i] = new Property(1, 1, 7);
+                    break;
+                case 21:
+                    properties[i] = new Property(2, 1, 7);
+                    break;
+
+
+            }
+            i++;
+        }
+
     }
 
     public int getNetValues(PlayerController playerController) {
@@ -85,8 +152,7 @@ public class DeedController {
         return shippings;
     }
 
-    public void buyProperty(PlayerController playerController, int value){
-        int i = 0;
+    public void buyProperty(PlayerController playerController, int value, int i){
         if (value < playerController.getCurrentPlayer().getBalance() && properties[i].getOwner() < 0 && ! properties[i].getIsMortgaged()){
             playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
             properties[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
