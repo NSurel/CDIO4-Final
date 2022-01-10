@@ -144,15 +144,6 @@ public class DeedController {
     }
 
     public void multipleShipping() {
-        int i = 0;
-        if (getShippings()[i].getOwner() == getShippings()[i + 1].getOwner() && getShippings()[i].getOwner() != getShippings()[i + 2].getOwner() && getShippings()[i + 3].getOwner() != getShippings()[i].getOwner()) {
-            getShippings()[i].setRent(1000);
-            getShippings()[i + 1].setRent(1000);
-            //må lige rette på talle er ikke sikre om de er rigtige
-        }
-       /* else if(getShippings()[i].getOwner()==1){
-
-        }*/
 
     }
 
