@@ -1,23 +1,89 @@
 package Controllers;
 
-import Models.Deeds.Brewery;
-import Models.Deeds.Deed;
-import Models.Deeds.Property;
-import Models.Deeds.Shipping;
+import Models.Deeds.*;
+
 
 public class DeedController {
     private Property[] properties;
     private Shipping[] shippings;
     private Brewery[] breweries;
-    private Deed deed;
+    private Property property;
+    private Shipping shipping;
+    private Brewery brewery;
 
-
-    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Deed deed) {
-        this.properties = properties;
-        this.breweries = breweries;
-        this.shippings = shippings;
-        this.deed = deed;
+    public DeedController() {
     }
+
+    public void createDeeds() {
+        this.properties = new Property[22];
+        this.shippings = new Shipping[4];
+        this.breweries = new Brewery[2];
+        int i = 0;
+        while (i < properties.length) {
+            switch (i) {
+                case 0:
+                case 1:
+                    properties[i] = new Property(50, 1, 0);
+                    shippings[i] = new Shipping(500, 4000);
+                    break;
+                case 2:
+                case 3:
+                    properties[i] = new Property(50, 1, 1);
+                    shippings[i] = new Shipping(500, 4000);
+                    break;
+                case 4:
+                    properties[i] = new Property(150, 1, 1);
+                    break;
+                case 5:
+                case 6:
+                    properties[i] = new Property(300, 1, 2);
+                    break;
+
+                case 7:
+                    properties[i] = new Property(350, 1, 2);
+                    break;
+                case 8:
+                case 9:
+                    properties[i] = new Property(1, 1, 3);
+                    break;
+                case 10:
+                    properties[i] = new Property(2, 1, 3);
+                    break;
+                case 11:
+                case 12:
+                    properties[i] = new Property(1, 1, 4);
+                    break;
+                case 13:
+                    properties[i] = new Property(2, 1, 4);
+                    break;
+                case 14:
+                case 15:
+                    properties[i] = new Property(1, 1, 5);
+                    break;
+                case 16:
+                    properties[i] = new Property(2, 1, 5);
+                    break;
+                case 17:
+                case 18:
+                    properties[i] = new Property(1, 1, 6);
+                    break;
+                case 19:
+                    properties[i] = new Property(2, 1, 6);
+                    break;
+                case 20:
+                    properties[i] = new Property(1, 1, 7);
+                    break;
+                case 21:
+                    properties[i] = new Property(2, 1, 7);
+                    break;
+
+
+            }
+            i++;
+        }
+
+    }
+
 
     public int getNetValues(PlayerController playerController) {
         int value = 0;
@@ -55,7 +121,7 @@ public class DeedController {
 
     public void allOwnedOfSameType() {
         int i = 0;
-        while (i < getProperties().length) {
+        while (i < this.getProperties().length) {
             if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())
                 if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
                     getProperties()[i].setBuildlevel(getProperties()[i].getBuildlevel() + 1);
@@ -72,6 +138,39 @@ public class DeedController {
         }
     }
 
+    public void multipleShipping(PlayerController playerController) {
+        int amountowned = 0;
+        for (int i = 0; i < shippings.length; i++) {
+            if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
+                amountowned++;
+            }
+        }
+        switch (amountowned) {
+            case 2:
+                for (int i = 0; i < shippings.length; i++) {
+                    if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
+                        shippings[i].setRent(123456789);
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < shippings.length; i++) {
+                    if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
+                        shippings[i].setRent(1234789);
+
+                    }
+                }
+                break;
+            case 4:
+                for (int i = 0; i < shippings.length; i++) {
+
+                        shippings[i].setRent(9999);
+
+                    }
+                }
+        }
+
+
     public Brewery[] getBreweries() {
         return breweries;
     }
@@ -84,30 +183,65 @@ public class DeedController {
         return shippings;
     }
 
-    public void buyProperty(PlayerController playerController, int value){
-        if (value < playerController.getCurrentPlayer().getBalance() && deed.getOwner() < 0 && !deed.getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
-            deed.setOwner(playerController.getCurrentPlayer().getPlayerID());
+    public Property getProperty() {
+        return property;
+    }
 
-        }
-       else if(deed.getIsMortgaged())
-        {
+    public void buyProperty(PlayerController playerController, int value) {
+        if (value < playerController.getCurrentPlayer().getBalance() && property.getOwner() < 0 && !property.getIsMortgaged()) {
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            property.setOwner(playerController.getCurrentPlayer().getPlayerID());
+
+        } else if (property.getIsMortgaged()) {
             System.out.println("This property is mortgaged.");
 
 
-        }
-       else if(deed.getOwner() > 0){
+        } else if (property.getOwner() >= 0) {
             System.out.println("This property is owned by someone.");
-       }
-       else {
+        } else {
             System.out.println("You don't have enough money in your balance.");
         }
         //TODO Hvordan man tjekker om en property er ejet. Not sure if det er korrekt den måde jeg har gjort det på.
     }
-    public void mortgageProperty(PlayerController playerController, Deed deed){
-        playerController.getCurrentPlayer().setBalance(deed.getValue()/2);
-        deed.updateIsMortgaged();
+
+    public void buyBrewery(PlayerController playerController, int value) {
+        if (value < playerController.getCurrentPlayer().getBalance() && brewery.getOwner() < 0 && !brewery.getIsMortgaged()) {
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            brewery.setOwner(playerController.getCurrentPlayer().getPlayerID());
+
+        } else if (brewery.getIsMortgaged()) {
+            System.out.println("This brewery is mortgaged.");
+
+
+        } else if (brewery.getOwner() >= 0) {
+            System.out.println("This brewery is already owned by someone.");
+        } else {
+            System.out.println("You don't have enough money in your balance.");
+        }
+    }
+
+    public void buyShipping(PlayerController playerController, int value) {
+        if (value < playerController.getCurrentPlayer().getBalance() && shipping.getOwner() < 0 && !shipping.getIsMortgaged()) {
+            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - value);
+            shipping.setOwner(playerController.getCurrentPlayer().getPlayerID());
+
+        } else if (shipping.getIsMortgaged()) {
+            System.out.println("This shipping is mortgaged.");
+
+
+        } else if (shipping.getOwner() >= 0) {
+            System.out.println("This shipping is already owned by someone.");
+        } else {
+            System.out.println("You don't have enough money in your balance.");
+        }
+    }
+
+    public void mortgageProperty(PlayerController playerController, Property property) {
+        playerController.getCurrentPlayer().setBalance(property.getValue() / 2);
+        property.updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
+        //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
     }
+
 }
