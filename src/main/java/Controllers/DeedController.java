@@ -141,21 +141,55 @@ public class DeedController {
         }
     }
 
-    public void multipleShipping() {
+    public void multipleShipping(PlayerController playerController) {
         int i = 0;
-        if (properties[i].getOwner() == properties[i + 1].getOwner()) {
-            /*properties[i].setRent();
-            properties[i+1].setRent();*/
-        }
-       else if (properties[i].getOwner() == properties[i + 2].getOwner()) {
-               /* properties[i].setRent();
 
-                properties[i+2].setRent();*/
-        }
-        else if (properties[i].getOwner() == properties[i + 3].getOwner()) {
-                    /*properties[i].setRent();
-                    properties[i+3].setRent();*/
-        }
+            if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && playerController.getCurrentPlayer().getPlayerID() == shippings[i + 1].getOwner()) {
+                shippings[i].setRent(1);
+                shippings[i + 1].setRent(1);
+            } else if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 2].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
+                shippings[i].setRent(2);
+
+                shippings[i + 2].setRent(2);
+            } else if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 3].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
+                shippings[i].setRent(3);
+                shippings[i + 3].setRent(3);
+            }
+            if (shippings[i + 1].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 2].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
+                shippings[i + 2].setRent(4);
+                shippings[i + 1].setRent(4);
+            } else if (shippings[i + 1].getOwner() == playerController.getCurrentPlayer().getPlayerID() && shippings[i + 3].getOwner()== playerController.getCurrentPlayer().getPlayerID()) {
+                shippings[i + 3].setRent(5);
+                shippings[i + 1].setRent(5);
+            } else if (shippings[i + 3].getOwner() == shippings[i + 2].getOwner()) {
+
+                shippings[i + 3].setRent(6);
+                shippings[i + 2].setRent(6);
+            }
+            if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID() && (shippings[i + 1].getOwner() == playerController.getCurrentPlayer().getPlayerID()) && ( shippings[i + 2].getOwner()) == playerController.getCurrentPlayer().getPlayerID()){
+                shippings[i].setRent(7);
+                shippings[i + 1].setRent(7);
+                shippings[i + 2].setRent(7);
+            } else if (shippings[i].getOwner() == shippings[i + 1].getOwner() && shippings[i].getOwner() == shippings[i + 3].getOwner()) {
+                shippings[i].setRent(8);
+                shippings[i].setRent(8);
+                shippings[i + 3].setRent(8);
+            } else if (shippings[i].getOwner() == shippings[i + 2].getOwner() && shippings[i].getOwner() == shippings[i + 3].getOwner()) {
+                shippings[i].setRent(9);
+                shippings[i].setRent(9);
+                shippings[i + 3].setRent(9);
+            } else if (shippings[i + 1].getOwner() == shippings[i + 2].getOwner() && shippings[i + 1].getOwner() == shippings[i + 3].getOwner()) {
+                shippings[i + 1].setRent(10);
+                shippings[i + 2].setRent(10);
+                shippings[i + 3].setRent(10);
+            }
+            if (shippings[i].getOwner() == shippings[i + 1].getOwner() && shippings[i].getOwner() == shippings[i + 2].getOwner() && shippings[i].getOwner() == shippings[i + 3].getOwner()) {
+                shippings[i].setRent(11);
+                shippings[i + 1].setRent(11);
+                shippings[i + 2].setRent(11);
+                shippings[i + 3].setRent(11);
+            }
+
 
     }
 
