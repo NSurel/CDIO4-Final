@@ -14,44 +14,45 @@ public class DeedController {
     private Shipping shipping;
     private Brewery brewery;
 
-
-
-    public DeedController(Property[] properties, Brewery[] breweries, Shipping[] shippings, Property property, Brewery brewery, Shipping shipping) {
-        this.properties = properties;
+    public DeedController() {
+/*
+        Property[] properties, Brewery[] breweries, Shipping[] shippings, Property property, Brewery brewery, Shipping shipping
+*/
+        /*this.properties = properties;
         this.breweries = breweries;
         this.shippings = shippings;
         this.property = property;
         this.brewery = brewery;
-        this.shipping = shipping;
+        this.shipping = shipping;*/
     }
 
-    public void createDeeds(FieldController fieldController) {
-        Property[] properties = new Property[22];
-        Shipping[] shippings = new Shipping[4];
-        Brewery[] breweries = new Brewery[2];
+    public void createDeeds() {
+        this.properties = new Property[22];
+        this.shippings = new Shipping[4];
+        this.breweries = new Brewery[2];
         int i = 0;
         while (i < properties.length) {
             switch (i) {
                 case 0:
                 case 1:
-                    properties[i] = new Property(50, 1200, 0);
+                    properties[i] = new Property(50, 1, 0);
                     shippings[i] = new Shipping(500, 4000);
                     break;
                 case 2:
                 case 3:
-                    properties[i] = new Property(50, 2000, 1);
+                    properties[i] = new Property(50, 1, 1);
                     shippings[i] = new Shipping(500, 4000);
                     break;
                 case 4:
-                    properties[i] = new Property(150, 2000, 1);
+                    properties[i] = new Property(150, 1, 1);
                     break;
                 case 5:
                 case 6:
-                    properties[i] = new Property(300,3600,2);
+                    properties[i] = new Property(300,1,2);
                     break;
 
                 case 7:
-                    properties[i] = new Property(350,3600,2);
+                    properties[i] = new Property(350,1,2);
                     break;
                 case 8:
                 case 9:
@@ -85,7 +86,7 @@ public class DeedController {
                     properties[i] = new Property(1,1,7);
                     break;
                 case 21:
-                    properties[i] = new Property(1,2,7);
+                    properties[i] = new Property(2,1,7);
                     break;
 
 
