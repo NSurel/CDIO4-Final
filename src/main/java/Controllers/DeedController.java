@@ -247,7 +247,8 @@ public class DeedController {
     }
 
     public void mortgageProperty(PlayerController playerController, Property property) {
-        playerController.getCurrentPlayer().setBalance(property.getValue() / 2);
+        int i = 0;
+        playerController.getCurrentPlayer().setBalance(properties[i].getValue() / 2);
         property.updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
         //TODO Svar Det kan først komme når gui controlleren er ved at være der

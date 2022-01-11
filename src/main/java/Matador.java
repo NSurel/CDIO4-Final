@@ -28,15 +28,14 @@ public class Matador {
         while (gameOngoing(playerController)){
             turn();
         }
-
     }
     public static void turn(){
         haveRolled = false;
         endTurn = false;
-        gui.updateGuiPlayerBal(playerController);
-        gui.updateCarPos(playerController);
         gui.msg("It is now " + playerController.getCurrentPlayer().getName() +"'s turn");
         while (!endTurn){
+            gui.updateGuiPlayerBal(playerController);
+            gui.updateCarPos(playerController);
             switch (gui.selectAction(haveRolled)){
                 case "Roll die":
                     roll();
@@ -44,8 +43,8 @@ public class Matador {
                 case "Upgrade Property":
                     UpgradeProperty();
                     break;
-                case "Buy Deed":
-                    buyDeed();
+                case "Trade Deed":
+                    tradeDeed();
                     break;
                 case "Sell House":
                     sellHouse();
@@ -55,9 +54,6 @@ public class Matador {
                     break;
                 case "Un mortgage":
                     unMortgage();
-                    break;
-                case "Trade Deed":
-                    tradeDeed();
                     break;
                 case "End Turn":
                     endTurn = true;
