@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class ChanceDeck {
-
     private ChanceCard[] deck;
     private int numberOfCards = 0;
     private int currentCardIndex = 0;
@@ -77,27 +76,34 @@ public class ChanceDeck {
         doAction(playerController, drawnCard);
     }
 
+    //Method for the different actions of the chance cards.
     public void doAction(PlayerController playerController, ChanceCard drawnCard){
 
         switch (Integer.parseInt(drawnCard.getType())){
             case 1:
                 //Lose money
+                playerController.getCurrentPlayer().updateBalance(Integer.parseInt(drawnCard.getAction()));
                 break;
 
             case 2:
                 //Receive money
+                playerController.getCurrentPlayer().updateBalance(Integer.parseInt(drawnCard.getAction()));
                 break;
 
             case 3:
                 //Steal money
+                playerController.stealFromAll(Integer.parseInt(drawnCard.getAction()));
                 break;
 
             case 4:
                 //Move to...
+                playerController.getCurrentPlayer().setPos(Integer.parseInt(drawnCard.getAction()));
+
                 break;
 
             case 5:
                 //Move x spaces
+                playerController.getCurrentPlayer().updatePos(Integer.parseInt(drawnCard.getAction()));
                 break;
 
             case 6:
@@ -115,11 +121,6 @@ public class ChanceDeck {
             case 9:
                 //Leave jail
                 break;
-
-
-
-
-
         }
     }
 
