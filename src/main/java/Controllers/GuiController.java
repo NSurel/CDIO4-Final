@@ -59,9 +59,9 @@ public class GuiController {
         String tmp;
         String msg = "Choose an action";
         if (haveRolled)
-            tmp = gui.getUserSelection(msg, "End Turn", "Upgrade Property", "Buy Deed", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+            tmp = gui.getUserSelection(msg, "End Turn", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
         else
-            tmp = gui.getUserSelection(msg, "Roll die", "Upgrade Property", "Buy Deed", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+            tmp = gui.getUserSelection(msg, "Roll die", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
 
         return tmp;
     }

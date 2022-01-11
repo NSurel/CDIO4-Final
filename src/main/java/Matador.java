@@ -28,7 +28,6 @@ public class Matador {
         while (gameOngoing(playerController)){
             turn();
         }
-
     }
     public static void turn(){
         haveRolled = false;
@@ -55,9 +54,6 @@ public class Matador {
                     break;
                 case "Un mortgage":
                     unMortgage();
-                    break;
-                case "Trade Deed":
-                    tradeDeed();
                     break;
                 case "End Turn":
                     endTurn = true;
