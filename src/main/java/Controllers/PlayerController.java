@@ -70,4 +70,10 @@ public class PlayerController {
         }
         return player.getIsBroke();
     }
+    public void stealFromAll(int value){
+        for(Player player : players){
+            player.updateBalance(-value);
+            currentPlayer.updateBalance(value);
+        }
+    }
 }
