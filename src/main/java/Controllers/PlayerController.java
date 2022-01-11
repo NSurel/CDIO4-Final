@@ -11,10 +11,10 @@ public class PlayerController {
 
     }
 
-    public void createPlayers(int size){
+    public void createPlayers(int size, GuiController gc){
         players = new Player[size];
         for (int i = 0; i < size; i++) {
-            players[i] = new Player("Player"+ (i + 1),i);
+            players[i] = new Player(gc.getUserString(),i);
         }
         currentPlayer = players[turn];
     }

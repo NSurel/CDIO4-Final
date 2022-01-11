@@ -23,9 +23,9 @@ public class Matador {
     public static void main(String[] args) throws IOException {
         gui.fixAllPrices(fieldController);
         playerCount = gui.getPlayerAmount();
-        playerController.createPlayers(playerCount);
+        playerController.createPlayers(playerCount, gui);
         gui.createCars(playerCount);
-        gui.createPlayers(playerController.getPlayers().length, 30000, playerController);
+        gui.createPlayers(playerController.getPlayers().length, playerController);
         while (gameOngoing(playerController)){
             turn();
         }

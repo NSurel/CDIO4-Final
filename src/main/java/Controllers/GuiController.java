@@ -44,10 +44,10 @@ public class GuiController {
     public GUI_Car[] getCars(){
         return cars;
     }
-    public void createPlayers(int amount, int startMoney, PlayerController pc){
+    public void createPlayers(int amount, PlayerController pc){
         players = new GUI_Player[amount];
         for (int i = 0; i < amount; i++) {
-            players[i] = new GUI_Player(pc.getPlayers()[i].getName(),startMoney,getCars()[i]);
+            players[i] = new GUI_Player(pc.getPlayers()[i].getName(),pc.getPlayers()[i].getBalance(),getCars()[i]);
             gui.addPlayer(players[i]);
             players[i].getCar().setPosition(gui.getFields()[0]);
         }
@@ -96,6 +96,9 @@ public class GuiController {
     }
     public void setlevel(DeedController dc){
         //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
+    }
+    public String getUserString(){
+        return gui.getUserString("Type in name");
     }
 
 }
