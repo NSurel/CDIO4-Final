@@ -44,6 +44,14 @@ public class DeedField extends Field {
     public Player getOwner() {
         return owner;
     }
+
+    public int getPrice() {
+        return price;
+    }
+    public int getHousePrice() {
+        return housePrice;
+    }
+
     public void setOwned(boolean owned) {
         isOwned = owned;
     }

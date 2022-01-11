@@ -30,20 +30,23 @@ public class FieldController {
                 String fieldName = values[0];
                 int pos = Integer.parseInt(values[1]);
                 String fieldType = values[2];
-                int price = Integer.parseInt(values[3]);
+                int price;
                 switch (fieldType) {
                     case " start":
                         fields[pos] = new Start(fieldName);
                         break;
                     case " street":
+                        price = Integer.parseInt(values[3]);
                         fields[pos] = new DeedField(fieldName, price, Integer.parseInt(values[4]), Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8]), Integer.parseInt(values[9]), Integer.parseInt(values[10]));
                         break;
                     case " chance":
                         fields[pos] = new ChanceField(fieldName);
                         break;
                     case " tax":
+                        price = Integer.parseInt(values[3]);
                             fields[pos] = new TaxField(fieldName,price,fieldName);
                     case " ferry":
+                        price = Integer.parseInt(values[3]);
                         fields[pos] = new FerryField(fieldName, price);
                         break;
                     case " jail":
@@ -57,6 +60,7 @@ public class FieldController {
                         }
                         break;
                     case " brewery":
+                        price = Integer.parseInt(values[3]);
                         fields[pos] = new BreweryField(fieldName, price);
                         break;
                     case " refugee":

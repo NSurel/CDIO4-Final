@@ -1,4 +1,5 @@
 package Controllers;
+import Models.Fields.DeedField;
 import gui_fields.*;
 import gui_main.*;
 import java.awt.*;
@@ -23,8 +24,10 @@ public class GuiController {
         for (int i = 0; i < fc.getFields().length; i++) {
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.DeedField")||
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.FerryField")||
-                    fc.getFields()[i].getClass().getName().equals("Models.Fields.BreweryField"))
-            gui.getFields()[i].setSubText("pris: "+ fc.getFields()[i].getRent());
+                    fc.getFields()[i].getClass().getName().equals("Models.Fields.BreweryField")) {
+                    DeedField tempField = (DeedField) fc.getFields()[i];
+                gui.getFields()[i].setSubText("pris: "+ tempField.getPrice());
+            }
         }
     }
     public int getPlayerAmount (){
@@ -52,6 +55,17 @@ public class GuiController {
         tmp = gui.getUserSelection(msg, option1, option2, option3);
         return tmp;
     }
+    public String selectAction(boolean haveRolled) {
+        String tmp;
+        String msg = "Choose an action";
+        if (haveRolled)
+            tmp = gui.getUserSelection(msg, "End Turn", "Upgrade Property", "Buy Deed", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+        else
+            tmp = gui.getUserSelection(msg, "Roll die", "Upgrade Property", "Buy Deed", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+
+        return tmp;
+    }
+
     public void updateCarPos(PlayerController pc){
         players[pc.getCurrentPlayer().getPlayerID()].getCar().setPosition(gui.getFields()[pc.getCurrentPlayer().getPos()]);
     }
@@ -66,6 +80,9 @@ public class GuiController {
     }
     public void rollMsg(String msg){
         gui.getUserButtonPressed(msg,"Roll");
+    }
+    public void msg(String msg){
+        gui.showMessage(msg);
     }
     public boolean yesOrNo(String msg){
         return gui.getUserLeftButtonPressed(msg, "yes", "no");
