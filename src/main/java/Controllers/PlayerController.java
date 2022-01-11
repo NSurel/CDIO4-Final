@@ -11,10 +11,17 @@ public class PlayerController {
 
     }
 
+    public void createPlayers(int size, GuiController gc){
+        players = new Player[size];
+        for (int i = 0; i < size; i++) {
+            players[i] = new Player(gc.getUserString(),i);
+        }
+        currentPlayer = players[turn];
+    }
     public void createPlayers(int size){
         players = new Player[size];
         for (int i = 0; i < size; i++) {
-            players[i] = new Player("Player"+ (i + 1),i);
+            players[i] = new Player("player" + (i+1),i);
         }
         currentPlayer = players[turn];
     }
@@ -43,9 +50,6 @@ public class PlayerController {
     public void updateCurrentPlayer(){
         int temp = turn+1;
         turn = temp% players.length;
-        if (turn > players.length-1){
-            currentPlayer.changeFirstTurn();
-        }
         currentPlayer = players[turn];
     }
     public Player getCurrentPlayer(){
@@ -66,10 +70,4 @@ public class PlayerController {
         }
         return player.getIsBroke();
     }
-    public void firstTurnOver(Player player){
-        player.changeFirstTurn();
-    }
-
-
-
 }
