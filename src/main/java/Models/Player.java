@@ -7,6 +7,7 @@ public class Player {
     private int pos;
     private int balance;
     private int netWorth;
+    private int timeInJail;
     private boolean isJailed;
     private boolean isBroke;
     private boolean firstTurn;
@@ -17,6 +18,7 @@ public class Player {
         this.pos = 0;
         this.balance = 30000;
         this.netWorth = balance;
+        this.timeInJail = 0;
         this.isJailed = false;
         this.isBroke = false;
         this.firstTurn = true;
@@ -38,6 +40,11 @@ public class Player {
         return pos;
     }
     public void setPos(int value){
+        if (value == 10){
+            isJailed = true;
+        }else if (value<pos && value != 0){
+            updateBalance(4000);
+        }
         pos = value;
     }
     public void updatePos(int value){
