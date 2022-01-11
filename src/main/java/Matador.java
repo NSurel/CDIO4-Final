@@ -33,10 +33,10 @@ public class Matador {
     public static void turn(){
         haveRolled = false;
         endTurn = false;
-        gui.updateGuiPlayerBal(playerController);
-        gui.updateCarPos(playerController);
         gui.msg("It is now " + playerController.getCurrentPlayer().getName() +"'s turn");
         while (!endTurn){
+            gui.updateGuiPlayerBal(playerController);
+            gui.updateCarPos(playerController);
             switch (gui.selectAction(haveRolled)){
                 case "Roll die":
                     roll();
