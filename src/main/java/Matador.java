@@ -21,6 +21,7 @@ public class Matador {
     static boolean endTurn;
 
     public static void main(String[] args) throws IOException {
+        gui.fixAllPrices(fieldController);
         playerCount = gui.getPlayerAmount();
         playerController.createPlayers(playerCount);
         gui.createCars(playerCount);

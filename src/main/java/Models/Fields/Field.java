@@ -1,6 +1,5 @@
 package Models.Fields;
 
-import Models.Player;
 
 public abstract class Field {
     String fieldName;
