@@ -26,8 +26,9 @@ public class Matador {
 
     static Cup cup = new Cup(6);
     static int playerCount;
-    static boolean haveRolled;
+    static boolean canEndTurn;
     static boolean endTurn;
+    static int extraTurns;
 
     public static void main(String[] args) throws IOException {
         playerCount = gui.getPlayerAmount();
@@ -39,13 +40,14 @@ public class Matador {
         }
     }
     public static void turn(){
-        haveRolled = false;
+        canEndTurn = false;
         endTurn = false;
+        extraTurns = 0;
         gui.msg("It is now " + playerController.getCurrentPlayer().getName() +"'s turn");
         while (!endTurn){
             gui.updateGuiPlayerBal(playerController);
             gui.updateCarPos(playerController);
-            switch (gui.selectAction(haveRolled)){
+            switch (gui.selectAction(canEndTurn)){
                 case "Roll die":
                     roll();
                     break;
@@ -72,11 +74,23 @@ public class Matador {
         playerController.updateCurrentPlayer();
     }
     public static void roll(){
-        //gui.rollMsg("Roll the dies");
-        playerController.getCurrentPlayer().updatePos(cup.rollCup());
-        gui.updateCarPos(playerController);
-        gui.showDice(cup);
-        haveRolled = true;
+        int roll = cup.rollCup();
+        if (cup.getDie1Value() == cup.getDie2Value()){
+            extraTurns++;
+        }else {
+            canEndTurn = true;
+        }
+        if (extraTurns >= 3){
+            playerController.getCurrentPlayer().setPos(10);
+            endTurn = true;
+        }
+        else{
+            //gui.rollMsg("Roll the dies");
+            playerController.getCurrentPlayer().updatePos(roll);
+            gui.updateCarPos(playerController);
+            gui.showDice(cup);
+            fieldController.doFieldAction(playerController);
+        }
     }
     public static void UpgradeProperty(){
 
