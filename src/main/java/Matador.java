@@ -43,8 +43,8 @@ public class Matador {
                 case "Upgrade Property":
                     UpgradeProperty();
                     break;
-                case "Buy Deed":
-                    buyDeed();
+                case "Trade Deed":
+                    tradeDeed();
                     break;
                 case "Sell House":
                     sellHouse();
