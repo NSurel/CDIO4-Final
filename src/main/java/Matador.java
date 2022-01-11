@@ -14,7 +14,16 @@ public class Matador {
     }
     static GuiController gui = new GuiController();
     static PlayerController playerController = new PlayerController();
-    static ChanceDeck chanceDeck = new ChanceDeck();
+    static ChanceDeck chanceDeck;
+
+    static {
+        try {
+            chanceDeck = new ChanceDeck();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     static Cup cup = new Cup(6);
     static int playerCount;
     static boolean haveRolled;
