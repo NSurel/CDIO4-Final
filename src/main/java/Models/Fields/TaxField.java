@@ -18,4 +18,9 @@ public class TaxField extends Field{
     public void setTaxAmount(int taxAmount) {
         this.taxAmount = taxAmount;
     }
+
+    @Override
+    public String getFieldType() {
+        return fieldType;
+    }
 }

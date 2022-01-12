@@ -5,4 +5,9 @@ public class Start extends Field{
     public Start(String fieldName) {
         super(fieldName);
     }
+
+    @Override
+    public String getFieldType() {
+        return fieldType;
+    }
 }

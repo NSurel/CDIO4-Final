@@ -8,7 +8,7 @@ public class FerryField extends Field{
     boolean isOwned;
     int rent0; int rent1; int rent2; int rent3;
     int price;
-    final String fieldType = "Ferry";
+    String fieldType;
 
     public FerryField(String fieldName, int price, int rent0, int rent1, int rent2, int rent3) {
         super(fieldName);
@@ -17,9 +17,15 @@ public class FerryField extends Field{
         this.rent1 = rent1;
         this.rent2 = rent2;
         this.rent3 = rent3;
+        fieldType = "Ferry";
     }
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public String getFieldType() {
+        return fieldType;
     }
 }

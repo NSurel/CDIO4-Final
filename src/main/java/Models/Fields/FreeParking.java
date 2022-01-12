@@ -5,4 +5,9 @@ public class FreeParking extends Field{
     public FreeParking(String fieldName) {
         super(fieldName);
     }
+
+    @Override
+    public String getFieldType() {
+        return fieldType;
+    }
 }

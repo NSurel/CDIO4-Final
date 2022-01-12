@@ -25,8 +25,7 @@ public class GuiController {
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.DeedField")||
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.FerryField")||
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.BreweryField")) {
-
-                //gui.getFields()[i].setSubText("Pris: " + fc.getFields()[i]);
+                    gui.getFields()[i].setSubText("Pris: " + fc.getFieldPrice(i));
                 //DeedField tempField = (DeedField) fc.getFields()[i];
                 //gui.getFields()[i].setSubText("pris: "+ tempField.getPrice());
             }

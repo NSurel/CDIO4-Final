@@ -5,4 +5,9 @@ public class Jail extends Field{
     public Jail(String fieldName) {
         super(fieldName);
     }
+
+    @Override
+    public String getFieldType() {
+        return fieldType;
+    }
 }
