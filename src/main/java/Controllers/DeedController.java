@@ -186,7 +186,7 @@ public class DeedController {
     public void buyProperty(PlayerController playerController, FieldController fieldController){
         int i = 0;
         if (properties[i].getValue() < playerController.getCurrentPlayer().getBalance() && properties[i].getOwner() < 0 && ! properties[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - properties[i].getValue());
+            playerController.getCurrentPlayer().updateBalance(playerController.getCurrentPlayer().getBalance() - properties[i].getValue());
             properties[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
@@ -207,7 +207,7 @@ public class DeedController {
     public void buyBrewery(PlayerController playerController, FieldController fieldController){
         int i = 0;
         if (breweries[i].getValue() < playerController.getCurrentPlayer().getBalance() && breweries[i].getOwner() < 0 && ! breweries[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - breweries[i].getValue());
+            playerController.getCurrentPlayer().updateBalance(playerController.getCurrentPlayer().getBalance() - breweries[i].getValue());
             breweries[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
@@ -227,7 +227,7 @@ public class DeedController {
     public void buyShipping(PlayerController playerController, FieldController fieldController){
         int i = 0;
         if (shippings[i].getValue() < playerController.getCurrentPlayer().getBalance() && shippings[i].getOwner() < 0 && ! shippings[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().setBalance(playerController.getCurrentPlayer().getBalance() - shippings[i].getValue());
+            playerController.getCurrentPlayer().updateBalance(playerController.getCurrentPlayer().getBalance() - shippings[i].getValue());
             shippings[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
@@ -248,7 +248,7 @@ public class DeedController {
 
     public void mortgageProperty(PlayerController playerController, Property property) {
         int i = 0;
-        playerController.getCurrentPlayer().setBalance(properties[i].getValue() / 2);
+        playerController.getCurrentPlayer().updateBalance(properties[i].getValue() / 2);
         property.updateIsMortgaged();
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
         //TODO Svar Det kan først komme når gui controlleren er ved at være der
