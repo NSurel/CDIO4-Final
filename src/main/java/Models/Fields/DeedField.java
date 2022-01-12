@@ -9,6 +9,7 @@ public class DeedField extends Field {
     int rent0; int rent1; int rent2; int rent3; int rent4; int rent5;
     int price;
     int housePrice;
+    final String fieldType = "Deed";
 
     public DeedField(String fieldName,int price, int housePrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5) {
         super(fieldName);
