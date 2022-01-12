@@ -43,9 +43,10 @@ public class FieldController {
                     case " tax":
                         price = Integer.parseInt(values[3]);
                             fields[pos] = new TaxField(fieldName,price,fieldName);
+                            break;
                     case " ferry":
                         price = Integer.parseInt(values[3]);
-                        fields[pos] = new FerryField(fieldName, price);
+                        fields[pos] = new FerryField(fieldName, price, Integer.parseInt(values[5]), Integer.parseInt(values[6]), Integer.parseInt(values[7]), Integer.parseInt(values[8]));
                         break;
                     case " jail":
                         if (pos == 10)
@@ -59,7 +60,7 @@ public class FieldController {
                         break;
                     case " brewery":
                         price = Integer.parseInt(values[3]);
-                        fields[pos] = new BreweryField(fieldName, price);
+                        fields[pos] = new BreweryField(fieldName, price, Integer.parseInt(values[5]), Integer.parseInt(values[6]));
                         break;
                     case " refugee":
                         fields[pos] = new FreeParking(fieldName);
@@ -72,8 +73,32 @@ public class FieldController {
         return fields;
     }
 
+    public int getFieldPrice(int i){
+            int rent;
+            Field currentField = fields[i];
+            switch (currentField.getFieldType()){
+                case "Brewery":
+                    BreweryField bf = (BreweryField)fields[i];
+                    rent = bf.getPrice();
+                    break;
+                case "Deed":
+                    DeedField df = (DeedField) fields[i];
+                    rent = df.getPrice();
+                    break;
+                case "Ferry":
+                    FerryField ff = (FerryField) fields[i];
+                    rent = ff.getPrice();
+                    break;
+                default:
+                    rent = 0;
+                    break;
+            }
+            return rent;
+    }
+
     public void doFieldAction(PlayerController playerController)
     {
+
         Field currentField = fields[playerController.getCurrentPlayer().getPos()];
 
         if (currentField.getClass().equals(DeedField.class.getClass())){

@@ -3,10 +3,12 @@ package Models.Fields;
 
 public abstract class Field {
     String fieldName;
+    String fieldType;
 
     public Field(String fieldName)
     {
        this.fieldName = fieldName;
+       fieldType = "Field";
     }
 
     public String getFieldName() {
@@ -16,4 +18,5 @@ public abstract class Field {
         this.fieldName = fieldName;
     }
 
+    public abstract String getFieldType();
 }

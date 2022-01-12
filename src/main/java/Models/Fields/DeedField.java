@@ -9,6 +9,7 @@ public class DeedField extends Field {
     int rent0; int rent1; int rent2; int rent3; int rent4; int rent5;
     int price;
     int housePrice;
+    String fieldType;
 
     public DeedField(String fieldName,int price, int housePrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5) {
         super(fieldName);
@@ -20,6 +21,7 @@ public class DeedField extends Field {
         this.rent3 = rent3;
         this.rent4 = rent4;
         this.rent5 = rent5;
+        fieldType = "Deed";
     }
 
     public int getRent0() {
@@ -62,5 +64,9 @@ public class DeedField extends Field {
         rent = rent;
     }
 
+    @Override
+    public String getFieldType() {
+        return fieldType;
+    }
 }
 

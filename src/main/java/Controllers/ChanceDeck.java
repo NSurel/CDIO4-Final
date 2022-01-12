@@ -46,9 +46,9 @@ public class ChanceDeck {
             deck[currentCardIndex] = new ChanceCard(desc, type, act);
             currentCardIndex++;
         }
-
-        IOException e = new IOException("Something went wrong with ChanceCards.txt");
-        throw e;
+        //Why throw exception when nothing wrong?
+        //IOException e = new IOException("Something went wrong with ChanceCards.txt");
+        //throw e;
     }
 
     //Method for shuffling the deck randomly.

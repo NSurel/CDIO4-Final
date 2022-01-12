@@ -77,6 +77,7 @@ public class Matador {
         playerController.getCurrentPlayer().updatePos(cup.rollCup());
         gui.updateCarPos(playerController);
         gui.showDice(cup);
+        fieldController.doFieldAction(playerController);
         haveRolled = true;
     }
     public static void UpgradeProperty(){

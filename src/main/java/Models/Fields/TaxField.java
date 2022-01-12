@@ -3,6 +3,7 @@ package Models.Fields;
 public class TaxField extends Field{
     int taxAmount;
     String taxType;
+    final String fieldType = "Tax";
 
     public TaxField(String fieldName, int taxAmount, String taxType) {
         super(fieldName);
@@ -16,5 +17,10 @@ public class TaxField extends Field{
 
     public void setTaxAmount(int taxAmount) {
         this.taxAmount = taxAmount;
+    }
+
+    @Override
+    public String getFieldType() {
+        return fieldType;
     }
 }
