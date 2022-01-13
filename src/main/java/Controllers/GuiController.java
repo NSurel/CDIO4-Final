@@ -26,8 +26,6 @@ public class GuiController {
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.FerryField")||
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.BreweryField")) {
                     gui.getFields()[i].setSubText("Pris: " + fc.getFieldPrice(i));
-                //DeedField tempField = (DeedField) fc.getFields()[i];
-                //gui.getFields()[i].setSubText("pris: "+ tempField.getPrice());
             }
         }
     }
@@ -71,7 +69,10 @@ public class GuiController {
         players[pc.getCurrentPlayer().getPlayerID()].getCar().setPosition(gui.getFields()[pc.getCurrentPlayer().getPos()]);
     }
     public void updateGuiPlayerBal(PlayerController pc){
-        players[pc.getCurrentPlayer().getPlayerID()].setBalance(pc.getCurrentPlayer().getBalance());
+        for (int i = 0; i < pc.getPlayers().length; i++) {
+            players[i].setBalance(pc.getPlayers()[i].getBalance());
+        }
+        //players[pc.getCurrentPlayer().getPlayerID()].setBalance(pc.getCurrentPlayer().getBalance());
     }
     public void showDice(Cup cup){
         gui.setDice(cup.getDie1Value(),1,5, cup.getDie2Value(),2,5);
@@ -93,11 +94,15 @@ public class GuiController {
         ownables.setBorder(players[pc.getCurrentPlayer().getPlayerID()].getCar().getPrimaryColor());
         ownables.setOwnerName(players[pc.getCurrentPlayer().getPlayerID()].getName());
     }
-    public void setlevel(DeedController dc){
+    public void setLevel(DeedController dc){
         //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
     }
-    public String getUserString(){
+    public String getUserName(){
         return gui.getUserString("Type in name");
     }
+    public String getPlayernameOrPropertyName(String playerOrProperty ){
+        return gui.getUserString("Type in the name of the "+ playerOrProperty);
+    }
+
 
 }

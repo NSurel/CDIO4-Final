@@ -14,7 +14,7 @@ public class PlayerController {
     public void createPlayers(int size, GuiController gc){
         players = new Player[size];
         for (int i = 0; i < size; i++) {
-            players[i] = new Player(gc.getUserString(),i);
+            players[i] = new Player(gc.getUserName(),i);
         }
         currentPlayer = players[turn];
     }
@@ -75,5 +75,15 @@ public class PlayerController {
             player.updateBalance(-value);
             currentPlayer.updateBalance(value);
         }
+    }
+    public Player getPlayer(String playerName){
+        Player tmp = null;
+        for (Player player : players){
+            if (player.getName().equals(playerName)){
+                tmp = player;
+            }
+        }
+
+        return tmp;
     }
 }

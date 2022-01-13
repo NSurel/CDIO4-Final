@@ -14,6 +14,7 @@ public class Matador {
     }
     static GuiController gui = new GuiController();
     static PlayerController playerController = new PlayerController();
+    static DeedController deedController = new DeedController();
     static ChanceDeck chanceDeck;
 
     static {
@@ -46,6 +47,7 @@ public class Matador {
         while (!endTurn){
             gui.updateGuiPlayerBal(playerController);
             gui.updateCarPos(playerController);
+
             switch (gui.selectAction(haveRolled)){
                 case "Roll die":
                     roll();
@@ -78,9 +80,15 @@ public class Matador {
         gui.updateCarPos(playerController);
         gui.showDice(cup);
         fieldController.doFieldAction(playerController);
+        boolean answer = gui.yesOrNo("Do you want to buy this property?");
+        if (answer){
+
+        }
         haveRolled = true;
     }
     public static void UpgradeProperty(){
+        String propertyName = gui.getPlayernameOrPropertyName("property");
+
 
     }
     public static void buyDeed(){
@@ -96,9 +104,25 @@ public class Matador {
 
     }
     public static void tradeDeed(){
+        String otherPlayerName = gui.getPlayernameOrPropertyName("player");
+        if (isOtherPlayerName(otherPlayerName)){
+            playerController.getPlayer(otherPlayerName);
+
+        } else {
+            gui.msg("That player doesn't exist");
+        }
 
     }
     public void auction(){
+        String buyingPlayerName = gui.getPlayernameOrPropertyName("player");
+        if(isOtherPlayerName(buyingPlayerName)){
+            playerController.getPlayer(buyingPlayerName).updateBalance(-fieldController.getFieldPrice(playerController.getCurrentPlayer().getPos()));
+            // Need to find the proper way to get the deed for the field the current player landed on
+            //deedController.getProperties()[playerController.getCurrentPlayer().getPos()].setOwner(playerController.getPlayer(buyingPlayerName).getPlayerID());
+        } else{
+            gui.msg("That player doesn't exist");
+        }
+
 
     }
     public void leaveJail(){
@@ -112,5 +136,16 @@ public class Matador {
             }
         }
         return gaming;
+    }
+    public static boolean isOtherPlayerName(String name){
+        boolean otherPlayerName = false;
+        for (int i = 0; i < playerController.getPlayers().length; i++) {
+
+            if (playerController.getPlayers()[i].getName().equals(name)){
+                otherPlayerName = true;
+            }
+        }{
+        }
+        return otherPlayerName;
     }
 }
