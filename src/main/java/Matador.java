@@ -54,6 +54,7 @@ public class Matador {
         while (!endTurn){
             gui.updateGuiPlayerBal(playerController);
             gui.updateCarPos(playerController);
+            gui.updateOwners(playerController,deedController);
                 switch (gui.selectAction(canEndTurn,playerController)){
                     case "Roll die":
                         roll();
