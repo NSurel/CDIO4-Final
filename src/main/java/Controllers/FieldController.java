@@ -96,40 +96,38 @@ public class FieldController {
             return rent;
     }
 
+    public String GetCurrentFiledType(PlayerController pc){
+        int pos = pc.getCurrentPlayer().getPos();
+        Field currentField = fields[pos];
+        String s = currentField.getFieldType();
+        return s;
+    }
+
     public void doFieldAction(PlayerController playerController)
     {
+        int pos = playerController.getCurrentPlayer().getPos();
+        Field currentField = fields[pos];
+        switch (currentField.getFieldType()) {
+            case "Brewery":
+                BreweryField bf = (BreweryField) fields[pos];
+                break;
+            case "Deed":
+                DeedField df = (DeedField) fields[pos];
 
-        Field currentField = fields[playerController.getCurrentPlayer().getPos()];
-
-        if (currentField.getClass().equals(DeedField.class.getClass())){
-
+                break;
+            case "Ferry":
+                FerryField ff = (FerryField) fields[pos];
+                break;
+            case "GoToJail":
+                break;
+            case "Jail":
+                break;
+            case "Tax":
+                break;
+            case "Chance":
+                break;
+            default:
+                break;
         }
-        else if (currentField.getClass().equals(BreweryField.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(ChanceField.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(FerryField.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(GoToJail.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(Jail.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(TaxField.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(Start.class.getClass())){
-
-        }
-        else if (currentField.getClass().equals(FreeParking.class.getClass())){
-
-        }
-        else {}
-
-
     }
 }

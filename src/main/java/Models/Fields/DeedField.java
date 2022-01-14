@@ -10,6 +10,7 @@ public class DeedField extends Field {
     int price;
     int housePrice;
     String fieldType;
+    int pos;
 
     public DeedField(String fieldName,int price, int housePrice, int rent0, int rent1, int rent2, int rent3, int rent4, int rent5) {
         super(fieldName);
@@ -67,6 +68,11 @@ public class DeedField extends Field {
     @Override
     public String getFieldType() {
         return fieldType;
+    }
+
+    @Override
+    public int getPos() {
+        return pos;
     }
 }
 

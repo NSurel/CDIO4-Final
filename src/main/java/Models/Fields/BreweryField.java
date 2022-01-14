@@ -9,6 +9,7 @@ public class BreweryField extends Field{
     int rent0; int rent1;
     int price;
     String fieldType;
+    int pos;
 
     public BreweryField(String fieldName, int price, int rent0, int rent1) {
         super(fieldName);
@@ -24,5 +25,10 @@ public class BreweryField extends Field{
 
     public String getFieldType() {
         return fieldType;
+    }
+
+    @Override
+    public int getPos() {
+        return pos;
     }
 }
