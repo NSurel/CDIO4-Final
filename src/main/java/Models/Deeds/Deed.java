@@ -11,9 +11,10 @@ public abstract class Deed {
     private int buildlevel;
     private boolean ismortageged;
 
-    public Deed(int rent,int value ){
+    public Deed(int rent,int value,int pos ){
         this.rent = rent;
         this.value = value;
+        this.pos = pos;
 
         this.buildlevel=0;
         this.ismortageged=false;
@@ -56,6 +57,12 @@ public abstract class Deed {
     }
     public void setValue(int value) {
         this.value = value;
+    }
+    public void setPos(int value){
+        this.pos = value;
+    }
+    public int getPos(){
+        return pos;
     }
 
 }

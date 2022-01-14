@@ -4,8 +4,8 @@ import Controllers.PlayerController;
 
 public class Property extends Deed{
     private int type;
-    public Property(int rent, int value, int type){
-        super( rent,value);
+    public Property(int rent, int value, int type, int pos){
+        super( rent,value,pos);
         this.type = type;
     }
 

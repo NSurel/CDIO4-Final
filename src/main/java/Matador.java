@@ -33,6 +33,10 @@ public class Matador {
 
     public static void main(String[] args) throws IOException {
         deedController.createDeeds(fieldController);
+        System.out.println(deedController.getShippings()[0].getPos());
+        System.out.println(deedController.getShippings()[1].getPos());
+        System.out.println(deedController.getShippings()[2].getPos());
+        System.out.println(deedController.getShippings()[3].getPos());
         gui.fixAllPrices(fieldController);
         playerCount = gui.getPlayerAmount();
         playerController.createPlayers(playerCount, gui);
