@@ -100,10 +100,34 @@ public class GuiController {
     public boolean yesOrNo(String msg){
         return gui.getUserLeftButtonPressed(msg, "yes", "no");
     }
-    public void setOwner(PlayerController pc){
-        ownables = (GUI_Ownable) gui.getFields()[pc.getCurrentPlayer().getPos()];
-        ownables.setBorder(players[pc.getCurrentPlayer().getPlayerID()].getCar().getPrimaryColor());
-        ownables.setOwnerName(players[pc.getCurrentPlayer().getPlayerID()].getName());
+    public void updateOwners(PlayerController pc, DeedController dc){
+        for(int i = 0; i < dc.getProperties().length;i++){
+            ownables = (GUI_Ownable) gui.getFields()[dc.getProperties()[i].getPos()];
+            for (int j = 0; j < pc.getPlayers().length;j++){
+                if (pc.getPlayers()[j].getPlayerID() == dc.getProperties()[i].getOwner()){
+                    ownables.setBorder(players[pc.getPlayers()[j].getPlayerID()].getCar().getPrimaryColor());
+                    ownables.setOwnerName(players[pc.getPlayers()[j].getPlayerID()].getName());
+                }
+            }
+        }
+        for(int i = 0; i < dc.getShippings().length;i++){
+            ownables = (GUI_Ownable) gui.getFields()[dc.getShippings()[i].getPos()];
+            for (int j = 0; j < pc.getPlayers().length;j++){
+                if (pc.getPlayers()[j].getPlayerID() == dc.getShippings()[i].getOwner()) {
+                    ownables.setBorder(players[pc.getPlayers()[j].getPlayerID()].getCar().getPrimaryColor());
+                    ownables.setOwnerName(players[pc.getPlayers()[j].getPlayerID()].getName());
+                }
+            }
+        }
+        for(int i = 0; i < dc.getBreweries().length;i++){
+            ownables = (GUI_Ownable) gui.getFields()[dc.getBreweries()[i].getPos()];
+            for (int j = 0; j < pc.getPlayers().length;j++){
+                if (pc.getPlayers()[j].getPlayerID() == dc.getBreweries()[i].getOwner()) {
+                    ownables.setBorder(players[pc.getPlayers()[j].getPlayerID()].getCar().getPrimaryColor());
+                    ownables.setOwnerName(players[pc.getPlayers()[j].getPlayerID()].getName());
+                }
+            }
+        }
     }
     public void setLevel(DeedController dc){
         //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
