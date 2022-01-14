@@ -115,6 +115,8 @@ public class Matador {
                 //gui user select
                 if(gui.yesOrNo("Do you want to buy this deed")){
                     buyDeed(fieldType);
+                } else{
+                    auction();
                 }
                 break;
             case "GoToJail":
@@ -175,7 +177,17 @@ public class Matador {
     public static void tradeDeed(){
 
     }
-    public void auction(){
+    public static void auction(){
+        int pos = playerController.getCurrentPlayer().getPos();
+        gui.msg("This deed is now up for auction");
+        String name = gui.getPlayernameOrPropertyName("buying player");
+        int id = playerController.getPlayerIdFromName(name);
+        int amount = gui.getInt("Amount to pay");
+        if (id==-1){
+            gui.msg("This isn't a player");
+        }else{
+            deedController.setOwnerToPos(id,pos,amount,playerController);
+        }
 
     }
     public static void leaveJail(){

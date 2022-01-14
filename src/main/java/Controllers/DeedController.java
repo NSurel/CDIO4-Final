@@ -314,5 +314,25 @@ public class DeedController {
         //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
     }
+    public void setOwnerToPos(int id, int pos,int amount, PlayerController pc){
+        for (Property property : properties){
+            if (property.getPos()==pos){
+                property.setOwner(id);
+                pc.getPlayers()[id].updateBalance(-amount);
+            }
+        }
+        for (Brewery brewery : breweries){
+            if (brewery.getPos() == pos){
+                brewery.setOwner(id);
+                pc.getPlayers()[id].updateBalance(-amount);
+            }
+        }
+        for (Shipping shipping : shippings){
+            if (shipping.getPos() == pos){
+                shipping.setOwner(id);
+                pc.getPlayers()[id].updateBalance(-amount);
+            }
+        }
+    }
 
 }

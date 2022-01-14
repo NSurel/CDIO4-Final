@@ -86,4 +86,13 @@ public class PlayerController {
 
         return tmp;
     }
+    public int getPlayerIdFromName (String name){
+        int tmp = -1;
+        for (Player player : players){
+            if (player.getName().equals(name)){
+                tmp = player.getPlayerID();
+            }
+        }
+        return tmp;
+    }
 }

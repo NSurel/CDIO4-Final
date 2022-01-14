@@ -147,6 +147,9 @@ public class GuiController {
         }
         return tmp;
     }
+    public int getInt(String msg){
+        return gui.getUserInteger(msg);
+    }
 
 
 }
