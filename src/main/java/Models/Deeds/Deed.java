@@ -6,6 +6,7 @@ public abstract class Deed {
     private int rent;
     private int value;
     private int owner;
+    int pos;
 
     private int buildlevel;
     private boolean ismortageged;

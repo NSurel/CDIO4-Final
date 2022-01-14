@@ -9,6 +9,7 @@ public class FerryField extends Field{
     int rent0; int rent1; int rent2; int rent3;
     int price;
     String fieldType;
+    int pos;
 
     public FerryField(String fieldName, int price, int rent0, int rent1, int rent2, int rent3) {
         super(fieldName);
@@ -27,5 +28,10 @@ public class FerryField extends Field{
     @Override
     public String getFieldType() {
         return fieldType;
+    }
+
+    @Override
+    public int getPos() {
+        return pos;
     }
 }

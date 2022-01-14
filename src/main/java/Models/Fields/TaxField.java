@@ -4,6 +4,7 @@ public class TaxField extends Field{
     int taxAmount;
     String taxType;
     final String fieldType = "Tax";
+    int pos;
 
     public TaxField(String fieldName, int taxAmount, String taxType) {
         super(fieldName);
@@ -22,5 +23,10 @@ public class TaxField extends Field{
     @Override
     public String getFieldType() {
         return fieldType;
+    }
+
+    @Override
+    public int getPos() {
+        return pos;
     }
 }

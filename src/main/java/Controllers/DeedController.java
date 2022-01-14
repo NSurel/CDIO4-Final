@@ -14,7 +14,9 @@ public class DeedController {
     public DeedController() {
     }
 
-    public void createDeeds() {
+    public void createDeeds(FieldController fc) {
+        fc.getFields();
+
         this.properties = new Property[22];
         this.shippings = new Shipping[4];
         this.breweries = new Brewery[2];
@@ -184,9 +186,9 @@ public class DeedController {
     }
 
     public void buyProperty(PlayerController playerController, FieldController fieldController){
-        int i = 0;
+        int i = playerController.getCurrentPlayer().getPos();
         if (properties[i].getValue() < playerController.getCurrentPlayer().getBalance() && properties[i].getOwner() < 0 && ! properties[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().updateBalance(playerController.getCurrentPlayer().getBalance() - properties[i].getValue());
+            playerController.getCurrentPlayer().updateBalance(- properties[i].getValue());
             properties[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
@@ -205,9 +207,9 @@ public class DeedController {
     }
 
     public void buyBrewery(PlayerController playerController, FieldController fieldController){
-        int i = 0;
+        int i = playerController.getCurrentPlayer().getPos();
         if (breweries[i].getValue() < playerController.getCurrentPlayer().getBalance() && breweries[i].getOwner() < 0 && ! breweries[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().updateBalance(playerController.getCurrentPlayer().getBalance() - breweries[i].getValue());
+            playerController.getCurrentPlayer().updateBalance(- breweries[i].getValue());
             breweries[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }
@@ -225,9 +227,9 @@ public class DeedController {
         }
     }
     public void buyShipping(PlayerController playerController, FieldController fieldController){
-        int i = 0;
+        int i = playerController.getCurrentPlayer().getPos();
         if (shippings[i].getValue() < playerController.getCurrentPlayer().getBalance() && shippings[i].getOwner() < 0 && ! shippings[i].getIsMortgaged()){
-            playerController.getCurrentPlayer().updateBalance(playerController.getCurrentPlayer().getBalance() - shippings[i].getValue());
+            playerController.getCurrentPlayer().updateBalance(- shippings[i].getValue());
             shippings[i].setOwner(playerController.getCurrentPlayer().getPlayerID());
 
         }

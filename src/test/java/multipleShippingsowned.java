@@ -1,14 +1,14 @@
 import Controllers.DeedController;
 
+import Controllers.FieldController;
 import Controllers.PlayerController;
 
 import java.io.IOException;
 
 public class multipleShippingsowned {
-    public static void main(String[] args) throws IOException {
-
+    public static void main(String[] args)  throws IOException {
         DeedController deedController = new DeedController();
-        deedController.createDeeds();
+        FieldController fieldController = new FieldController();
         PlayerController playerController = new PlayerController();
         playerController.createPlayers(2);
 

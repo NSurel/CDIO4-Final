@@ -4,6 +4,7 @@ package Models.Fields;
 public abstract class Field {
     String fieldName;
     String fieldType;
+    int pos;
 
     public Field(String fieldName)
     {
@@ -19,4 +20,5 @@ public abstract class Field {
     }
 
     public abstract String getFieldType();
+    public abstract int getPos();
 }
