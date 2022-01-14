@@ -1,7 +1,4 @@
 import Controllers.*;
-import Models.Fields.BreweryField;
-import Models.Fields.DeedField;
-import Models.Fields.FerryField;
 
 import java.io.IOException;
 
@@ -30,8 +27,9 @@ public class Matador {
 
     static Cup cup = new Cup(6);
     static int playerCount;
-    static boolean haveRolled;
+    static boolean canEndTurn;
     static boolean endTurn;
+    static int extraTurns;
 
     public static void main(String[] args) throws IOException {
         deedController.createDeeds(fieldController);
@@ -45,8 +43,9 @@ public class Matador {
         }
     }
     public static void turn(){
-        haveRolled = false;
+        canEndTurn = false;
         endTurn = false;
+        extraTurns = 0;
         gui.msg("It is now " + playerController.getCurrentPlayer().getName() +"'s turn");
         while (!endTurn){
             gui.updateGuiPlayerBal(playerController);
@@ -54,7 +53,7 @@ public class Matador {
             if (playerController.getCurrentPlayer().isJailed())
                 leaveJail();
             else {
-                switch (gui.selectAction(haveRolled)){
+                switch (gui.selectAction(canEndTurn)){
                     case "Roll die":
                         roll();
                         break;
@@ -82,12 +81,23 @@ public class Matador {
         playerController.updateCurrentPlayer();
     }
     public static void roll(){
-        //gui.rollMsg("Roll the dies");
-        playerController.getCurrentPlayer().updatePos(cup.rollCup());
-        gui.updateCarPos(playerController);
-        gui.showDice(cup);
-        doFieldAction();
-        haveRolled = true;
+        int roll = cup.rollCup();
+        if (cup.getDie1Value() == cup.getDie2Value()){
+            extraTurns++;
+        }else {
+            canEndTurn = true;
+        }
+        if (extraTurns >= 3){
+            playerController.getCurrentPlayer().setPos(10);
+            endTurn = true;
+        }
+        else{
+            //gui.rollMsg("Roll the dies");
+            playerController.getCurrentPlayer().updatePos(roll);
+            gui.updateCarPos(playerController);
+            gui.showDice(cup);
+            doFieldAction();
+        }
     }
 
     public static void doFieldAction(){
