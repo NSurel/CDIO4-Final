@@ -10,6 +10,7 @@ public class Player {
     private int timeInJail;
     private boolean isJailed;
     private boolean isBroke;
+    private boolean hasGetOutOfJailCard;
 
     public Player(String name, int playerID){
         this.name = name;
@@ -20,6 +21,7 @@ public class Player {
         this.timeInJail = 0;
         this.isJailed = false;
         this.isBroke = false;
+        this.hasGetOutOfJailCard = false;
     }
 
     public void setName(String name) {
@@ -85,5 +87,11 @@ public class Player {
     }
     public void isBroke(){
         isBroke =! isBroke;
+    }
+    public void updateGetOutOfJailCard(){
+        hasGetOutOfJailCard = !hasGetOutOfJailCard;
+    }
+    public boolean getOutOfJailCard(){
+        return hasGetOutOfJailCard;
     }
 }

@@ -50,10 +50,7 @@ public class Matador {
         while (!endTurn){
             gui.updateGuiPlayerBal(playerController);
             gui.updateCarPos(playerController);
-            if (playerController.getCurrentPlayer().isJailed())
-                leaveJail();
-            else {
-                switch (gui.selectAction(canEndTurn)){
+                switch (gui.selectAction(canEndTurn,playerController)){
                     case "Roll die":
                         roll();
                         break;
@@ -75,11 +72,19 @@ public class Matador {
                     case "End Turn":
                         endTurn = true;
                         break;
+                    case "Pay for freedom":
+                        break;
+                    case "Roll for freedom":
+                        break;
+                    case "Use card":
+                        playerController.getCurrentPlayer().updateGetOutOfJailCard();
+                        playerController.getCurrentPlayer().setIsJailed(false);
+                        break;
                 }
             }
-        }
         playerController.updateCurrentPlayer();
-    }
+        }
+
     public static void roll(){
         int roll = cup.rollCup();
         if (cup.getDie1Value() == cup.getDie2Value()){
@@ -162,7 +167,27 @@ public class Matador {
 
     }
     public static void leaveJail(){
-        //gui user select
+        String answer = gui.getOutOfJail(playerController);
+        switch (answer){
+            case "Roll":
+                cup.rollCup();
+                if (cup.getDie1Value() == cup.getDie2Value()){
+                    playerController.getCurrentPlayer().setIsJailed(false);
+                    playerController.getCurrentPlayer().updatePos(cup.getDie1Value() + cup.getDie2Value());
+                    doFieldAction();
+                    endTurn = true;
+                }
+                break;
+            case "Pay":
+                if (1000 >= playerController.getCurrentPlayer().getNetWorth()){
+                    playerController.getCurrentPlayer().isBroke();
+                } else {
+                    playerController.getCurrentPlayer().updateBalance(-1000);
+                    playerController.getCurrentPlayer().setIsJailed(false);
+                    roll();
+                }
+                break;
+        }
         endTurn = true;
 
     }

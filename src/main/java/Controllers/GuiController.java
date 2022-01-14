@@ -28,6 +28,12 @@ public class GuiController {
                     gui.getFields()[i].setSubText("Pris: " + fc.getFieldPrice(i));
             }
         }
+        gui.getFields()[4].setSubText("10% eller kr. 4000");
+        gui.getFields()[4].setDescription("Betal indkomstskat 10% eller kr. 4000");
+        gui.getFields()[38].setSubText("kr. 2000");
+        gui.getFields()[38].setDescription("Betal ekstraordinær statsskat kr. 2000");
+
+
     }
     public int getPlayerAmount (){
         return Integer.valueOf(gui.getUserSelection("How many players","3","4","5","6"));
@@ -54,10 +60,15 @@ public class GuiController {
         tmp = gui.getUserSelection(msg, option1, option2, option3);
         return tmp;
     }
-    public String selectAction(boolean haveRolled) {
+    public String selectAction(boolean haveRolled,PlayerController pc) {
         String tmp;
         String msg = "Choose an action";
-        if (haveRolled)
+        if (pc.getCurrentPlayer().isJailed())
+            if (pc.getCurrentPlayer().getOutOfJailCard())
+                tmp = gui.getUserSelection("msg","Use card","Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+            else
+                tmp = gui.getUserSelection("msg","Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+        else if (haveRolled)
             tmp = gui.getUserSelection(msg, "End Turn", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
         else
             tmp = gui.getUserSelection(msg, "Roll die", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
@@ -102,6 +113,15 @@ public class GuiController {
     }
     public String getPlayernameOrPropertyName(String playerOrProperty ){
         return gui.getUserString("Type in the name of the "+ playerOrProperty);
+    }
+    public String getOutOfJail(PlayerController pc){
+        String tmp;
+        if (pc.getCurrentPlayer().getOutOfJailCard()){
+            tmp = gui.getUserSelection("Choose option","Roll","Pay","use card");
+        } else {
+            tmp = gui.getUserSelection("Choose option","Roll","Pay");
+        }
+        return tmp;
     }
 
 
