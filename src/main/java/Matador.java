@@ -80,10 +80,6 @@ public class Matador {
         gui.updateCarPos(playerController);
         gui.showDice(cup);
         fieldController.doFieldAction(playerController);
-        boolean answer = gui.yesOrNo("Do you want to buy this property?");
-        if (answer){
-
-        }
         haveRolled = true;
     }
     public static void UpgradeProperty(){
@@ -92,6 +88,7 @@ public class Matador {
 
     }
     public static void buyDeed(){
+
 
     }
     public static void sellHouse(){
@@ -113,12 +110,12 @@ public class Matador {
         }
 
     }
-    public void auction(){
+    public static void auction(){
         String buyingPlayerName = gui.getPlayernameOrPropertyName("player");
         if(isOtherPlayerName(buyingPlayerName)){
             playerController.getPlayer(buyingPlayerName).updateBalance(-fieldController.getFieldPrice(playerController.getCurrentPlayer().getPos()));
             // Need to find the proper way to get the deed for the field the current player landed on
-            //deedController.getProperties()[playerController.getCurrentPlayer().getPos()].setOwner(playerController.getPlayer(buyingPlayerName).getPlayerID());
+            //deedController.getDeed()[playerController.getCurrentPlayer().getPos()].setOwner(playerController.getPlayer(buyingPlayerName).getPlayerID());
         } else{
             gui.msg("That player doesn't exist");
         }
