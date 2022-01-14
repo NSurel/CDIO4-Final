@@ -66,7 +66,7 @@ public class ChanceDeck {
     }
 
     //Method for drawing cards from the chance deck. If all cards are drawn, the deck is reshuflled.
-    public void draw(PlayerController playerController){
+    public String draw(PlayerController playerController){
 
         if (numberOfCardsDrawn >= deck.length){
             shuffle();
@@ -76,6 +76,7 @@ public class ChanceDeck {
 
         ChanceCard drawnCard = deck[numberOfCardsDrawn-1];
         doAction(playerController, drawnCard);
+        return drawnCard.getDescription();
     }
 
     //Method for the different actions of the chance cards.
