@@ -74,8 +74,24 @@ public class Matador {
                         endTurn = true;
                         break;
                     case "Pay for freedom":
+                        if (1000 >= playerController.getCurrentPlayer().getNetWorth()){
+                            playerController.getCurrentPlayer().isBroke();
+                        } else {
+                            playerController.getCurrentPlayer().updateBalance(-1000);
+                            playerController.getCurrentPlayer().setIsJailed(false);
+                        }
                         break;
                     case "Roll for freedom":
+                        cup.rollCup();
+                        gui.showDice(cup);
+                        if (cup.getDie1Value() == cup.getDie2Value()){
+                            playerController.getCurrentPlayer().setIsJailed(false);
+                            playerController.getCurrentPlayer().updatePos(cup.getDie1Value() + cup.getDie2Value());
+                            doFieldAction();
+                        }
+                        else {
+                            endTurn = true;
+                        }
                         break;
                     case "Use card":
                         playerController.getCurrentPlayer().updateGetOutOfJailCard();
@@ -141,8 +157,10 @@ public class Matador {
                 }
                 break;
             case "Chance":
-                chanceDeck.draw(playerController);
-                //gui.showChanceCard();
+                gui.showChanceCard(chanceDeck.draw(playerController));
+                if (playerController.getCurrentPlayer().getPos() == 10){
+                    endTurn = true;
+                }
                 break;
             default:
                 break;
@@ -188,31 +206,6 @@ public class Matador {
         }else{
             deedController.setOwnerToPos(id,pos,amount,playerController);
         }
-
-    }
-    public static void leaveJail(){
-        String answer = gui.getOutOfJail(playerController);
-        switch (answer){
-            case "Roll":
-                cup.rollCup();
-                if (cup.getDie1Value() == cup.getDie2Value()){
-                    playerController.getCurrentPlayer().setIsJailed(false);
-                    playerController.getCurrentPlayer().updatePos(cup.getDie1Value() + cup.getDie2Value());
-                    doFieldAction();
-                    endTurn = true;
-                }
-                break;
-            case "Pay":
-                if (1000 >= playerController.getCurrentPlayer().getNetWorth()){
-                    playerController.getCurrentPlayer().isBroke();
-                } else {
-                    playerController.getCurrentPlayer().updateBalance(-1000);
-                    playerController.getCurrentPlayer().setIsJailed(false);
-                    roll();
-                }
-                break;
-        }
-        endTurn = true;
 
     }
     public static boolean gameOngoing(PlayerController playerController){

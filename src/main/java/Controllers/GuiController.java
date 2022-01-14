@@ -65,9 +65,9 @@ public class GuiController {
         String msg = "Choose an action";
         if (pc.getCurrentPlayer().isJailed())
             if (pc.getCurrentPlayer().getOutOfJailCard())
-                tmp = gui.getUserSelection("msg","Use card","Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+                tmp = gui.getUserSelection(msg,"Use card","Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
             else
-                tmp = gui.getUserSelection("msg","Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+                tmp = gui.getUserSelection(msg,"Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
         else if (haveRolled)
             tmp = gui.getUserSelection(msg, "End Turn", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
         else
