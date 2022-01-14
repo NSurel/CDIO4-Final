@@ -127,7 +127,15 @@ public class Matador {
                 break;
             case "Tax":
                 if (playerController.getCurrentPlayer().getPos() == 4){
-                    //gui user select
+                    if (playerController.getCurrentPlayer().getBalance()<=4000){
+                        playerController.getCurrentPlayer().setBalance((int) (playerController.getCurrentPlayer().getBalance()*0.9));
+                    }else {
+                        if(gui.yesOrNo("Do you want to pay 10% of your balance instead of kr. 4000?")){
+                            playerController.getCurrentPlayer().setBalance((int) (playerController.getCurrentPlayer().getBalance()*0.9));
+                        }else{
+                            playerController.getCurrentPlayer().updateBalance(-4000);
+                        }
+                    }
                 }
                 else if (playerController.getCurrentPlayer().getPos() == 38){
                     playerController.updatePlayerBal(-2000,playerController.getCurrentPlayer());
@@ -135,6 +143,7 @@ public class Matador {
                 break;
             case "Chance":
                 chanceDeck.draw(playerController);
+                //gui.showChanceCard();
                 break;
             default:
                 break;
