@@ -100,7 +100,7 @@ public class GuiController {
     public boolean yesOrNo(String msg){
         return gui.getUserLeftButtonPressed(msg, "yes", "no");
     }
-    public void setOwner(PlayerController pc, FieldController fc){
+    public void setOwner(PlayerController pc){
         ownables = (GUI_Ownable) gui.getFields()[pc.getCurrentPlayer().getPos()];
         ownables.setBorder(players[pc.getCurrentPlayer().getPlayerID()].getCar().getPrimaryColor());
         ownables.setOwnerName(players[pc.getCurrentPlayer().getPlayerID()].getName());

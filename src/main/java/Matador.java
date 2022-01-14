@@ -116,7 +116,9 @@ public class Matador {
             case "Deed":
             case "Ferry":
                 //gui user select
-                //buyDeed(fieldType);
+                if(gui.yesOrNo("Do you want to buy this deed")){
+                    buyDeed(fieldType);
+                }
                 break;
             case "GoToJail":
                 gui.msg("you have been sent to Jail");
@@ -145,13 +147,13 @@ public class Matador {
 
         switch (deedType){
             case "Brewery":
-                deedController.buyBrewery(playerController,fieldController);
+                deedController.buyBrewery(playerController);
                 break;
             case "Deed":
-                deedController.buyProperty(playerController,fieldController);
+                deedController.buyProperty(playerController);
                 break;
             case "Ferry":
-                deedController.buyShipping(playerController,fieldController);
+                deedController.buyShipping(playerController);
                 break;
         }
     }
