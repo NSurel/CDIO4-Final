@@ -52,11 +52,13 @@ public class ChanceDeck {
     }
 
     //Method for shuffling the deck randomly.
-    private void shuffle () {
-        Random random = new Random();
-
+    public void shuffle () {
         for (int i = 0; i < deck.length; i++) {
-            int randomIndexSwap = random.nextInt(deck.length);
+
+            //Make a new random index so 1 <= randomIndexSwap <= 46.
+            int randomIndexSwap = (int)((Math.random()*deck.length));
+
+            //Puts a random card for the next position, a simple swap.
             ChanceCard temp = deck[randomIndexSwap];
             deck[randomIndexSwap] = deck[i];
             deck[i] = temp;
@@ -126,4 +128,3 @@ public class ChanceDeck {
 
 
 }
-
