@@ -6,14 +6,16 @@ public abstract class Deed {
     private int rent;
     private int value;
     private int owner;
-    private int type;
+    int pos;
+
     private int buildlevel;
     private boolean ismortageged;
 
-    public Deed(int rent,int value, int type ){
+    public Deed(int rent,int value,int pos ){
         this.rent = rent;
         this.value = value;
-        this.type = type;
+        this.pos = pos;
+
         this.buildlevel=0;
         this.ismortageged=false;
         this.owner = -1;
@@ -36,9 +38,7 @@ public abstract class Deed {
     public int getOwner() {
         return owner;
     }
-    public int getType() {
-        return type;
-    }
+
     public int getValue() {
         return value;
     }
@@ -55,11 +55,14 @@ public abstract class Deed {
     public void setOwner(int owner) {
         this.owner = owner;
     }
-    public void setType(int type) {
-        this.type = type;
-    }
     public void setValue(int value) {
         this.value = value;
+    }
+    public void setPos(int value){
+        this.pos = value;
+    }
+    public int getPos(){
+        return pos;
     }
 
 }

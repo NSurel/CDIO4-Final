@@ -7,8 +7,10 @@ public class Player {
     private int pos;
     private int balance;
     private int netWorth;
+    private int timeInJail;
     private boolean isJailed;
     private boolean isBroke;
+    private boolean hasGetOutOfJailCard;
 
     public Player(String name, int playerID){
         this.name = name;
@@ -16,8 +18,10 @@ public class Player {
         this.pos = 0;
         this.balance = 30000;
         this.netWorth = balance;
+        this.timeInJail = 0;
         this.isJailed = false;
         this.isBroke = false;
+        this.hasGetOutOfJailCard = false;
     }
 
     public void setName(String name) {
@@ -36,10 +40,20 @@ public class Player {
         return pos;
     }
     public void setPos(int value){
+        if (value == 10){
+            isJailed = true;
+        }else if (value<pos){
+            updateBalance(4000);
+        }
         pos = value;
     }
     public void updatePos(int value){
         pos += value;
+        if (pos >= 40){
+            pos = pos % 40;
+            updateBalance(4000);
+        }
+
     }
     public void setBalance(int balance) {
         this.balance = balance;
@@ -73,5 +87,11 @@ public class Player {
     }
     public void isBroke(){
         isBroke =! isBroke;
+    }
+    public void updateGetOutOfJailCard(){
+        hasGetOutOfJailCard = !hasGetOutOfJailCard;
+    }
+    public boolean getOutOfJailCard(){
+        return hasGetOutOfJailCard;
     }
 }

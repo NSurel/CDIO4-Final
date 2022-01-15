@@ -11,10 +11,17 @@ public class PlayerController {
 
     }
 
+    public void createPlayers(int size, GuiController gc){
+        players = new Player[size];
+        for (int i = 0; i < size; i++) {
+            players[i] = new Player(gc.getUserName(),i);
+        }
+        currentPlayer = players[turn];
+    }
     public void createPlayers(int size){
         players = new Player[size];
         for (int i = 0; i < size; i++) {
-            players[i] = new Player("Player"+ (i + 1),i);
+            players[i] = new Player("player" + (i+1),i);
         }
         currentPlayer = players[turn];
     }
@@ -63,7 +70,29 @@ public class PlayerController {
         }
         return player.getIsBroke();
     }
+    public void stealFromAll(int value){
+        for(Player player : players){
+            player.updateBalance(-value);
+            currentPlayer.updateBalance(value);
+        }
+    }
+    public Player getPlayer(String playerName){
+        Player tmp = null;
+        for (Player player : players){
+            if (player.getName().equals(playerName)){
+                tmp = player;
+            }
+        }
 
-
-
+        return tmp;
+    }
+    public int getPlayerIdFromName (String name){
+        int tmp = -1;
+        for (Player player : players){
+            if (player.getName().equals(name)){
+                tmp = player.getPlayerID();
+            }
+        }
+        return tmp;
+    }
 }
