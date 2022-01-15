@@ -128,11 +128,15 @@ public class Matador {
             case "Brewery":
             case "Deed":
             case "Ferry":
-                //gui user select
-                if(gui.yesOrNo("Do you want to buy this deed")){
-                    buyDeed(fieldType);
-                } else{
-                    auction();
+                if (!deedController.isDeedOwned(playerController.getCurrentPlayer().getPos(),fieldType)){
+                    if(gui.yesOrNo("Do you want to buy this deed")){
+                        buyDeed(fieldType);
+                    } else{
+                        auction();
+                    }
+                }
+                else {
+                    deedController.payRent(playerController, fieldType);
                 }
                 break;
             case "GoToJail":

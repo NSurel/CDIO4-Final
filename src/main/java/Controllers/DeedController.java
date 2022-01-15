@@ -335,4 +335,62 @@ public class DeedController {
         }
     }
 
+    public void payRent(PlayerController pc, String fieldType){
+        int i = pc.getCurrentPlayer().getPos();
+        switch (fieldType){
+            case "Brewery":
+                for (Brewery brewery: breweries) {
+                    if (brewery.getPos() == i) {
+                        int rent = brewery.getRent();
+                        pc.getCurrentPlayer().updateBalance(-rent);
+                        pc.getPlayers()[brewery.getOwner()].updateBalance(rent);
+                    }
+                }
+                break;
+            case "Deed":
+                for (Property property: properties) {
+                    if (property.getPos() == i) {
+                        int rent = property.getRent();
+                        pc.getCurrentPlayer().updateBalance(-rent);
+                        pc.getPlayers()[property.getOwner()].updateBalance(rent);
+                    }
+                }
+                break;
+            case "Ferry":
+                for (Shipping shipping: shippings) {
+                    if (shipping.getPos() == i) {
+                        int rent = shipping.getRent();
+                        pc.getCurrentPlayer().updateBalance(-rent);
+                        pc.getPlayers()[shipping.getOwner()].updateBalance(rent);
+                    }
+                }
+                break;
+        }
+    }
+    public boolean isDeedOwned(int pos, String fieldType){
+        switch (fieldType) {
+            case "Brewery":
+                for (Brewery brewery : breweries) {
+                    if (brewery.getPos() == pos) {
+                       return brewery.getOwner() != -1;
+                    }
+                }
+                break;
+            case "Deed":
+                for (Property property : properties) {
+                    if (property.getPos() == pos) {
+                        return property.getOwner() != -1;
+                    }
+                }
+                break;
+            case "Ferry":
+                for (Shipping shipping : shippings) {
+                    if (shipping.getPos() == pos) {
+                        return shipping.getOwner() != -1;
+                    }
+                }
+                break;
+        }
+        return false;
+    }
 }
