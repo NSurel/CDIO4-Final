@@ -51,6 +51,32 @@ public class DeedController {
                 tmpbrew++;
             }
         }
+        for (int i = 0; i < properties.length; i++) {
+            if (i == 1 || i == 3){
+                properties[i].setType(0);
+            }
+            if (i == 6 || i == 8 || i == 9){
+                properties[i].setType(1);
+            }
+            if (i == 11 || i == 13 || i == 14){
+                properties[i].setType(2);
+            }
+            if (i == 16 || i == 18 || i == 19){
+                properties[i].setType(3);
+            }
+            if (i == 21 || i == 23 || i == 24){
+                properties[i].setType(4);
+            }
+            if (i == 26 || i == 27 || i == 29){
+                properties[i].setType(5);
+            }
+            if (i == 31 || i == 32 || i == 34){
+                properties[i].setType(6);
+            }
+            if (i == 37 || i == 39){
+                properties[i].setType(7);
+            }
+        }
 //        int i = 0;
 //        while (i < properties.length) {
 //            switch (i) {
