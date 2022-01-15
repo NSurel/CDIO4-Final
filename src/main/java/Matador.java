@@ -1,4 +1,5 @@
 import Controllers.*;
+import Models.Fields.DeedField;
 
 import java.io.IOException;
 
@@ -167,6 +168,57 @@ public class Matador {
         }
     }
     public static void upgradeProperty(){
+        String nameofproptobeupgraded = gui.getPlayernameOrPropertyName("property");
+        for (int i = 0; i < fieldController.getFields().length; i++) {
+            if (nameofproptobeupgraded.equals(fieldController.getFields()[i].getFieldName())){
+                DeedField tempDeedField = (DeedField)fieldController.getFields()[i];
+                for (int j = 0; j < deedController.getProperties().length; j++) {
+                    if (fieldController.getFields()[i].getPos() == deedController.getProperties()[j].getPos()){
+                        if (deedController.getProperties()[j].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
+                            if(gui.yesOrNo("would you like to buy a house for this property for" + tempDeedField.getHousePrice())){
+
+                                switch(deedController.getProperties()[j].getBuildlevel()){
+                                    case 0:
+                                        gui.msg("you need to own all of the same type of street");
+                                        break;
+                                    case 1:
+                                        deedController.getProperties()[j].setBuildlevel(2);
+                                        playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent2());
+                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 2:
+                                        deedController.getProperties()[j].setBuildlevel(3);
+                                        playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent3());
+                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 3:
+                                        deedController.getProperties()[j].setBuildlevel(4);
+                                        playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent4());
+                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 4:
+                                        deedController.getProperties()[j].setBuildlevel(5);
+                                        playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent5());
+                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 5:
+                                        gui.msg("Property can't be upgraded more");
+                                        break;
+                                }
+                            }
+                        }else{
+                            gui.msg("you do not own this property");
+                        }
+                }
+
+
+                }
+            }
+        }
 
     }
     public static void buyDeed(String deedType){
