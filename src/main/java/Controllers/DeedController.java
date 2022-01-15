@@ -154,20 +154,19 @@ public class DeedController {
 
     public void allOwnedOfSameType() {
         int i = 0;
-        while (i < this.getProperties().length) {
-            if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())
+        while (i < this.getProperties().length-2) {
+            if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
                 if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
-                    getProperties()[i].setBuildlevel(getProperties()[i].getBuildlevel() + 1);
-                    getProperties()[i + 1].setBuildlevel(getProperties()[i + 1].getBuildlevel() + 1);
+                    getProperties()[i].setBuildlevel(1);
+                    getProperties()[i + 1].setBuildlevel(1);
                 } else if ((getProperties()[i].getType() == getProperties()[i + 1].getType()) && getProperties()[i].getType() == getProperties()[i + 2].getType()) {
                     if (getProperties()[i].getOwner() == getProperties()[i + 1].getOwner() && (getProperties()[i].getOwner() == getProperties()[i + 2].getOwner())) {
-
-
-                        getProperties()[i].setBuildlevel(getProperties()[i].getBuildlevel() + 1);
-                        getProperties()[i + 1].setBuildlevel(getProperties()[i + 1].getBuildlevel() + 1);
-                        getProperties()[i + 2].setBuildlevel(getProperties()[i + 2].getBuildlevel() + 1);
+                        getProperties()[i].setBuildlevel(1);
+                        getProperties()[i + 1].setBuildlevel(1);
+                        getProperties()[i + 2].setBuildlevel(1);
                     }
-                }
+                }}
+            i++;
         }
     }
 
