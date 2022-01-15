@@ -26,6 +26,8 @@ public class GuiController {
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.FerryField")||
                     fc.getFields()[i].getClass().getName().equals("Models.Fields.BreweryField")) {
                     gui.getFields()[i].setSubText("Pris: " + fc.getFieldPrice(i));
+                    gui.getFields()[i].setTitle(fc.getFieldTitle(i));
+                    gui.getFields()[i].setDescription(fc.getFieldTitle(i));
             }
         }
         gui.getFields()[4].setSubText("10% eller kr. 4000");

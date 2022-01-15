@@ -33,6 +33,7 @@ public class Matador {
 
     public static void main(String[] args) throws IOException {
         deedController.createDeeds(fieldController);
+        System.out.println(deedController.getProperties()[13].getType());
         gui.fixAllPrices(fieldController);
         playerCount = gui.getPlayerAmount();
         playerController.createPlayers(playerCount, gui);
@@ -191,9 +192,14 @@ public class Matador {
 
     }
     public static void mortgage(){
+         String deedName = gui.getPlayernameOrPropertyName("deed");
+         gui.msg(deedController.mortgageProperty(playerController, deedName, fieldController));
 
     }
     public static void unMortgage(){
+        String deedName = gui.getPlayernameOrPropertyName("deed");
+        gui.msg(deedController.unMortgageProperty(playerController, deedName, fieldController));
+
 
     }
     public static void tradeDeed(){
@@ -210,7 +216,6 @@ public class Matador {
         }else{
             deedController.setOwnerToPos(id,pos,amount,playerController);
         }
-
     }
     public static boolean gameOngoing(PlayerController playerController){
         boolean gaming = true;
