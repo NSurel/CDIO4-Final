@@ -22,6 +22,9 @@ public class BreweryField extends Field{
     public int getPrice() {
         return price;
     }
+    public int getRent0(){
+        return rent0;
+    }
 
     public String getFieldType() {
         return fieldType;

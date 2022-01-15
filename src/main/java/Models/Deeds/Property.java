@@ -23,4 +23,7 @@ public class Property extends Deed{
     public int getType() {
         return type;
     }
+    public void setType(int group){
+        type = group;
+    }
 }
