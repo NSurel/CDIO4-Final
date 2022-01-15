@@ -108,6 +108,7 @@ public class GuiController {
                 if (pc.getPlayers()[j].getPlayerID() == dc.getProperties()[i].getOwner()){
                     ownables.setBorder(players[pc.getPlayers()[j].getPlayerID()].getCar().getPrimaryColor());
                     ownables.setOwnerName(players[pc.getPlayers()[j].getPlayerID()].getName());
+                    ownables.setRent(String.valueOf(dc.getProperties()[i].getRent()));
                 }
             }
         }
@@ -117,6 +118,7 @@ public class GuiController {
                 if (pc.getPlayers()[j].getPlayerID() == dc.getShippings()[i].getOwner()) {
                     ownables.setBorder(players[pc.getPlayers()[j].getPlayerID()].getCar().getPrimaryColor());
                     ownables.setOwnerName(players[pc.getPlayers()[j].getPlayerID()].getName());
+                    ownables.setRent(String.valueOf(dc.getShippings()[i].getRent()));
                 }
             }
         }
@@ -126,6 +128,7 @@ public class GuiController {
                 if (pc.getPlayers()[j].getPlayerID() == dc.getBreweries()[i].getOwner()) {
                     ownables.setBorder(players[pc.getPlayers()[j].getPlayerID()].getCar().getPrimaryColor());
                     ownables.setOwnerName(players[pc.getPlayers()[j].getPlayerID()].getName());
+                    ownables.setRent(String.valueOf(dc.getBreweries()[i].getRent()));
                 }
             }
         }
