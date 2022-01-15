@@ -122,7 +122,7 @@ public class ChanceDeck {
                 break;
 
             case 9:
-                //Leave jail
+                playerController.getCurrentPlayer().updateGetOutOfJailCard(true);
                 break;
         }
     }

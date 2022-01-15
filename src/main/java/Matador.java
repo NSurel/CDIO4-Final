@@ -94,7 +94,7 @@ public class Matador {
                         }
                         break;
                     case "Use card":
-                        playerController.getCurrentPlayer().updateGetOutOfJailCard();
+                        playerController.getCurrentPlayer().updateGetOutOfJailCard(false);
                         playerController.getCurrentPlayer().setIsJailed(false);
                         break;
                 }
