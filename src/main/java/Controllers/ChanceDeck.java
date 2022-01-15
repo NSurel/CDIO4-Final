@@ -118,7 +118,9 @@ public class ChanceDeck {
                 break;
 
             case 8:
-                //Receive "Matador legatet"
+                if (playerController.getCurrentPlayer().getNetWorth() <= 15000){
+                    playerController.getCurrentPlayer().updateBalance(40000);
+                }
                 break;
 
             case 9:
