@@ -306,10 +306,56 @@ public class DeedController {
 
     }
 
-    public void mortgageProperty(PlayerController playerController, Property property) {
-        int i = 0;
-        playerController.getCurrentPlayer().updateBalance(properties[i].getValue() / 2);
-        property.updateIsMortgaged();
+    public String mortgageProperty(PlayerController playerController, String deedName,FieldController fc) {
+        int pos = -1;
+        String tmp = "Default";
+        for (int i = 0; i < fc.getFields().length; i++) {
+            if (deedName.equals(fc.getFields()[i].getFieldName())) {
+                pos = i;
+                tmp = "found pos";
+            }
+        }
+        for (Property property : properties){
+            if (pos == property.getPos()){
+                tmp = "found property";
+                if (property.getBuildlevel() == 0 && playerController.getCurrentPlayer().getPlayerID() == property.getOwner()){
+                    playerController.getCurrentPlayer().updateBalance(property.getValue()/2);
+                    property.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else{
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        for (Shipping shipping : shippings){
+            if (pos == shipping.getPos()){
+                tmp = "found shipping";
+                if (playerController.getCurrentPlayer().getPlayerID() == property.getOwner()){
+                    playerController.getCurrentPlayer().updateBalance(shipping.getValue()/2);
+                    shipping.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else{
+                    tmp = "You don't own that deed";
+                }
+            }
+
+        }
+        for (Brewery brewery : breweries){
+            if (pos == brewery.getPos()){
+                tmp = "found brewery";
+                if (playerController.getCurrentPlayer().getPlayerID() == brewery.getOwner()){
+                    playerController.getCurrentPlayer().updateBalance(brewery.getValue()/2);
+                    brewery.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else{
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        if (pos == -1){
+            tmp = "That input was invalid";
+        }
+        return tmp;
         //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
         //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
