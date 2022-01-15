@@ -318,10 +318,14 @@ public class DeedController {
         for (Property property : properties){
             if (pos == property.getPos()){
                 tmp = "found property";
-                if (property.getBuildlevel() == 0 && playerController.getCurrentPlayer().getPlayerID() == property.getOwner()){
-                    playerController.getCurrentPlayer().updateBalance(property.getValue()/2);
-                    property.updateIsMortgaged();
-                    tmp = "The deed was mortgaged";
+                if (playerController.getCurrentPlayer().getPlayerID() == property.getOwner()){
+                    if (property.getBuildlevel() == 0) {
+                        playerController.getCurrentPlayer().updateBalance(property.getValue()/2);
+                        property.updateIsMortgaged();
+                        tmp = "The deed was mortgaged";
+                    } else {
+                        tmp = "Can't mortgage, there is a house/hotel on this deed";
+                    }
                 } else{
                     tmp = "You don't own that deed";
                 }
