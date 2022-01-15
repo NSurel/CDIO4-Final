@@ -187,11 +187,14 @@ public class Matador {
 
     }
     public static void mortgage(){
-         String propertyName = gui.getPlayernameOrPropertyName("deed");
-         gui.msg(deedController.mortgageProperty(playerController, propertyName, fieldController));
+         String deedName = gui.getPlayernameOrPropertyName("deed");
+         gui.msg(deedController.mortgageProperty(playerController, deedName, fieldController));
 
     }
     public static void unMortgage(){
+        String deedName = gui.getPlayernameOrPropertyName("deed");
+        gui.msg(deedController.unMortgageProperty(playerController, deedName, fieldController));
+
 
     }
     public static void tradeDeed(){
@@ -208,7 +211,6 @@ public class Matador {
         }else{
             deedController.setOwnerToPos(id,pos,amount,playerController);
         }
-
     }
     public static boolean gameOngoing(PlayerController playerController){
         boolean gaming = true;

@@ -356,9 +356,84 @@ public class DeedController {
             tmp = "That input was invalid";
         }
         return tmp;
-        //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
-        //TODO Svar Det kan først komme når gui controlleren er ved at være der
 
+    }
+    public String unMortgageProperty(PlayerController playerController, String deedName,FieldController fc) {
+        int pos = -1;
+        String tmp = "Default";
+        for (int i = 0; i < fc.getFields().length; i++) {
+            if (deedName.equals(fc.getFields()[i].getFieldName())) {
+                pos = i;
+                tmp = "found pos";
+            }
+        }
+        for (Property property : properties) {
+            if (pos == property.getPos()) {
+                tmp = "found property";
+                if (playerController.getCurrentPlayer().getPlayerID() == property.getOwner()) {
+                    if (property.getIsMortgaged()){
+                        if (playerController.getCurrentPlayer().getBalance() > (property.getValue()/2) + property.getValue()*0.1){
+                            playerController.getCurrentPlayer().updateBalance((int) (-(property.getValue()/2) + property.getValue()*0.1));
+                            property.updateIsMortgaged();
+                            tmp = "The deed is now un mortgaged";
+                        } else{
+                            tmp = "You don't have enough money to pay the mortgage";
+                        }
+                    } else{
+                        tmp = "that deed isn't mortgaged";
+                    }
+                } else {
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        for (Shipping shipping : shippings) {
+            if (pos == shipping.getPos()) {
+                tmp = "found shipping";
+                if (playerController.getCurrentPlayer().getPlayerID() == shipping.getOwner()) {
+                    if (shipping.getIsMortgaged()){
+                        if (playerController.getCurrentPlayer().getBalance() > shipping.getValue()/2 + shipping.getValue()*0.1){
+                            playerController.getCurrentPlayer().updateBalance((int) (-(shipping.getValue()/2) + shipping.getValue()*0.1));
+                            shipping.updateIsMortgaged();
+                            tmp = "The deed is now un mortgaged";
+                        } else{
+                            tmp = "You don't have enough money to pay the mortgage";
+                        }
+                    } else{
+                        tmp = "that deed isn't mortgaged";
+                    }
+                    playerController.getCurrentPlayer().updateBalance(shipping.getValue() / 2);
+                    shipping.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else {
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        for (Brewery brewery : breweries) {
+            if (pos == brewery.getPos()) {
+                tmp = "found brewery";
+                if (playerController.getCurrentPlayer().getPlayerID() == brewery.getOwner()) {
+                    if (brewery.getIsMortgaged()){
+                        if (playerController.getCurrentPlayer().getBalance() > brewery.getValue()/2 + brewery.getValue()*0.1){
+                            playerController.getCurrentPlayer().updateBalance((int) (-(brewery.getValue()/2) + brewery.getValue()*0.1));
+                            brewery.updateIsMortgaged();
+                            tmp = "The deed is now un mortgaged";
+                        } else{
+                            tmp = "You don't have enough money to pay the mortgage";
+                        }
+                    } else{
+                        tmp = "that deed isn't mortgaged";
+                    }
+                } else {
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        if (pos == -1) {
+            tmp = "That input was invalid";
+        }
+        return tmp;
     }
     public void setOwnerToPos(int id, int pos,int amount, PlayerController pc){
         for (Property property : properties){
