@@ -97,7 +97,7 @@ public class Matador {
                     }
                     break;
                 case "Use card":
-                    playerController.getCurrentPlayer().updateGetOutOfJailCard();
+                    playerController.getCurrentPlayer().updateGetOutOfJailCard(false);
                     playerController.getCurrentPlayer().setIsJailed(false);
                     break;
             }
@@ -164,7 +164,7 @@ public class Matador {
                 }
                 break;
             case "Chance":
-                gui.showChanceCard(chanceDeck.draw(playerController));
+                gui.showChanceCard(chanceDeck.draw(playerController,deedController));
                 if (playerController.getCurrentPlayer().getPos() == 10) {
                     endTurn = true;
                 }

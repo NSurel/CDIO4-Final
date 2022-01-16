@@ -66,7 +66,7 @@ public class ChanceDeck {
     }
 
     //Method for drawing cards from the chance deck. If all cards are drawn, the deck is reshuflled.
-    public String draw(PlayerController playerController){
+    public String draw(PlayerController playerController, DeedController deedController){
 
         if (numberOfCardsDrawn >= deck.length){
             shuffle();
@@ -75,12 +75,12 @@ public class ChanceDeck {
         numberOfCardsDrawn++;
 
         ChanceCard drawnCard = deck[numberOfCardsDrawn-1];
-        doAction(playerController, drawnCard);
+        doAction(playerController, drawnCard, deedController);
         return drawnCard.getDescription();
     }
 
     //Method for the different actions of the chance cards.
-    public void doAction(PlayerController playerController, ChanceCard drawnCard){
+    public void doAction(PlayerController playerController, ChanceCard drawnCard, DeedController deedController){
 
         switch (Integer.parseInt(drawnCard.getType())){
             case 1:
@@ -115,6 +115,28 @@ public class ChanceDeck {
 
             case 7:
                 // Go to nearest shipping field
+                int pos = playerController.getCurrentPlayer().getPos();
+                int newPos;
+                if (pos < 5 || pos > 35){
+                    newPos = 5;
+                }
+                else if (pos > 5 && pos < 15){
+                    newPos = 15;
+                }
+                else if (pos > 15 && pos < 25){
+                    newPos = 25;
+                }
+                else {
+                    newPos = 35;
+                }
+                playerController.setPlayerPos(newPos,playerController.getCurrentPlayer());
+                if (deedController.isDeedOwned(pos,"Ferry")){
+                    deedController.payRent(playerController, "Ferry");
+                    deedController.payRent(playerController, "Ferry");
+                }
+                else {
+                    deedController.buyShipping(playerController);
+                }
                 break;
 
             case 8:
