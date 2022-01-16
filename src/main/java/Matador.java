@@ -55,6 +55,7 @@ public class Matador {
             gui.updateGuiPlayerBal(playerController);
             gui.updateCarPos(playerController);
             gui.updateOwners(playerController, deedController);
+            playerController.getCurrentPlayer().updateNetWorth(deedController.getNetValues(playerController));
             switch (gui.selectAction(canEndTurn, playerController)) {
                 case "Rul":
                     roll();
