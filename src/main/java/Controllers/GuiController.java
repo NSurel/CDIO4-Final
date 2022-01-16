@@ -18,7 +18,7 @@ public class GuiController {
     public GuiController(){
         gui = new GUI();
     }
-
+    //This methods gets all the prices for the buyable fields from the fieldcontroller, and corrects all the titles in the gui
     public void fixAllPrices(FieldController fc){
         for (int i = 0; i < fc.getFields().length; i++) {
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.DeedField")||
@@ -29,6 +29,7 @@ public class GuiController {
                     gui.getFields()[i].setDescription(fc.getFieldTitle(i));
             }
         }
+        //this is to make sure the tax fields and breweries have the right text displayed
         gui.getFields()[4].setSubText("10% eller kr. 4000");
         gui.getFields()[4].setDescription("Betal indkomstskat 10% eller kr. 4000");
         gui.getFields()[38].setSubText("kr. 2000");
@@ -61,7 +62,7 @@ public class GuiController {
             players[i].getCar().setPosition(gui.getFields()[0]);
         }
     }
-
+    //this method chooses which dropdown menu to display to the player, which depends on what actions the player already has taken
     public String selectAction(boolean haveRolled,PlayerController pc) {
         String tmp;
         String msg = "Vælg en handling";
@@ -98,7 +99,9 @@ public class GuiController {
     public boolean yesOrNo(String msg){
         return gui.getUserLeftButtonPressed(msg, "Ja", "Nej");
     }
+    //updates all the fields to have the right owners if any, and set the rent on them
     public void updateOwners(PlayerController pc, DeedController dc){
+        //this for loop updates all the the property fields
         for(int i = 0; i < dc.getProperties().length;i++){
             ownables = (GUI_Ownable) gui.getFields()[dc.getProperties()[i].getPos()];
             for (int j = 0; j < pc.getPlayers().length;j++){
@@ -109,6 +112,7 @@ public class GuiController {
                 }
             }
         }
+        //This updates the shipping fields
         for(int i = 0; i < dc.getShippings().length;i++){
             ownables = (GUI_Ownable) gui.getFields()[dc.getShippings()[i].getPos()];
             for (int j = 0; j < pc.getPlayers().length;j++){
@@ -119,6 +123,7 @@ public class GuiController {
                 }
             }
         }
+        //this one updates the brewery fields
         for(int i = 0; i < dc.getBreweries().length;i++){
             ownables = (GUI_Ownable) gui.getFields()[dc.getBreweries()[i].getPos()];
             for (int j = 0; j < pc.getPlayers().length;j++){
