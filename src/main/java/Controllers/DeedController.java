@@ -142,7 +142,7 @@ public class DeedController {
         }
         for (int i = 0; i < properties.length-1; i++) {
             for (int j = i+1; j < properties.length; j++) {
-                if ( properties[i].getType() ==  0 && properties[j].getType() ==  0 &&  properties[i].getType() ==  7 && properties[j].getType() ==  7){
+                if ( properties[i].getType() ==  0 && properties[j].getType() ==  0 ||  properties[i].getType() ==  7 && properties[j].getType() ==  7){
                     if (properties[i].getOwner() != -1 && properties[i].getOwner() == properties[j].getOwner()){
                         properties[i].setBuildlevel(1);
                         properties[j].setBuildlevel(1);
