@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Deeds.*;
+import Models.Fields.DeedField;
 
 
 public class DeedController {
@@ -178,18 +179,29 @@ public class DeedController {
         return value;
     }
 
-    public void allOwnedOfSameType() {
+    public void allOwnedOfSameType(FieldController fieldController) {
         int i = 0;
+
         while (i < this.getProperties().length-2) {
-            if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
+            if ((getProperties()[i].getType() == 1 && getProperties()[i+1].getType() == 1  || getProperties()[i].getType() == 9 && getProperties()[i+1].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
                 if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
+                    DeedField tempdeedfield1 = (DeedField) fieldController.getFields()[properties[i].getPos()];
+                    DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i].getPos()];
                     getProperties()[i].setBuildlevel(1);
                     getProperties()[i + 1].setBuildlevel(1);
+                    getProperties()[i].setRent(tempdeedfield1.getRent1());
+                    getProperties()[i+1].setRent(tempdeedfield2.getRent1());
                 } else if ((getProperties()[i].getType() == getProperties()[i + 1].getType()) && getProperties()[i].getType() == getProperties()[i + 2].getType()) {
                     if (getProperties()[i].getOwner() == getProperties()[i + 1].getOwner() && (getProperties()[i].getOwner() == getProperties()[i + 2].getOwner())) {
+                        DeedField tempdeedfield = (DeedField) fieldController.getFields()[properties[i].getPos()];
+                        DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i+1].getPos()];
+                        DeedField tempdeedfield3 = (DeedField) fieldController.getFields()[properties[i+2].getPos()];
                         getProperties()[i].setBuildlevel(1);
                         getProperties()[i + 1].setBuildlevel(1);
                         getProperties()[i + 2].setBuildlevel(1);
+                        getProperties()[i].setRent(tempdeedfield.getRent1());
+                        getProperties()[i+1].setRent(tempdeedfield2.getRent1());
+                        getProperties()[i+2].setRent(tempdeedfield3.getRent1());
                     }
                 }}
             i++;

@@ -192,25 +192,25 @@ public class Matador {
                                         deedController.getProperties()[j].setBuildlevel(2);
                                         playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
                                         deedController.getProperties()[j].setRent(tempDeedField.getRent2());
-                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
                                         break;
                                     case 2:
                                         deedController.getProperties()[j].setBuildlevel(3);
                                         playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
                                         deedController.getProperties()[j].setRent(tempDeedField.getRent3());
-                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
                                         break;
                                     case 3:
                                         deedController.getProperties()[j].setBuildlevel(4);
                                         playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
                                         deedController.getProperties()[j].setRent(tempDeedField.getRent4());
-                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
                                         break;
                                     case 4:
                                         deedController.getProperties()[j].setBuildlevel(5);
                                         playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
                                         deedController.getProperties()[j].setRent(tempDeedField.getRent5());
-                                        gui.setLevel(fieldController.getFields()[i].getPos(), deedController.getProperties()[j].getBuildlevel());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
                                         break;
                                     case 5:
                                         gui.msg("Property can't be upgraded more");
