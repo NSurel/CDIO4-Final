@@ -175,6 +175,7 @@ public class Matador {
     }
 
     public static void upgradeProperty() {
+        // Method for building houses and hotels
         String nameofproptobeupgraded = gui.getPlayernameOrPropertyName("property");
         for (int i = 0; i < fieldController.getFields().length; i++) {
             if (nameofproptobeupgraded.equals(fieldController.getFields()[i].getFieldName())) {
