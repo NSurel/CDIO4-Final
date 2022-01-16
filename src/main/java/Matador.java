@@ -246,7 +246,7 @@ public class Matador {
 
     public static void sellHouse() {
 
-    }
+}
     public static void mortgage(){
          String deedName = gui.getPlayernameOrPropertyName("deed");
          gui.msg(deedController.mortgageProperty(playerController, deedName, fieldController));
