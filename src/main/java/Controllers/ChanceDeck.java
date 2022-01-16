@@ -111,6 +111,18 @@ public class ChanceDeck {
 
             case 6:
                 //Pay x for each house and/or y for each hotel
+                int amount = 0;
+                int housePrice = Integer.parseInt(drawnCard.getAction().split("&")[0]);
+                int hotelPrice = Integer.parseInt(drawnCard.getAction().split("&")[1]);
+                for (int i = 0; i < deedController.getProperties().length; i++){
+                    if (deedController.getProperties()[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
+                        if (deedController.getProperties()[i].getBuildlevel() >= 5){
+                            amount += housePrice;
+                        } else {
+                            amount += housePrice * deedController.getProperties()[i].getBuildlevel();
+                        }
+                    }
+                }
                 break;
 
             case 7:
