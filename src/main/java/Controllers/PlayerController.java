@@ -18,6 +18,7 @@ public class PlayerController {
         }
         currentPlayer = players[turn];
     }
+    //is used for test
     public void createPlayers(int size){
         players = new Player[size];
         for (int i = 0; i < size; i++) {
