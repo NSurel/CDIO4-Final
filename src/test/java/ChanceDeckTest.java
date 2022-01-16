@@ -1,3 +1,4 @@
+import Controllers.DeedController;
 import org.junit.jupiter.api.Test;
 import Controllers.ChanceDeck;
 import Controllers.PlayerController;
@@ -14,13 +15,14 @@ class ChanceDeckTest {
          */
         ChanceDeck testChanceDeck = new ChanceDeck();
         PlayerController playerController = new PlayerController();
+        DeedController deedController = new DeedController();
         playerController.createPlayers(6);
         /*
         The for loop draws 10000 cards from the deck.
         */
         int drawnCards = 0;
         for (int i = 0; i < 10000; i++){
-            testChanceDeck.draw(playerController);
+            testChanceDeck.draw(playerController,deedController);
             drawnCards++;
         }
         /*

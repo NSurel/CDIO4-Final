@@ -16,13 +16,7 @@ public abstract class Deed {
     private int buildlevel;
     private boolean ismortageged;
 
-    public Deed(int value,int pos, int rent0, int rent1,int rent2,int rent3,int rent4,int rent5 ){
-        this.rent0 = rent0;
-        this.rent1 = rent1;
-        this.rent2 = rent2;
-        this.rent3 = rent3;
-        this.rent4 = rent4;
-        this.rent5 = rent5;
+    public Deed(int rent0, int value,int pos){
         this.value = value;
         this.pos = pos;
 
@@ -74,8 +68,23 @@ public abstract class Deed {
     public void setBuildlevel(int buildlevel) {
         this.buildlevel = buildlevel;
     }
-    public void setRent(int rent) {
+    public void setRent0(int rent) {
         this.rent0 = rent;
+    }
+    public void setRent1(int rent) {
+        this.rent1 = rent;
+    }
+    public void setRent2(int rent) {
+        this.rent2 = rent;
+    }
+    public void setRent3(int rent) {
+        this.rent3 = rent;
+    }
+    public void setRent4(int rent) {
+        this.rent4 = rent;
+    }
+    public void setRent5(int rent) {
+        this.rent5 = rent;
     }
     public void setOwner(int owner) {
         this.owner = owner;

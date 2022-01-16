@@ -207,14 +207,14 @@ public class DeedController {
             case 2:
                 for (int i = 0; i < shippings.length; i++) {
                     if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
-                        shippings[i].setRent(123456789);
+                        shippings[i].setRent0(123456789);
                     }
                 }
                 break;
             case 3:
                 for (int i = 0; i < shippings.length; i++) {
                     if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()){
-                        shippings[i].setRent(1234789);
+                        shippings[i].setRent0(1234789);
 
                     }
                 }
@@ -222,7 +222,7 @@ public class DeedController {
             case 4:
                 for (int i = 0; i < shippings.length; i++) {
 
-                        shippings[i].setRent(9999);
+                        shippings[i].setRent0(9999);
 
                     }
                 }
