@@ -180,31 +180,45 @@ public class DeedController {
     }
 
     public void allOwnedOfSameType(FieldController fieldController) {
-        int i = 0;
 
-        while (i < this.getProperties().length-2) {
-            if ((properties[i].getOwner()!= -1 &&getProperties()[i].getType() == 1 && getProperties()[i+1].getType() == 1  || getProperties()[i].getType() == 9 && getProperties()[i+1].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
-                if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
-                    DeedField tempdeedfield1 = (DeedField) fieldController.getFields()[properties[i].getPos()];
-                    DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i+1].getPos()];
-                    getProperties()[i].setBuildlevel(1);
-                    getProperties()[i + 1].setBuildlevel(1);
-                    getProperties()[i].setRent(tempdeedfield1.getRent1());
-                    getProperties()[i+1].setRent(tempdeedfield2.getRent1());
-                } else if ((properties[i].getOwner()!= -1 && getProperties()[i].getType() == getProperties()[i + 1].getType()) && getProperties()[i].getType() == getProperties()[i + 2].getType()) {
-                    if (getProperties()[i].getOwner() == getProperties()[i + 1].getOwner() && (getProperties()[i].getOwner() == getProperties()[i + 2].getOwner())) {
-                        DeedField tempdeedfield = (DeedField) fieldController.getFields()[properties[i].getPos()];
-                        DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i+1].getPos()];
-                        DeedField tempdeedfield3 = (DeedField) fieldController.getFields()[properties[i+2].getPos()];
-                        getProperties()[i].setBuildlevel(1);
-                        getProperties()[i + 1].setBuildlevel(1);
-                        getProperties()[i + 2].setBuildlevel(1);
-                        getProperties()[i].setRent(tempdeedfield.getRent1());
-                        getProperties()[i+1].setRent(tempdeedfield2.getRent1());
-                        getProperties()[i+2].setRent(tempdeedfield3.getRent1());
+        for (int i = 0; i < properties.length-2; i++) {
+            for (int j = i+1; j < properties.length-1; j++) {
+                for (int k = j+1; k < properties.length; k++) {
+                    if ( properties[i].getType() ==  properties[j].getType() &&  properties[i].getType() ==  properties[k].getType()) {
+                        if (properties[i].getOwner() != -1 && properties[i].getOwner() == properties[j].getOwner() && properties[i].getOwner() == properties[k].getOwner()) {
+                            properties[i].setBuildlevel(1);
+                            properties[j].setBuildlevel(1);
+                            properties[k].setBuildlevel(1);
+                            DeedField tempdeedfield1 = (DeedField)fieldController.getFields()[properties[i].getPos()];
+                            DeedField tempdeedfield2 = (DeedField)fieldController.getFields()[properties[i].getPos()];
+                            DeedField tempdeedfield3 = (DeedField)fieldController.getFields()[properties[i].getPos()];
+                            properties[k].setRent(tempdeedfield1.getRent1());
+                            properties[k].setRent(tempdeedfield2.getRent1());
+                            properties[k].setRent(tempdeedfield3.getRent1());
+                        }
                     }
-                }}
-            i++;
+                }
+
+
+            }
+        }
+        for (int i = 0; i < properties.length-1; i++) {
+            for (int j = i+1; j < properties.length; j++) {
+                if ( properties[i].getType() ==  0 && properties[j].getType() ==  0 &&  properties[i].getType() ==  7 && properties[j].getType() ==  7){
+                    if (properties[i].getOwner() != -1 && properties[i].getOwner() == properties[j].getOwner()){
+                        properties[i].setBuildlevel(1);
+                        properties[j].setBuildlevel(1);
+                        DeedField tempdeedfield1 = (DeedField)fieldController.getFields()[properties[i].getPos()];
+                        DeedField tempdeedfield2 = (DeedField)fieldController.getFields()[properties[i].getPos()];
+                        properties[i].setRent(tempdeedfield1.getRent1());
+                        properties[j].setRent(tempdeedfield2.getRent1());
+
+
+                    }
+                }
+
+            }
+
         }
     }
 

@@ -136,12 +136,13 @@ public class GuiController {
     public void setLevel(int pos, int buildlevel){
         GUI_Field field = gui.getFields()[pos];
         GUI_Street street = (GUI_Street) field;
-        if (buildlevel > 4){
+        if (buildlevel >= 4){
             street.setHotel(true);
         }
         else{
-            street.setHouses(buildlevel);
             street.setHotel(false);
+            street.setHouses(buildlevel);
+
         }
         //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
     }
