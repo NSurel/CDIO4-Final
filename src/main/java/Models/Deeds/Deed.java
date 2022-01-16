@@ -3,12 +3,7 @@ package Models.Deeds;
 
 
 public abstract class Deed {
-    int rent0;
-    int rent1;
-    int rent2;
-    int rent3;
-    int rent4;
-    int rent5;
+    int rent;
     private int value;
     private int owner;
     int pos;
@@ -32,24 +27,7 @@ public abstract class Deed {
 
 
 
-    public int getRent() {
-        switch (this.buildlevel){
-            case 0:
-                return rent0;
-            case 1:
-                return rent1;
-            case 2:
-                return rent2;
-            case 3:
-                return rent3;
-            case 4:
-                return rent4;
-            case 5:
-                return rent5;
-            default:
-                return rent0;
-        }
-    }
+    public int getRent() {return rent;  }
 
     public void updateIsMortgaged(){
         ismortageged = !getIsMortgaged();
@@ -68,23 +46,8 @@ public abstract class Deed {
     public void setBuildlevel(int buildlevel) {
         this.buildlevel = buildlevel;
     }
-    public void setRent0(int rent) {
-        this.rent0 = rent;
-    }
-    public void setRent1(int rent) {
-        this.rent1 = rent;
-    }
-    public void setRent2(int rent) {
-        this.rent2 = rent;
-    }
-    public void setRent3(int rent) {
-        this.rent3 = rent;
-    }
-    public void setRent4(int rent) {
-        this.rent4 = rent;
-    }
-    public void setRent5(int rent) {
-        this.rent5 = rent;
+    public void setRent(int rent) {
+        this.rent = rent;
     }
     public void setOwner(int owner) {
         this.owner = owner;
