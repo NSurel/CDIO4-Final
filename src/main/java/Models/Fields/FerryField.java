@@ -24,6 +24,9 @@ public class FerryField extends Field{
     public int getPrice() {
         return price;
     }
+    public int getRent0(){
+        return rent0;
+    }
 
     @Override
     public String getFieldType() {

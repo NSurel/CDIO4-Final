@@ -11,8 +11,8 @@ import java.nio.file.Paths;
 
 public class FieldController {
     private Field[] fields;
-    BufferedReader r;
-    int numOfLines;
+    private BufferedReader r;
+    private int numOfLines;
 
         public FieldController() throws IOException {
             String pathName = "fields.csv";
@@ -94,6 +94,29 @@ public class FieldController {
                     break;
             }
             return rent;
+    }
+
+    public int getFieldrent(int i){
+        int rent;
+        Field currentField = fields[i];
+        switch (currentField.getFieldType()){
+            case "Brewery":
+                BreweryField bf = (BreweryField)fields[i];
+                rent = bf.getRent0();
+                break;
+            case "Deed":
+                DeedField df = (DeedField) fields[i];
+                rent = df.getRent0();
+                break;
+            case "Ferry":
+                FerryField ff = (FerryField) fields[i];
+                rent = ff.getRent0();
+                break;
+            default:
+                rent = 0;
+                break;
+        }
+        return rent;
     }
     public String getFieldTitle(int i){
         String title;

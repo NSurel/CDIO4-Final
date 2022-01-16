@@ -38,17 +38,19 @@ public class DeedController {
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.DeedField")){
                 properties[tmpprop].setPos(i);
                 properties[tmpprop].setValue(fc.getFieldPrice(i));
-                //properties[tmpprop].setRent();
+                properties[tmpprop].setRent(fc.getFieldrent(i));
                 tmpprop++;
             }
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.FerryField")){
                 shippings[tmpship].setPos(i);
                 shippings[tmpship].setValue(fc.getFieldPrice(i));
+                shippings[tmpship].setRent(fc.getFieldrent(i));
                 tmpship++;
             }
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.BreweryField")){
                 breweries[tmpbrew].setPos(i);
                 breweries[tmpbrew].setValue(fc.getFieldPrice(i));
+                breweries[tmpbrew].setRent(fc.getFieldrent(i));
                 tmpbrew++;
             }
         }

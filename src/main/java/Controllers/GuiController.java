@@ -67,16 +67,16 @@ public class GuiController {
 
     public String selectAction(boolean haveRolled,PlayerController pc) {
         String tmp;
-        String msg = "Choose an action";
+        String msg = "Vælg en handling";
         if (pc.getCurrentPlayer().isJailed())
             if (pc.getCurrentPlayer().getOutOfJailCard())
-                tmp = gui.getUserSelection(msg,"Use card","Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+                tmp = gui.getUserSelection(msg,"Brug kort","Rul for frihed","Betal for frihed","Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
             else
-                tmp = gui.getUserSelection(msg,"Roll for freedom","Pay for freedom","Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+                tmp = gui.getUserSelection(msg,"Rul for frihed","Betal for frihed","Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
         else if (haveRolled)
-            tmp = gui.getUserSelection(msg, "End Turn", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+            tmp = gui.getUserSelection(msg, "Slut tur", "Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
         else
-            tmp = gui.getUserSelection(msg, "Roll die", "Upgrade Property", "Sell House", "Mortgage", "Un mortgage", "Trade Deed");
+            tmp = gui.getUserSelection(msg, "Rul", "Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
 
         return tmp;
     }
@@ -99,7 +99,7 @@ public class GuiController {
         gui.showMessage(msg);
     }
     public boolean yesOrNo(String msg){
-        return gui.getUserLeftButtonPressed(msg, "yes", "no");
+        return gui.getUserLeftButtonPressed(msg, "Ja", "Nej");
     }
     public void updateOwners(PlayerController pc, DeedController dc){
         for(int i = 0; i < dc.getProperties().length;i++){
@@ -147,10 +147,10 @@ public class GuiController {
         //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
     }
     public String getUserName(){
-        return gui.getUserString("Type in name");
+        return gui.getUserString("Skriv dit navn");
     }
     public String getPlayernameOrPropertyName(String playerOrProperty ){
-        return gui.getUserString("Type in the name of the "+ playerOrProperty);
+        return gui.getUserString("Skriv navnet ind for"+ playerOrProperty);
     }
     public int getInt(String msg){
         return gui.getUserInteger(msg);
