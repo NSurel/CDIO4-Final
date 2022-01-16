@@ -299,12 +299,12 @@ public class Matador {
         }
 }
     public static void mortgage(){
-         String deedName = gui.getPlayernameOrPropertyName("deed");
+         String deedName = gui.getPlayernameOrPropertyName("skødet");
          gui.msg(deedController.mortgageProperty(playerController, deedName, fieldController));
 
     }
     public static void unMortgage(){
-        String deedName = gui.getPlayernameOrPropertyName("deed");
+        String deedName = gui.getPlayernameOrPropertyName("skødet");
         gui.msg(deedController.unMortgageProperty(playerController, deedName, fieldController));
     }
 
@@ -314,12 +314,12 @@ public class Matador {
 
     public static void auction() {
         int pos = playerController.getCurrentPlayer().getPos();
-        gui.msg("This deed is now up for auction");
-        String name = gui.getPlayernameOrPropertyName("buying player");
+        gui.msg("Dette skøde er nu på aktion");
+        String name = gui.getPlayernameOrPropertyName("købende spiller");
         int id = playerController.getPlayerIdFromName(name);
-        int amount = gui.getInt("Amount to pay");
+        int amount = gui.getInt("Mængde at betale");
         if (id == -1) {
-            gui.msg("This isn't a player");
+            gui.msg("Dette er ikke en spiller");
         } else {
             deedController.setOwnerToPos(id, pos, amount, playerController);
         }
