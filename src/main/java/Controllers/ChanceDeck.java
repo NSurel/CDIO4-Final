@@ -46,9 +46,6 @@ public class ChanceDeck {
             deck[currentCardIndex] = new ChanceCard(desc, type, act);
             currentCardIndex++;
         }
-        //Why throw exception when nothing wrong?
-        //IOException e = new IOException("Something went wrong with ChanceCards.txt");
-        //throw e;
     }
 
     //Method for shuffling the deck randomly.
@@ -152,12 +149,14 @@ public class ChanceDeck {
                 break;
 
             case 8:
+                // Receive "matador legat"
                 if (playerController.getCurrentPlayer().getNetWorth() <= 15000){
                     playerController.getCurrentPlayer().updateBalance(40000);
                 }
                 break;
 
             case 9:
+                //Leave jail
                 playerController.getCurrentPlayer().updateGetOutOfJailCard(true);
                 break;
         }
