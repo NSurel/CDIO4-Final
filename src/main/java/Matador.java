@@ -35,6 +35,7 @@ public class Matador {
 
     public static void main(String[] args) throws IOException {
         deedController.createDeeds(fieldController);
+        System.out.println(deedController.getProperties()[13].getType());
         gui.fixAllPrices(fieldController);
         playerCount = gui.getPlayerAmount();
         playerController.createPlayers(playerCount, gui);
@@ -131,11 +132,15 @@ public class Matador {
             case "Brewery":
             case "Deed":
             case "Ferry":
-                //gui user select
-                if (gui.yesOrNo("Do you want to buy this deed")) {
-                    buyDeed(fieldType);
-                } else {
-                    auction();
+                if (!deedController.isDeedOwned(playerController.getCurrentPlayer().getPos(),fieldType)){
+                    if(gui.yesOrNo("Do you want to buy this deed")){
+                        buyDeed(fieldType);
+                    } else{
+                        auction();
+                    }
+                }
+                else {
+                    deedController.payRent(playerController, fieldType);
                 }
                 break;
             case "GoToJail":
@@ -242,13 +247,14 @@ public class Matador {
     public static void sellHouse() {
 
     }
-
-    public static void mortgage() {
+    public static void mortgage(){
+         String deedName = gui.getPlayernameOrPropertyName("deed");
+         gui.msg(deedController.mortgageProperty(playerController, deedName, fieldController));
 
     }
-
-    public static void unMortgage() {
-
+    public static void unMortgage(){
+        String deedName = gui.getPlayernameOrPropertyName("deed");
+        gui.msg(deedController.unMortgageProperty(playerController, deedName, fieldController));
     }
 
     public static void tradeDeed() {
@@ -266,7 +272,6 @@ public class Matador {
         } else {
             deedController.setOwnerToPos(id, pos, amount, playerController);
         }
-
     }
 
     public static boolean gameOngoing(PlayerController playerController) {
