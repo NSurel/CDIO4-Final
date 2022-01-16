@@ -146,7 +146,7 @@ public class GuiController {
         return gui.getUserString("Skriv dit navn");
     }
     public String getPlayernameOrPropertyName(String playerOrProperty ){
-        return gui.getUserString("Skriv navnet ind for"+ playerOrProperty);
+        return gui.getUserString("Skriv navnet ind for "+ playerOrProperty);
     }
     public int getInt(String msg){
         return gui.getUserInteger(msg);
