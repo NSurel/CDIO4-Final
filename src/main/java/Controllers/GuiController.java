@@ -133,7 +133,7 @@ public class GuiController {
     public void setLevel(int pos, int buildlevel){
         GUI_Field field = gui.getFields()[pos];
         GUI_Street street = (GUI_Street) field;
-        if (buildlevel >= 4){
+        if (buildlevel == 4){
             street.setHotel(true);
         }
         else{

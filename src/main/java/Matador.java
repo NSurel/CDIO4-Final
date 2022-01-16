@@ -281,8 +281,8 @@ public class Matador {
                                         gui.setLevel(i, deedController.getProperties()[j].getBuildlevel()-1);
                                         break;
                                     case 5:
-                                        deedController.getProperties()[j].setBuildlevel(4);
-                                        playerController.getCurrentPlayer().updateBalance(tempDeedField.getHousePrice()/2);
+                                        deedController.getProperties()[j].setBuildlevel(1);
+                                        playerController.getCurrentPlayer().updateBalance( (5*tempDeedField.getHousePrice())/2);
                                         deedController.getProperties()[j].setRent(tempDeedField.getRent4());
                                         gui.setLevel(i, deedController.getProperties()[j].getBuildlevel()-1);
                                         break;
