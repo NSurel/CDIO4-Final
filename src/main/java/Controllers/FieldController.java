@@ -14,13 +14,15 @@ public class FieldController {
     private BufferedReader r;
     private int numOfLines;
 
+        //Reads a CSV file with information about all the filelds, and put them in an array of Fields.
         public FieldController() throws IOException {
             String pathName = "fields.csv";
             Path path = Paths.get(pathName);
-            numOfLines = (int)Files.lines(path).count();
+            numOfLines = (int)Files.lines(path).count() -1;
             String line;
 
-            fields = new Field[numOfLines-1];
+            fields = new Field[numOfLines];
+            //reads the file one line at a time, discard the first line.
             r = new BufferedReader(new FileReader(pathName));
             r.readLine();
             while ((line = r.readLine()) != null){
@@ -29,6 +31,7 @@ public class FieldController {
                 int pos = Integer.parseInt(values[1]);
                 String fieldType = values[2];
                 int price;
+                // depending on which kind if field it is, makes a child class and puts them in the array of fields.
                 switch (fieldType) {
                     case " start":
                         fields[pos] = new Start(fieldName);
@@ -68,11 +71,12 @@ public class FieldController {
                 }
             }
         }
-
+// returns the array of fields
     public Field[] getFields() {
         return fields;
     }
 
+    //returns the price of a field by a specific possession
     public int getFieldPrice(int i){
             int rent;
             Field currentField = fields[i];
@@ -96,7 +100,8 @@ public class FieldController {
             return rent;
     }
 
-    public int getFieldrent(int i){
+    //returns the rent of a field by a specific possession
+    public int getFieldRent(int i){
         int rent;
         Field currentField = fields[i];
         switch (currentField.getFieldType()){
@@ -118,6 +123,8 @@ public class FieldController {
         }
         return rent;
     }
+
+    //returns the name of a field by a specific possession
     public String getFieldTitle(int i){
         String title;
         Field currentField = fields[i];
@@ -141,38 +148,11 @@ public class FieldController {
         return title;
     }
 
+    //returns the type of the field that the player has just landed on.
     public String GetCurrentFiledType(PlayerController pc){
         int pos = pc.getCurrentPlayer().getPos();
         Field currentField = fields[pos];
         String s = currentField.getFieldType();
         return s;
-    }
-
-    public void doFieldAction(PlayerController playerController)
-    {
-        int pos = playerController.getCurrentPlayer().getPos();
-        Field currentField = fields[pos];
-        switch (currentField.getFieldType()) {
-            case "Brewery":
-                BreweryField bf = (BreweryField) fields[pos];
-                break;
-            case "Deed":
-                DeedField df = (DeedField) fields[pos];
-
-                break;
-            case "Ferry":
-                FerryField ff = (FerryField) fields[pos];
-                break;
-            case "GoToJail":
-                break;
-            case "Jail":
-                break;
-            case "Tax":
-                break;
-            case "Chance":
-                break;
-            default:
-                break;
-        }
     }
 }
