@@ -95,6 +95,28 @@ public class FieldController {
             }
             return rent;
     }
+    public String getFieldTitle(int i){
+        String title;
+        Field currentField = fields[i];
+        switch (currentField.getFieldType()){
+            case "Brewery":
+                BreweryField bf = (BreweryField)fields[i];
+                title = bf.getFieldName();
+                break;
+            case "Deed":
+                DeedField df = (DeedField) fields[i];
+                title = df.getFieldName();
+                break;
+            case "Ferry":
+                FerryField ff = (FerryField) fields[i];
+                title = ff.getFieldName();
+                break;
+            default:
+                title = "";
+                break;
+        }
+        return title;
+    }
 
     public String GetCurrentFiledType(PlayerController pc){
         int pos = pc.getCurrentPlayer().getPos();

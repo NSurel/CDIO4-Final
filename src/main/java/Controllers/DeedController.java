@@ -51,6 +51,32 @@ public class DeedController {
                 tmpbrew++;
             }
         }
+        for (int i = 0; i < properties.length; i++) {
+            if (i == 1 || i == 3){
+                properties[i].setType(0);
+            }
+            if (i == 6 || i == 8 || i == 9){
+                properties[i].setType(1);
+            }
+            if (i == 11 || i == 13 || i == 14){
+                properties[i].setType(2);
+            }
+            if (i == 16 || i == 18 || i == 19){
+                properties[i].setType(3);
+            }
+            if (i == 21 || i == 23 || i == 24){
+                properties[i].setType(4);
+            }
+            if (i == 26 || i == 27 || i == 29){
+                properties[i].setType(5);
+            }
+            if (i == 31 || i == 32 || i == 34){
+                properties[i].setType(6);
+            }
+            if (i == 37 || i == 39){
+                properties[i].setType(7);
+            }
+        }
 //        int i = 0;
 //        while (i < properties.length) {
 //            switch (i) {
@@ -154,20 +180,19 @@ public class DeedController {
 
     public void allOwnedOfSameType() {
         int i = 0;
-        while (i < this.getProperties().length) {
-            if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())
+        while (i < this.getProperties().length-2) {
+            if ((getProperties()[i].getType() == 1 || getProperties()[i].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
                 if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
-                    getProperties()[i].setBuildlevel(getProperties()[i].getBuildlevel() + 1);
-                    getProperties()[i + 1].setBuildlevel(getProperties()[i + 1].getBuildlevel() + 1);
+                    getProperties()[i].setBuildlevel(1);
+                    getProperties()[i + 1].setBuildlevel(1);
                 } else if ((getProperties()[i].getType() == getProperties()[i + 1].getType()) && getProperties()[i].getType() == getProperties()[i + 2].getType()) {
                     if (getProperties()[i].getOwner() == getProperties()[i + 1].getOwner() && (getProperties()[i].getOwner() == getProperties()[i + 2].getOwner())) {
-
-
-                        getProperties()[i].setBuildlevel(getProperties()[i].getBuildlevel() + 1);
-                        getProperties()[i + 1].setBuildlevel(getProperties()[i + 1].getBuildlevel() + 1);
-                        getProperties()[i + 2].setBuildlevel(getProperties()[i + 2].getBuildlevel() + 1);
+                        getProperties()[i].setBuildlevel(1);
+                        getProperties()[i + 1].setBuildlevel(1);
+                        getProperties()[i + 2].setBuildlevel(1);
                     }
-                }
+                }}
+            i++;
         }
     }
 
@@ -306,13 +331,216 @@ public class DeedController {
 
     }
 
-    public void mortgageProperty(PlayerController playerController, Property property) {
-        int i = 0;
-        playerController.getCurrentPlayer().updateBalance(properties[i].getValue() / 2);
-        property.updateIsMortgaged();
-        //TODO Skal have tilføjet et array af nogle deeds, så playeren kan vælge hvilket deed.
-        //TODO Svar Det kan først komme når gui controlleren er ved at være der
+    public String mortgageProperty(PlayerController playerController, String deedName,FieldController fc) {
+        int pos = -1;
+        String tmp = "Default";
+        for (int i = 0; i < fc.getFields().length; i++) {
+            if (deedName.equals(fc.getFields()[i].getFieldName())) {
+                pos = i;
+                tmp = "found pos";
+            }
+        }
+        for (Property property : properties){
+            if (pos == property.getPos()){
+                tmp = "found property";
+                if (playerController.getCurrentPlayer().getPlayerID() == property.getOwner()){
+                    if (property.getBuildlevel() == 0) {
+                        playerController.getCurrentPlayer().updateBalance(property.getValue()/2);
+                        property.updateIsMortgaged();
+                        tmp = "The deed was mortgaged";
+                    } else {
+                        tmp = "Can't mortgage, there is a house/hotel on this deed";
+                    }
+                } else{
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        for (Shipping shipping : shippings){
+            if (pos == shipping.getPos()){
+                tmp = "found shipping";
+                if (playerController.getCurrentPlayer().getPlayerID() == property.getOwner()){
+                    playerController.getCurrentPlayer().updateBalance(shipping.getValue()/2);
+                    shipping.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else{
+                    tmp = "You don't own that deed";
+                }
+            }
+
+        }
+        for (Brewery brewery : breweries){
+            if (pos == brewery.getPos()){
+                tmp = "found brewery";
+                if (playerController.getCurrentPlayer().getPlayerID() == brewery.getOwner()){
+                    playerController.getCurrentPlayer().updateBalance(brewery.getValue()/2);
+                    brewery.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else{
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        if (pos == -1){
+            tmp = "That input was invalid";
+        }
+        return tmp;
 
     }
+    public String unMortgageProperty(PlayerController playerController, String deedName,FieldController fc) {
+        int pos = -1;
+        String tmp = "Default";
+        for (int i = 0; i < fc.getFields().length; i++) {
+            if (deedName.equals(fc.getFields()[i].getFieldName())) {
+                pos = i;
+                tmp = "found pos";
+            }
+        }
+        for (Property property : properties) {
+            if (pos == property.getPos()) {
+                tmp = "found property";
+                if (playerController.getCurrentPlayer().getPlayerID() == property.getOwner()) {
+                    if (property.getIsMortgaged()){
+                        if (playerController.getCurrentPlayer().getBalance() > (property.getValue()/2) + property.getValue()*0.1){
+                            playerController.getCurrentPlayer().updateBalance((int) (-(property.getValue()/2) + property.getValue()*0.1));
+                            property.updateIsMortgaged();
+                            tmp = "The deed is now un mortgaged";
+                        } else{
+                            tmp = "You don't have enough money to pay the mortgage";
+                        }
+                    } else{
+                        tmp = "that deed isn't mortgaged";
+                    }
+                } else {
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        for (Shipping shipping : shippings) {
+            if (pos == shipping.getPos()) {
+                tmp = "found shipping";
+                if (playerController.getCurrentPlayer().getPlayerID() == shipping.getOwner()) {
+                    if (shipping.getIsMortgaged()){
+                        if (playerController.getCurrentPlayer().getBalance() > shipping.getValue()/2 + shipping.getValue()*0.1){
+                            playerController.getCurrentPlayer().updateBalance((int) (-(shipping.getValue()/2) + shipping.getValue()*0.1));
+                            shipping.updateIsMortgaged();
+                            tmp = "The deed is now un mortgaged";
+                        } else{
+                            tmp = "You don't have enough money to pay the mortgage";
+                        }
+                    } else{
+                        tmp = "that deed isn't mortgaged";
+                    }
+                    playerController.getCurrentPlayer().updateBalance(shipping.getValue() / 2);
+                    shipping.updateIsMortgaged();
+                    tmp = "The deed was mortgaged";
+                } else {
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        for (Brewery brewery : breweries) {
+            if (pos == brewery.getPos()) {
+                tmp = "found brewery";
+                if (playerController.getCurrentPlayer().getPlayerID() == brewery.getOwner()) {
+                    if (brewery.getIsMortgaged()){
+                        if (playerController.getCurrentPlayer().getBalance() > brewery.getValue()/2 + brewery.getValue()*0.1){
+                            playerController.getCurrentPlayer().updateBalance((int) (-(brewery.getValue()/2) + brewery.getValue()*0.1));
+                            brewery.updateIsMortgaged();
+                            tmp = "The deed is now un mortgaged";
+                        } else{
+                            tmp = "You don't have enough money to pay the mortgage";
+                        }
+                    } else{
+                        tmp = "that deed isn't mortgaged";
+                    }
+                } else {
+                    tmp = "You don't own that deed";
+                }
+            }
+        }
+        if (pos == -1) {
+            tmp = "That input was invalid";
+        }
+        return tmp;
+    }
+    public void setOwnerToPos(int id, int pos,int amount, PlayerController pc){
+        for (Property property : properties){
+            if (property.getPos()==pos){
+                property.setOwner(id);
+                pc.getPlayers()[id].updateBalance(-amount);
+            }
+        }
+        for (Brewery brewery : breweries){
+            if (brewery.getPos() == pos){
+                brewery.setOwner(id);
+                pc.getPlayers()[id].updateBalance(-amount);
+            }
+        }
+        for (Shipping shipping : shippings){
+            if (shipping.getPos() == pos){
+                shipping.setOwner(id);
+                pc.getPlayers()[id].updateBalance(-amount);
+            }
+        }
+    }
 
+    public void payRent(PlayerController pc, String fieldType){
+        int i = pc.getCurrentPlayer().getPos();
+        switch (fieldType){
+            case "Brewery":
+                for (Brewery brewery: breweries) {
+                    if (brewery.getPos() == i) {
+                        int rent = brewery.getRent();
+                        pc.getCurrentPlayer().updateBalance(-rent);
+                        pc.getPlayers()[brewery.getOwner()].updateBalance(rent);
+                    }
+                }
+                break;
+            case "Deed":
+                for (Property property: properties) {
+                    if (property.getPos() == i) {
+                        int rent = property.getRent();
+                        pc.getCurrentPlayer().updateBalance(-rent);
+                        pc.getPlayers()[property.getOwner()].updateBalance(rent);
+                    }
+                }
+                break;
+            case "Ferry":
+                for (Shipping shipping: shippings) {
+                    if (shipping.getPos() == i) {
+                        int rent = shipping.getRent();
+                        pc.getCurrentPlayer().updateBalance(-rent);
+                        pc.getPlayers()[shipping.getOwner()].updateBalance(rent);
+                    }
+                }
+                break;
+        }
+    }
+    public boolean isDeedOwned(int pos, String fieldType){
+        switch (fieldType) {
+            case "Brewery":
+                for (Brewery brewery : breweries) {
+                    if (brewery.getPos() == pos) {
+                       return brewery.getOwner() != -1;
+                    }
+                }
+                break;
+            case "Deed":
+                for (Property property : properties) {
+                    if (property.getPos() == pos) {
+                        return property.getOwner() != -1;
+                    }
+                }
+                break;
+            case "Ferry":
+                for (Shipping shipping : shippings) {
+                    if (shipping.getPos() == pos) {
+                        return shipping.getOwner() != -1;
+                    }
+                }
+                break;
+        }
+        return false;
+    }
 }
