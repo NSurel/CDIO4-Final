@@ -144,7 +144,7 @@ public class Matador {
                 }
                 break;
             case "GoToJail":
-                gui.msg("you have been sent to Jail");
+                gui.msg("Du er blevet sat i fængsel");
                 playerController.setPlayerPos(10, playerController.getCurrentPlayer());
                 endTurn = true;
                 break;
