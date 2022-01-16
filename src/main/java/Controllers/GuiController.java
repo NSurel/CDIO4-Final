@@ -29,6 +29,7 @@ public class GuiController {
                     gui.getFields()[i].setDescription(fc.getFieldTitle(i));
             }
         }
+        //this is to make sure the tax fields and breweries have the right text displayed
         gui.getFields()[4].setSubText("10% eller kr. 4000");
         gui.getFields()[4].setDescription("Betal indkomstskat 10% eller kr. 4000");
         gui.getFields()[38].setSubText("kr. 2000");
