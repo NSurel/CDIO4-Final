@@ -88,8 +88,8 @@ public class Player {
     public void isBroke(){
         isBroke =! isBroke;
     }
-    public void updateGetOutOfJailCard(){
-        hasGetOutOfJailCard = !hasGetOutOfJailCard;
+    public void updateGetOutOfJailCard(boolean hasGetOutOfJailCard){
+        this.hasGetOutOfJailCard = hasGetOutOfJailCard;
     }
     public boolean getOutOfJailCard(){
         return hasGetOutOfJailCard;

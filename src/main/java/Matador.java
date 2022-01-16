@@ -97,7 +97,7 @@ public class Matador {
                     }
                     break;
                 case "Brug kort":
-                    playerController.getCurrentPlayer().updateGetOutOfJailCard();
+                    playerController.getCurrentPlayer().updateGetOutOfJailCard(false);
                     playerController.getCurrentPlayer().setIsJailed(false);
                     break;
             }
@@ -164,7 +164,7 @@ public class Matador {
                 }
                 break;
             case "Chance":
-                gui.showChanceCard(chanceDeck.draw(playerController));
+                gui.showChanceCard(chanceDeck.draw(playerController,deedController));
                 if (playerController.getCurrentPlayer().getPos() == 10) {
                     endTurn = true;
                 }
@@ -175,7 +175,7 @@ public class Matador {
     }
 
     public static void upgradeProperty() {
-        String nameofproptobeupgraded = gui.getPlayernameOrPropertyName("skødet");
+        String nameofproptobeupgraded = gui.getPlayernameOrPropertyName("property");
         for (int i = 0; i < fieldController.getFields().length; i++) {
             if (nameofproptobeupgraded.equals(fieldController.getFields()[i].getFieldName())) {
                 DeedField tempDeedField = (DeedField) fieldController.getFields()[i];
@@ -245,7 +245,7 @@ public class Matador {
     }
 
     public static void sellHouse() {
-        String propertyToBeDowngraded = gui.getPlayernameOrPropertyName("skødet");
+        String propertyToBeDowngraded = gui.getPlayernameOrPropertyName("property");
         for (int i = 0; i < fieldController.getFields().length; i++) {
             if (propertyToBeDowngraded.equals(fieldController.getFields()[i].getFieldName())) {
                 DeedField tempDeedField = (DeedField) fieldController.getFields()[i];
@@ -298,12 +298,12 @@ public class Matador {
         }
 }
     public static void mortgage(){
-         String deedName = gui.getPlayernameOrPropertyName("skødet");
+         String deedName = gui.getPlayernameOrPropertyName("deed");
          gui.msg(deedController.mortgageProperty(playerController, deedName, fieldController));
 
     }
     public static void unMortgage(){
-        String deedName = gui.getPlayernameOrPropertyName("skødet");
+        String deedName = gui.getPlayernameOrPropertyName("deed");
         gui.msg(deedController.unMortgageProperty(playerController, deedName, fieldController));
     }
 
@@ -313,12 +313,12 @@ public class Matador {
 
     public static void auction() {
         int pos = playerController.getCurrentPlayer().getPos();
-        gui.msg("Dette skøde er nu på auktion");
-        String name = gui.getPlayernameOrPropertyName("den købende spiller");
+        gui.msg("This deed is now up for auction");
+        String name = gui.getPlayernameOrPropertyName("buying player");
         int id = playerController.getPlayerIdFromName(name);
-        int amount = gui.getInt("Mængde at betale");
+        int amount = gui.getInt("Amount to pay");
         if (id == -1) {
-            gui.msg("Dette er ikke en spiller");
+            gui.msg("This isn't a player");
         } else {
             deedController.setOwnerToPos(id, pos, amount, playerController);
         }
