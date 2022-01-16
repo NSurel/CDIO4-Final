@@ -33,6 +33,7 @@ public class Matador {
     static boolean endTurn;
     static int extraTurns;
 
+    // Main starts the game and set up players
     public static void main(String[] args) throws IOException {
         deedController.createDeeds(fieldController);
         System.out.println(deedController.getProperties()[13].getType());
@@ -45,12 +46,13 @@ public class Matador {
             turn();
         }
     }
-
     public static void turn() {
         canEndTurn = false;
         endTurn = false;
         extraTurns = 0;
         gui.msg("Det er nu " + playerController.getCurrentPlayer().getName() + "'s tur");
+        //loop that enables the player to make multiple actions each turn, ending when player selects to end turn.
+        // The player can only end turn after they have rolled, and can only roll once unless rolled a pair
         while (!endTurn) {
             gui.updateGuiPlayerBal(playerController);
             gui.updateCarPos(playerController);
@@ -75,9 +77,11 @@ public class Matador {
                 case "Afpansæt skøde":
                     unMortgage();
                     break;
+                //only an option after roll
                 case "Slut tur":
                     endTurn = true;
                     break;
+                    //only an option in Jail
                 case "Betal for frihed":
                     if (1000 >= playerController.getCurrentPlayer().getNetWorth()) {
                         playerController.getCurrentPlayer().isBroke();
@@ -86,6 +90,8 @@ public class Matador {
                         playerController.getCurrentPlayer().setIsJailed(false);
                     }
                     break;
+
+                //only an option in Jail
                 case "Rul for frihed":
                     cup.rollCup();
                     gui.showDice(cup);
@@ -97,6 +103,7 @@ public class Matador {
                         endTurn = true;
                     }
                     break;
+                //only an option in Jail
                 case "Brug kort":
                     playerController.getCurrentPlayer().updateGetOutOfJailCard(false);
                     playerController.getCurrentPlayer().setIsJailed(false);
@@ -108,6 +115,7 @@ public class Matador {
         deedController.allOwnedOfSameType(fieldController);
     }
 
+    //roll using cup, and moves the player then do field action.
     public static void roll() {
         int roll = cup.rollCup();
         if (cup.getDie1Value() == cup.getDie2Value()) {
@@ -115,11 +123,11 @@ public class Matador {
         } else {
             canEndTurn = true;
         }
+        //Player is jailed if they roll pairs 3 times in a row
         if (extraTurns >= 3) {
             playerController.getCurrentPlayer().setPos(10);
             endTurn = true;
         } else {
-            //gui.rollMsg("Roll the dies");
             playerController.getCurrentPlayer().updatePos(roll);
             gui.updateCarPos(playerController);
             gui.showDice(cup);
@@ -127,6 +135,7 @@ public class Matador {
         }
     }
 
+    //Does the action after land on a field, depended on which type of field landed on
     public static void doFieldAction() {
         String fieldType = fieldController.GetCurrentFiledType(playerController);
         switch (fieldType) {
@@ -150,7 +159,9 @@ public class Matador {
                 endTurn = true;
                 break;
             case "Tax":
+                //At pos 4 player get a choice to either 4000kr or 10% of balance
                 if (playerController.getCurrentPlayer().getPos() == 4) {
+                    // balance is lower than 4000kr, player is forced to pay 10%
                     if (playerController.getCurrentPlayer().getBalance() <= 4000) {
                         playerController.getCurrentPlayer().setBalance((int) (playerController.getCurrentPlayer().getBalance() * 0.9));
                     } else {
@@ -160,12 +171,14 @@ public class Matador {
                             playerController.getCurrentPlayer().updateBalance(-4000);
                         }
                     }
+                    //At pos 38 just pay 2000kr
                 } else if (playerController.getCurrentPlayer().getPos() == 38) {
                     playerController.updatePlayerBal(-2000, playerController.getCurrentPlayer());
                 }
                 break;
             case "Chance":
                 gui.showChanceCard(chanceDeck.draw(playerController,deedController));
+                //if chance card puts player in jail, and turn.
                 if (playerController.getCurrentPlayer().getPos() == 10) {
                     endTurn = true;
                 }
