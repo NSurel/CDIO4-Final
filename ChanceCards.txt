@@ -34,8 +34,8 @@ Ryk frem til Vimmelskaftet, hvis de passerer start indkasser da kr 4000.;;4;;32
 Ryk frem til Grønningen, hvis De passerer start indkasser da kr 4000.;;4;;24
 Ryk frem til Frederiksberg Allé. Hvis De passere START, indkasser da 4000 kr.;;4;;11
 Tag med Mols-Linien, flyt brikken frem og hvis De passerer START indkassér da kr 4000.;;4;;15
-Ryk tre felter tilbage.;;5;;3
-Ryk tre felter tilbage.;;5;;3
+Ryk tre felter tilbage.;;5;;-3
+Ryk tre felter tilbage.;;5;;-3
 Ryk tre felter frem.;;5;;3
 Oliepriserne er steget, og De skal betale kr 500 pr hus og kr 2000 pr hotel.;;6;;500&2000
 Ejendomsskatten er steget. Ekstraudgifterne er: 800 kr pr hus, 2300 kr pr hotel..;;6;;800&2300
