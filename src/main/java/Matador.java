@@ -60,7 +60,7 @@ public class Matador {
                 case "Rul":
                     roll();
                     break;
-                case "Upgrader skøde":
+                case "Opgrader skøde":
                     upgradeProperty();
                     break;
                 case "Byt skøde":
@@ -176,6 +176,8 @@ public class Matador {
     }
 
     public static void upgradeProperty() {
+        // the bane of my existence
+
         String nameofproptobeupgraded = gui.getPlayernameOrPropertyName("property");
         for (int i = 0; i < fieldController.getFields().length; i++) {
             if (nameofproptobeupgraded.equals(fieldController.getFields()[i].getFieldName())) {
@@ -186,6 +188,7 @@ public class Matador {
                             if (gui.yesOrNo("Vil du købe et hus på denne grund for " + tempDeedField.getHousePrice())) {
 
                                 switch (deedController.getProperties()[j].getBuildlevel()) {
+                                    // not really relevant case but it gives a message what they need to do
                                     case 0:
                                         gui.msg("Du skal eje alle grunde af same farve for at kunne bygge/sælge");
                                         break;
@@ -202,6 +205,7 @@ public class Matador {
                                         gui.setLevel(i, deedController.getProperties()[j].getBuildlevel()-1);
                                         break;
                                     case 3:
+                                        //something wrong with buyin the fourth house makes it to a hotel maybe fixed?
                                         deedController.getProperties()[j].setBuildlevel(4);
                                         playerController.getCurrentPlayer().updateBalance(-tempDeedField.getHousePrice());
                                         deedController.getProperties()[j].setRent(tempDeedField.getRent4());
@@ -221,6 +225,7 @@ public class Matador {
                         } else {
                             gui.msg("Du ejer ikke denne grund");
                         }
+                        // would have been nice to make a message if the player typed in wrong property
                     }
 
 
@@ -246,6 +251,7 @@ public class Matador {
     }
 
     public static void sellHouse() {
+
         String propertyToBeDowngraded = gui.getPlayernameOrPropertyName("property");
         for (int i = 0; i < fieldController.getFields().length; i++) {
             if (propertyToBeDowngraded.equals(fieldController.getFields()[i].getFieldName())) {

@@ -118,7 +118,7 @@ public class DeedController {
     }
 
     public void allOwnedOfSameType(FieldController fieldController) {
-
+            //check for normal groups of 3
         for (int i = 0; i < properties.length-2; i++) {
             for (int j = i+1; j < properties.length-1; j++) {
                 for (int k = j+1; k < properties.length; k++) {
@@ -140,6 +140,7 @@ public class DeedController {
 
             }
         }
+        // check for groups of 2 only type 0, 7
         for (int i = 0; i < properties.length-1; i++) {
             for (int j = i+1; j < properties.length; j++) {
                 if ( properties[i].getType() ==  0 && properties[j].getType() ==  0 ||  properties[i].getType() ==  7 && properties[j].getType() ==  7){
@@ -161,6 +162,7 @@ public class DeedController {
     }
 
     public void multipleShipping(PlayerController playerController) {
+        // not fully implemented needs real rent
         int amountowned = 0;
         for (int i = 0; i < shippings.length; i++) {
             if (shippings[i].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {

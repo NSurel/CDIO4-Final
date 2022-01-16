@@ -67,13 +67,13 @@ public class GuiController {
         String msg = "Vælg en handling";
         if (pc.getCurrentPlayer().isJailed())
             if (pc.getCurrentPlayer().getOutOfJailCard())
-                tmp = gui.getUserSelection(msg,"Brug kort","Rul for frihed","Betal for frihed","Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
+                tmp = gui.getUserSelection(msg,"Brug kort","Rul for frihed","Betal for frihed","Opgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
             else
-                tmp = gui.getUserSelection(msg,"Rul for frihed","Betal for frihed","Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
+                tmp = gui.getUserSelection(msg,"Rul for frihed","Betal for frihed","Opgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
         else if (haveRolled)
-            tmp = gui.getUserSelection(msg, "Slut tur", "Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
+            tmp = gui.getUserSelection(msg, "Slut tur", "0pgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
         else
-            tmp = gui.getUserSelection(msg, "Rul", "Upgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
+            tmp = gui.getUserSelection(msg, "Rul", "Opgrader skøde", "Sælg hus", "Pantsæt skøde", "Afpansæt skøde", "Byt skøde");
 
         return tmp;
     }
@@ -133,7 +133,7 @@ public class GuiController {
     public void setLevel(int pos, int buildlevel){
         GUI_Field field = gui.getFields()[pos];
         GUI_Street street = (GUI_Street) field;
-        if (buildlevel == 4){
+        if (buildlevel > 4){
             street.setHotel(true);
         }
         else{
