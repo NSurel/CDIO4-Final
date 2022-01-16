@@ -19,9 +19,6 @@ public class GuiController {
         gui = new GUI();
     }
 
-    public void changePrice(int pos, int value){
-        gui.getFields()[pos].setSubText("pris: "+value);
-    }
     public void fixAllPrices(FieldController fc){
         for (int i = 0; i < fc.getFields().length; i++) {
             if (fc.getFields()[i].getClass().getName().equals("Models.Fields.DeedField")||
@@ -45,7 +42,7 @@ public class GuiController {
 
     }
     public int getPlayerAmount (){
-        return Integer.valueOf(gui.getUserSelection("How many players","3","4","5","6"));
+        return Integer.valueOf(gui.getUserSelection("Hvor mange spillere?","3","4","5","6"));
     }
     public void createCars(int amount){
         cars = new GUI_Car[amount];
@@ -144,7 +141,6 @@ public class GuiController {
             street.setHouses(buildlevel);
 
         }
-        //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
     }
     public String getUserName(){
         return gui.getUserString("Skriv dit navn");
