@@ -53,28 +53,28 @@ public class DeedController {
             }
         }
         for (int i = 0; i < properties.length; i++) {
-            if (i == 1 || i == 3){
+            if (i == 0 || i == 1){
                 properties[i].setType(0);
             }
-            if (i == 6 || i == 8 || i == 9){
+            if (i == 2 || i == 3 || i == 4){
                 properties[i].setType(1);
             }
-            if (i == 11 || i == 13 || i == 14){
+            if (i == 5 || i == 6 || i == 7){
                 properties[i].setType(2);
             }
-            if (i == 16 || i == 18 || i == 19){
+            if (i == 8 || i == 9 || i == 10){
                 properties[i].setType(3);
             }
-            if (i == 21 || i == 23 || i == 24){
+            if (i == 11 || i == 12 || i == 13){
                 properties[i].setType(4);
             }
-            if (i == 26 || i == 27 || i == 29){
+            if (i == 14 || i == 15 || i == 16){
                 properties[i].setType(5);
             }
-            if (i == 31 || i == 32 || i == 34){
+            if (i == 17 || i == 18 || i == 19){
                 properties[i].setType(6);
             }
-            if (i == 37 || i == 39){
+            if (i == 20 || i == 21){
                 properties[i].setType(7);
             }
         }
@@ -183,15 +183,15 @@ public class DeedController {
         int i = 0;
 
         while (i < this.getProperties().length-2) {
-            if ((getProperties()[i].getType() == 1 && getProperties()[i+1].getType() == 1  || getProperties()[i].getType() == 9 && getProperties()[i+1].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
+            if ((properties[i].getOwner()!= -1 &&getProperties()[i].getType() == 1 && getProperties()[i+1].getType() == 1  || getProperties()[i].getType() == 9 && getProperties()[i+1].getType() == 9) && getProperties()[i].getOwner() == getProperties()[i + 1].getOwner()){
                 if ((getProperties()[i].getOwner() == getProperties()[i + 1].getOwner())) {
                     DeedField tempdeedfield1 = (DeedField) fieldController.getFields()[properties[i].getPos()];
-                    DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i].getPos()];
+                    DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i+1].getPos()];
                     getProperties()[i].setBuildlevel(1);
                     getProperties()[i + 1].setBuildlevel(1);
                     getProperties()[i].setRent(tempdeedfield1.getRent1());
                     getProperties()[i+1].setRent(tempdeedfield2.getRent1());
-                } else if ((getProperties()[i].getType() == getProperties()[i + 1].getType()) && getProperties()[i].getType() == getProperties()[i + 2].getType()) {
+                } else if ((properties[i].getOwner()!= -1 && getProperties()[i].getType() == getProperties()[i + 1].getType()) && getProperties()[i].getType() == getProperties()[i + 2].getType()) {
                     if (getProperties()[i].getOwner() == getProperties()[i + 1].getOwner() && (getProperties()[i].getOwner() == getProperties()[i + 2].getOwner())) {
                         DeedField tempdeedfield = (DeedField) fieldController.getFields()[properties[i].getPos()];
                         DeedField tempdeedfield2 = (DeedField) fieldController.getFields()[properties[i+1].getPos()];

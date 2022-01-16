@@ -141,6 +141,7 @@ public class GuiController {
         }
         else{
             street.setHouses(buildlevel);
+            street.setHotel(false);
         }
         //Need to find the buildlevel and location of the property to be able to place the house/hotel on the gui
     }

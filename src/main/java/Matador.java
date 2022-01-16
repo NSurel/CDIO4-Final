@@ -104,7 +104,7 @@ public class Matador {
         }
 
         playerController.updateCurrentPlayer();
-       // deedController.allOwnedOfSameType();
+        deedController.allOwnedOfSameType(fieldController);
     }
 
     public static void roll() {
@@ -245,7 +245,57 @@ public class Matador {
     }
 
     public static void sellHouse() {
+        String propertyToBeDowngraded = gui.getPlayernameOrPropertyName("property");
+        for (int i = 0; i < fieldController.getFields().length; i++) {
+            if (propertyToBeDowngraded.equals(fieldController.getFields()[i].getFieldName())) {
+                DeedField tempDeedField = (DeedField) fieldController.getFields()[i];
+                for (int j = 0; j < deedController.getProperties().length; j++) {
+                    if (i == deedController.getProperties()[j].getPos()) {
+                        if (deedController.getProperties()[j].getOwner() == playerController.getCurrentPlayer().getPlayerID()) {
+                            if (gui.yesOrNo("would you like to sell a house for this property for" + tempDeedField.getHousePrice()/2)) {
 
+                                switch (deedController.getProperties()[j].getBuildlevel()) {
+                                    case 0:
+                                        gui.msg("you need to own all of the same type of street");
+                                        break;
+                                    case 1:
+                                        gui.msg("There are no houses on this field");
+                                        break;
+                                    case 2:
+                                        deedController.getProperties()[j].setBuildlevel(1);
+                                        playerController.getCurrentPlayer().updateBalance(tempDeedField.getHousePrice()/2);
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent1());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 3:
+                                        deedController.getProperties()[j].setBuildlevel(2);
+                                        playerController.getCurrentPlayer().updateBalance(tempDeedField.getHousePrice()/2);
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent2());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 4:
+                                        deedController.getProperties()[j].setBuildlevel(3);
+                                        playerController.getCurrentPlayer().updateBalance(tempDeedField.getHousePrice()/2);
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent3());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                    case 5:
+                                        deedController.getProperties()[j].setBuildlevel(4);
+                                        playerController.getCurrentPlayer().updateBalance(tempDeedField.getHousePrice()/2);
+                                        deedController.getProperties()[j].setRent(tempDeedField.getRent4());
+                                        gui.setLevel(i, deedController.getProperties()[j].getBuildlevel());
+                                        break;
+                                }
+                            }
+                        } else {
+                            gui.msg("Du ejer ikke denne ejendom");
+                        }
+                    }
+
+
+                }
+            }
+        }
 }
     public static void mortgage(){
          String deedName = gui.getPlayernameOrPropertyName("deed");
